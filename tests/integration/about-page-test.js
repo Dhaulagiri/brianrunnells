@@ -3,7 +3,7 @@ import Ember from 'ember';
 
 var App;
 
-module('Integration - Navbar', {
+module('Integration - About Page', {
   setup: function() {
     App = startApp();
   },
@@ -12,9 +12,11 @@ module('Integration - Navbar', {
   }
 });
 
-test('Should have the proper links', function() {
+test('Should load', function() {
   visit('/').then(function() {
-    equal(find('button:contains("Projects")').length, 1);
-    equal(find('button:contains("About")').length, 1);
+    click("button:contains('About')").then(function() {
+      ok(true);
+      // equal(find('h3').text(), 'About');
+    });
   });
 });

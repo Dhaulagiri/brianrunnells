@@ -1,0 +1,11 @@
+<div class="row col-xs-12">
+  <ul class="nav nav-pills">
+    {{#each}}
+      {{#link-to 'projects.show' this tagName="li" href=flase}}<a href="#">{{title}}</a>{{/link-to}}
+    {{/each}}
+  </ul>
+</div>
+
+<div class="row col-xs-12" id="product">
+  {{outlet}}
+</div>

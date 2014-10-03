@@ -9,6 +9,7 @@ Router.map(function() {
   this.resource('projects', function() {
     this.route('show', {path: ':project_id'});
   });
+  this.route('about');
 });
 
 export default Router;

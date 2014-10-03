@@ -1,7 +1,9 @@
-{{render "navbar"}}
 <div id="main" role="main">
   <div class="container">
-      {{outlet}}
+      {{render "navbar"}}
+      <div class="row col-xs-12" id="page-content">
+        {{outlet}}
+      </div>
       <footer>
         {{render "footer"}}
       </footer>

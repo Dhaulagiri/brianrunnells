@@ -1,15 +1,9 @@
-<div class="navbar navbar-default">
-  <div class="navbar-header">
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
-    {{#link-to 'index'classNames="navbar-brand"}}Brian Runnells{{/link-to}}
-  </div>
-  <div class="navbar-collapse collapse navbar-responsive-collapse">
-    <ul class="nav navbar-nav">
-        {{#link-to 'projects' tagName="li" href=flase}}<a href="#">Projects</a>{{/link-to}}
-    </ul>
-  </div>
+<div class="row text-center">
+  <h1>
+    {{#link-to 'index'}}Brian...{{/link-to}}
+  </h1>
+</div>
+<div class="row text-center">
+  {{#link-to 'projects' tagName="button" classNames="btn btn-primary cancel-button" href=flase}}Projects{{/link-to}}
+  {{#link-to 'about' tagName="button" classNames="btn btn-info cancel-button" href=flase}}About{{/link-to}}
 </div>
