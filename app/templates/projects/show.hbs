@@ -1,6 +1,21 @@
-<dl class="dl-horizontal">
-  <dt>App</dt>
-  <dd>{{title}}</dd>
-  <dt>Url</dt>
-  <dd><a target="_blank" href="{{unbound url}}">{{url}}</a></dd>
-</dl>
+<div class="row">
+  <div class="col-xs-12">
+
+    <h3 class="text-center">The Thing...</h2>
+    <dl class="dl-horizontal">
+      <dt>App</dt>
+      <dd>{{title}}</dd>
+      <dt>Url</dt>
+      <dd><a target="_blank" href="{{unbound url}}">{{url}}</a></dd>
+    </dl>
+
+    {{#if this.tools}}
+      <h3 class="text-center">
+        Things I used to build this Thing...
+      </h3>
+      {{#each tools}}
+        {{this.name}}</br>
+      {{/each}}
+    {{/if}}
+  </div>
+</div>

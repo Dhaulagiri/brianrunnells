@@ -1,11 +1,14 @@
-<div class="row col-xs-12">
-  <ul class="nav nav-pills">
+<div class="col-md-3 col-sm-4">
+  <h2 class="text-center">Things I made...</h2>
+  <div class="list-group">
     {{#each}}
-      {{#link-to 'projects.show' this tagName="li" href=flase}}<a href="#">{{title}}</a>{{/link-to}}
+      {{#link-to 'projects.show' this classNames="list-group-item"}}
+        <h4 class="list-group-item-heading">{{title}}</h4>
+        <p class="list-group-item-text">{{snippet}}</p>
+      {{/link-to}}
     {{/each}}
-  </ul>
+  </div>
 </div>
-
-<div class="row col-xs-12" id="product">
+<div class="col-md-9 col-sm-8">
   {{outlet}}
 </div>
