@@ -1,6 +1,9 @@
 {
   "name": "brianrunnells",
-  "root": "dist",
-  "clean_urls": true,
-  "error_page": "error.html"
+  "root": "./dist",
+  "routes": {
+    "/tests": "tests/index.html",
+    "/tests/**": "tests/index.html",
+    "/**": "index.html"
+  }
 }
