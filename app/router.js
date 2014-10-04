@@ -12,4 +12,13 @@ Router.map(function() {
   this.route('about');
 });
 
+Router.reopen({
+  notifyGoogleAnalytics: function() {
+    return GoogleAnalytitcsTracker('send', 'pageview', {
+        'page': this.get('url'),
+        'title': this.get('url')
+      });
+  }.on('didTransition')
+});
+
 export default Router;

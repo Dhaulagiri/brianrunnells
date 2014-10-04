@@ -19,5 +19,6 @@ var app = new EmberApp();
 
 app.import('bower_components/bootstrap/dist/js/bootstrap.js');
 app.import('bower_components/bootswatch/yeti/bootstrap.css');
+app.import('bower_components/google-analytics-tracker/google-analytics-tracker.html');
 
 module.exports = app.toTree();
