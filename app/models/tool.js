@@ -3,7 +3,7 @@ import DS from 'ember-data';
 var ToolModel = DS.Model.extend({
   name: DS.attr('string'),
   image: DS.attr('string'),
-  project: DS.belongsTo('project')
+  projects: DS.hasMany('project')
 });
 
 ToolModel.reopenClass({
