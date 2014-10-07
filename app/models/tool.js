@@ -20,7 +20,7 @@ ToolModel.reopenClass({
     },
     {
       id: 3,
-      name: 'Twitter Bootstrap',
+      name: 'Bootstrap',
       image: 'http://qonthed.com'
     },
     {
