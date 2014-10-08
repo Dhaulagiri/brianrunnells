@@ -9,6 +9,10 @@
         <dt>Url</dt>
         <dd><a target="_blank" {{bindAttr href="url"}}>{{url}}</a></dd>
       {{/if}}
+      {{# if repoUrl}}
+        <dt>Repo</dt>
+        <dd><a target="_blank" {{bindAttr href="repoUrl"}}>{{repoUrl}}</a></dd>
+      {{/if}}
     </dl>
 
     {{#if this.tools}}

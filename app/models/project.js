@@ -4,6 +4,7 @@ var ProjectModel = DS.Model.extend({
   title: DS.attr('string'),
   url: DS.attr('string'),
   urlActive: DS.attr('bool'),
+  repoUrl: DS.attr('string'),
   snippet: DS.attr('string'),
   tools: DS.hasMany('tool', { async: true })
 });
@@ -31,6 +32,7 @@ ProjectModel.reopenClass({
       title: 'Hard Climbs',
       url: 'http://hardclimbs.info',
       urlActive: true,
+      repoUrl: 'http://github.com/dhaulagiri/hardclimbs',
       snippet: 'Climbing website',
       tools: [1, 2, 3, 4]
     },
@@ -54,6 +56,7 @@ ProjectModel.reopenClass({
       id: 6,
       title: 'This site',
       url: 'http://brianrunnells.com',
+      repoUrl: 'http://github.com/dhaulagiri/brianrunnells',
       urlActive: true,
       snippet: 'Personal site',
       tools: [3, 8]
