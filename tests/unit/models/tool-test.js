@@ -16,8 +16,8 @@ test('it exists', function() {
 
 test('project relationship', function() {
   var Tool = this.store().modelFor('tool');
-  var relationship = Ember.get(Tool, 'relationshipsByName').get('project');
+  var relationship = Ember.get(Tool, 'relationshipsByName').get('projects');
 
-  equal(relationship.key, 'project');
-  equal(relationship.kind, 'belongsTo');
+  equal(relationship.key, 'projects');
+  equal(relationship.kind, 'hasMany');
 });
