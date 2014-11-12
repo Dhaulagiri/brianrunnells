@@ -6,6 +6,7 @@ var ProjectModel = DS.Model.extend({
   urlActive: DS.attr('bool'),
   repoUrl: DS.attr('string'),
   snippet: DS.attr('string'),
+  description: DS.attr('string'),
   tools: DS.hasMany('tool', { async: true })
 });
 
@@ -17,6 +18,7 @@ ProjectModel.reopenClass({
       url: 'http://qonthed.com',
       urlActive: true,
       snippet: 'Event registration and scoring',
+      description: 'QontheD.com is a custom event registration and scoring website that I built using Ruby on Rails, Bootstrap and Stripe to allow event registrants to register, pay and see their results.  It is deployed to a custom Digital Ocean instance.',
       tools: [1, 2, 3, 5, 6]
     },
     {
@@ -25,6 +27,7 @@ ProjectModel.reopenClass({
       url: 'http://lebrandrew.com',
       urlActive: true,
       snippet: 'Donation site',
+      description: 'Lebrandrew.com is a site built using Ruby on Rails and Stripe that allowed visitors to donate money to a particular cause.',
       tools: [1, 2, 3, 5, 6]
     },
     {
