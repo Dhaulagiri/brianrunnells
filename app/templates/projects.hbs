@@ -1,10 +1,10 @@
 <div class="col-md-3 col-sm-4">
   <h2 class="text-center">Things I made...</h2>
   <div class="list-group">
-    {{#each}}
-      {{#link-to 'projects.show' this classNames="list-group-item"}}
-        <h4 class="list-group-item-heading">{{title}}</h4>
-        <p class="list-group-item-text">{{snippet}}</p>
+    {{#each project in model}}
+      {{#link-to 'projects.show' project classNames="list-group-item"}}
+        <h4 class="list-group-item-heading">{{project.title}}</h4>
+        <p class="list-group-item-text">{{project.snippet}}</p>
       {{/link-to}}
     {{/each}}
   </div>
