@@ -48,7 +48,6 @@ ToolModel.reopenClass({
       name: 'Ember.js',
       image: 'http://qonthed.com'
     }
-
   ]
 });
 

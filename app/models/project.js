@@ -14,6 +14,18 @@ ProjectModel.reopenClass({
   FIXTURES: [
     {
       id: 1,
+      title: 'InstaClimb',
+      url: 'http://instaclimb.com',
+      urlActive: true,
+      snippet: 'Tracking',
+      description: 'InstaClimb is a Ruby on Rails application that integrates
+      with APIs from Facebook, Twitter and Instagram to track the changes in
+      follower counts of tracked users.  This information is presented using
+      Ember.js and HighCharts',
+      tools: [1, 2, 3, 5, 8]
+    },
+    {
+      id: 2,
       title: 'Q on the D',
       url: 'http://qonthed.com',
       urlActive: true,
@@ -22,16 +34,16 @@ ProjectModel.reopenClass({
       tools: [1, 2, 3, 5, 6]
     },
     {
-      id: 2,
+      id: 3,
       title: 'Lebrandrew.com',
       url: 'http://lebrandrew.com',
-      urlActive: true,
+      urlActive: false,
       snippet: 'Donation site',
       description: 'Lebrandrew.com is a site built using Ruby on Rails and Stripe that allowed visitors to donate money to a particular cause.',
       tools: [1, 2, 3, 5, 6]
     },
     {
-      id: 3,
+      id: 4,
       title: 'Hard Climbs',
       url: 'http://hardclimbs.info',
       urlActive: true,
@@ -40,7 +52,7 @@ ProjectModel.reopenClass({
       tools: [1, 2, 3, 4]
     },
     {
-      id: 4,
+      id: 5,
       title: 'Live Scoring',
       url: 'http://live-scoring.herokuapp.com',
       urlActive: true,
@@ -48,7 +60,7 @@ ProjectModel.reopenClass({
       tools: [1, 2, 3, 4]
     },
     {
-      id: 5,
+      id: 6,
       title: 'Psicocomp Live Scoring',
       url: 'http://psicobloc.herokuapp.com',
       urlActive: true,
@@ -56,7 +68,7 @@ ProjectModel.reopenClass({
       tools: [1, 2, 3, 4, 7]
     },
     {
-      id: 6,
+      id: 7,
       title: 'This site',
       url: 'http://brianrunnells.com',
       repoUrl: 'http://github.com/dhaulagiri/brianrunnells',
