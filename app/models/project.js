@@ -17,8 +17,8 @@ ProjectModel.reopenClass({
       title: 'InstaClimb',
       url: 'http://instaclimb.com',
       urlActive: true,
-      snippet: 'Tracking',
-      description: 'InstaClimb is a Ruby on Rails application that integrates with APIs from Facebook, Twitter and Instagram to track the changes in follower counts of tracked users.  This information is presented using Ember.js and HighCharts',
+      snippet: 'Social Media Tracking',
+      description: 'InstaClimb is a Ruby on Rails application that integrates with APIs from Facebook, Twitter and Instagram to track the changes in follower counts of tracked users.  This information is presented using Ember.js and HighCharts.',
       tools: [1, 2, 3, 5, 8]
     },
     {
