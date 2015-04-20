@@ -47,6 +47,11 @@ ToolModel.reopenClass({
       id: 8,
       name: 'Ember.js',
       image: 'http://qonthed.com'
+    },
+    {
+      id: 9,
+      name: 'HighCharts',
+      image: 'http://qonthed.com'
     }
   ]
 });
