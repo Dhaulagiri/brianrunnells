@@ -9,15 +9,15 @@ moduleForModel('project', 'Project', {
   needs: ['model:tool']
 });
 
-test('it exists', function() {
+test('it exists', function(assert) {
   var model = this.subject();
-  ok(!!model);
+  assert.ok(!!model);
 });
 
-test('tool relationship', function() {
+test('tool relationship', function(assert) {
   var Project = this.store().modelFor('project');
   var relationship = Ember.get(Project, 'relationshipsByName').get('tools');
 
-  equal(relationship.key, 'tools');
-  equal(relationship.kind, 'hasMany');
+  assert.equal(relationship.key, 'tools');
+  assert.equal(relationship.kind, 'hasMany');
 });

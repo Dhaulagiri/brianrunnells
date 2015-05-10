@@ -1,5 +1,9 @@
 import startApp from 'brianrunnells/tests/helpers/start-app';
 import Ember from 'ember';
+import {
+  module,
+  test
+} from 'qunit';
 
 var App;
 
@@ -12,8 +16,8 @@ module('Integration - Home Page', {
   }
 });
 
-test('Should load', function() {
+test('Should load', function(assert) {
   visit('/').then(function() {
-    ok(true);
+    assert.ok(true);
   });
 });
