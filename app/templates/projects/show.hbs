@@ -8,11 +8,11 @@
 
       {{# if urlActive}}
         <dt>Where it is</dt>
-        <dd><a target="_blank" {{bind-attr href="url"}}>{{url}}</a></dd>
+        <dd><a target="_blank" href={{url}}>{{url}}</a></dd>
       {{/if}}
       {{# if repoUrl}}
         <dt>Where the code is</dt>
-        <dd><a target="_blank" {{bind-attr href="repoUrl"}}>{{repoUrl}}</a></dd>
+        <dd><a target="_blank" href={{repoUrl}}>{{repoUrl}}</a></dd>
       {{/if}}
     </dl>
 
