@@ -1,7 +1,7 @@
 <div class="col-md-3 col-sm-4">
   <h2 class="text-center">Things I made...</h2>
   <div class="list-group">
-    {{#each project in model}}
+    {{#each model as |project|}}
       {{#link-to 'projects.show' project classNames="list-group-item"}}
         <h4 class="list-group-item-heading">{{project.title}}</h4>
         <p class="list-group-item-text">{{project.snippet}}</p>

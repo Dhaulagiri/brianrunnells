@@ -4,33 +4,33 @@
     <h3 class="text-center">The Thing...</h3>
     <dl class="dl-horizontal">
       <dt>What it's called</dt>
-      <dd>{{title}}</dd>
+      <dd>{{model.title}}</dd>
 
-      {{# if urlActive}}
+      {{#if model.urlActive}}
         <dt>Where it is</dt>
-        <dd><a target="_blank" href={{url}}>{{url}}</a></dd>
+        <dd><a target="_blank" href={{model.url}}>{{model.url}}</a></dd>
       {{/if}}
-      {{# if repoUrl}}
+      {{#if model.repoUrl}}
         <dt>Where the code is</dt>
-        <dd><a target="_blank" href={{repoUrl}}>{{repoUrl}}</a></dd>
+        <dd><a target="_blank" href={{model.repoUrl}}>{{model.repoUrl}}</a></dd>
       {{/if}}
     </dl>
 
-    {{# if description}}
+    {{#if model.description}}
       <div id="description">
         <h4 class="text-center">
           What the Thing does
         </h4>
-        <p>{{description}}</p>
+        <p>{{model.description}}</p>
       </div>
     {{/if}}
 
-    {{#if this.tools}}
+    {{#if model.tools}}
       <h4 class="text-center">
         Tools I used to build the Thing...
       </h4>
       <ul>
-        {{#each tool in tools}}
+        {{#each model.tools as |tool|}}
           <li>{{tool.name}}</li>
         {{/each}}
       </ul>
