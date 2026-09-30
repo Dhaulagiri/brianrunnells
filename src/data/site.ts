@@ -109,13 +109,12 @@ export const heroku = {
   chart: [30, 45, 38, 60, 52, 74, 68, 90],
   activity: [
     { actor: 'brian', text: 'deployed', code: 'dashboard', suffix: '· v2021' },
-    { actor: 'brian', text: 'moved to people leadership · 2018' },
-    { actor: 'brian', text: 'joined the team · 2015' },
+    { actor: 'brian', text: 'moved to', code: 'people leadership', suffix: '· 2018' },
+    { actor: 'brian', text: 'joined the', code: 'team', suffix: '· 2015' },
   ],
   terminal: {
     command: '$ heroku lessons:show --app=brian',
-    lesson: 'Where I learned good developer tools come from the people building them.',
-    result: '=== 1 lesson · 6 years · 0 regrets · deployed after dark',
+    lesson: 'Where I learned good developer tools come from the people building them.'
   },
 };
 
