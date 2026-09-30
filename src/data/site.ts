@@ -105,7 +105,7 @@ export const heroku = {
   tabs: ['Overview', 'Resources', 'Deploy', 'Metrics', 'Activity'],
   scope: 'brian-heroku / 2015–2021',
   dynos: {
-    primary: { name: 'people-leader', total: 3, running: 2 },
+    primary: { name: 'people-leader', total: 4, running: 4 },
     nightRide: 'on under full moon',
   },
   /** Bar heights, as percentages of the chart. */

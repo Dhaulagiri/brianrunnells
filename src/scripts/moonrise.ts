@@ -22,6 +22,22 @@ let lastProgress = -1;
 let queued = false;
 let drawMoons: ((progress: number) => void) | null = null;
 
+/**
+ * The marquee only animates when this control exists, so WCAG 2.2.2 (Pause,
+ * Stop, Hide) is satisfied: with no script there is no motion to stop.
+ */
+function initMarqueePause(): void {
+  const button = document.querySelector<HTMLButtonElement>('[data-marquee-pause]');
+  const marquee = button?.closest<HTMLElement>('.gc-marquee');
+  if (!button || !marquee) return;
+  button.hidden = false;
+  button.addEventListener('click', () => {
+    const paused = marquee.classList.toggle('is-paused');
+    button.setAttribute('aria-pressed', String(paused));
+    button.textContent = paused ? 'Play' : 'Pause';
+  });
+}
+
 /** Refresh the baked-in date, in case this page was cached past the last moon. */
 function refreshMoonDate(): void {
   const moon = nextFullMoon();
@@ -100,6 +116,7 @@ function applyMotionPreference(): void {
 }
 
 refreshMoonDate();
+initMarqueePause();
 applyMotionPreference();
 update();
 
