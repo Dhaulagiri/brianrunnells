@@ -26,15 +26,26 @@ const FRAGMENT_SHADER = `
 precision highp float;
 varying vec2 vPos;
 uniform sampler2D uTex;
-uniform float uPhase;  // illuminated fraction, 0 (new) to 1 (full)
-uniform float uRot;    // libration in longitude, radians
-uniform float uTilt;   // libration in latitude, radians
+uniform float uPhase;  // illuminated fraction for a single moon, 0 to 1
+uniform float uCells;  // moons across this canvas; 1 for a lone moon
+uniform float uCellAspect; // cell width / canvas height, to keep discs round
 uniform float uAA;     // one pixel, in disc radii
 
 const float PI = 3.14159265359;
+const float TAU = 6.28318530718;
 
 void main() {
-  float r = length(vPos);
+  // A strip canvas holds several moons side by side, each waxing a little more
+  // than the last. Work out which cell this pixel is in and recentre on it.
+  float cellWidth = 2.0 / uCells;
+  float index = clamp(floor((vPos.x + 1.0) / cellWidth), 0.0, uCells - 1.0);
+  float centre = -1.0 + cellWidth * (index + 0.5);
+  vec2 pos = uCells > 1.0 ? vec2((vPos.x - centre) / (cellWidth * 0.5), vPos.y) : vPos;
+  // Widen x into height units so the disc stays circular in a wide cell.
+  pos.x *= uCellAspect;
+  float phase = uCells > 1.0 ? index / max(uCells - 1.0, 1.0) : uPhase;
+
+  float r = length(pos);
   float alpha = 1.0 - smoothstep(1.0 - uAA, 1.0, r);
   if (alpha <= 0.0) {
     gl_FragColor = vec4(0.0);
@@ -42,21 +53,25 @@ void main() {
   }
 
   float z = sqrt(max(0.0, 1.0 - r * r));
-  vec3 view = vec3(vPos.x, vPos.y, z);
+  vec3 view = vec3(pos.x, pos.y, z);
 
-  // Tilt the globe for libration in latitude, then read off lat/long.
-  float ct = cos(uTilt);
-  float st = sin(uTilt);
+  // Libration: the near side always faces us, but it nods a little over a
+  // lunation. Derived from the phase so each cell in a strip differs.
+  float spin = (phase - 0.5) * 0.42;
+  float tilt = sin(phase * TAU) * 0.16;
+
+  float ct = cos(tilt);
+  float st = sin(tilt);
   vec3 n = vec3(view.x, ct * view.y - st * view.z, st * view.y + ct * view.z);
 
-  float lon = atan(n.x, n.z) + uRot;
+  float lon = atan(n.x, n.z) + spin;
   float lat = asin(clamp(n.y, -1.0, 1.0));
-  vec2 uv = vec2(fract(lon / (2.0 * PI) + 0.5), clamp(0.5 - lat / PI, 0.0, 1.0));
+  vec2 uv = vec2(fract(lon / TAU + 0.5), clamp(0.5 - lat / PI, 0.0, 1.0));
   vec3 albedo = texture2D(uTex, uv).rgb;
 
   // Sun swings from behind the moon (new) round to behind the viewer (full),
   // so a waxing moon lights from the right.
-  float a = PI * (1.0 - uPhase);
+  float a = PI * (1.0 - phase);
   vec3 sun = vec3(sin(a), 0.0, cos(a));
 
   float d = dot(view, sun);
@@ -66,7 +81,9 @@ void main() {
   vec3 paper = vec3(0.941, 0.925, 0.886);
   vec3 col = albedo * paper * (0.12 + 0.98 * diffuse) * lit;
   // Earthshine, so the unlit limb reads as shadow rather than a hole.
-  col += albedo * vec3(0.05, 0.055, 0.07) * (1.0 - lit);
+  col += albedo * vec3(0.10, 0.105, 0.125) * (1.0 - lit);
+  // Faint rim so an unlit limb still describes a sphere.
+  col += vec3(0.20, 0.20, 0.22) * smoothstep(0.90, 1.0, r) * (1.0 - lit);
 
   gl_FragColor = vec4(col, alpha);
 }`;
@@ -131,36 +148,39 @@ function createRenderer(canvas: HTMLCanvasElement, image: HTMLImageElement): Ren
   gl.blendFuncSeparate(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA, gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
 
   const uPhase = gl.getUniformLocation(program, 'uPhase');
-  const uRot = gl.getUniformLocation(program, 'uRot');
-  const uTilt = gl.getUniformLocation(program, 'uTilt');
+  const uCells = gl.getUniformLocation(program, 'uCells');
+  const uCellAspect = gl.getUniformLocation(program, 'uCellAspect');
   const uAA = gl.getUniformLocation(program, 'uAA');
 
   const attr = canvas.dataset.phase;
   const fixedPhase = attr ? Number(attr) : undefined;
+  const cells = Math.max(1, Number(canvas.dataset.moonCells ?? 1));
 
-  let size = 0;
+  let width = 0;
+  let height = 0;
 
   return {
     fixedPhase,
     draw(progress: number) {
       const rect = canvas.getBoundingClientRect();
-      if (rect.width === 0) return;
+      if (rect.width === 0 || rect.height === 0) return;
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      const next = Math.round(rect.width * dpr);
-      if (next !== size) {
-        size = next;
-        canvas.width = size;
-        canvas.height = size;
-        gl.viewport(0, 0, size, size);
+      const nextWidth = Math.round(rect.width * dpr);
+      const nextHeight = Math.round(rect.height * dpr);
+      if (nextWidth !== width || nextHeight !== height) {
+        width = nextWidth;
+        height = nextHeight;
+        canvas.width = width;
+        canvas.height = height;
+        gl.viewport(0, 0, width, height);
       }
 
-      const phase = fixedPhase ?? progress;
-      // Real libration is roughly +/-8 degrees; a little more reads clearly
-      // without looking like the moon is spinning.
-      gl.uniform1f(uPhase, phase);
-      gl.uniform1f(uRot, (phase - 0.5) * 0.42);
-      gl.uniform1f(uTilt, Math.sin(phase * Math.PI * 2) * 0.16);
-      gl.uniform1f(uAA, 2 / (size / 2));
+      gl.uniform1f(uPhase, fixedPhase ?? progress);
+      gl.uniform1f(uCells, cells);
+      const cellWidth = width / cells;
+      gl.uniform1f(uCellAspect, cells > 1 ? cellWidth / height : 1);
+      // One pixel expressed in disc radii, for the antialiased limb.
+      gl.uniform1f(uAA, 2 / (Math.min(cellWidth, height) / 2));
 
       gl.clearColor(0, 0, 0, 0);
       gl.clear(gl.COLOR_BUFFER_BIT);

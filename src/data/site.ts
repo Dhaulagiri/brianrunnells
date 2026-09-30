@@ -32,12 +32,12 @@ export const socialLinks: { id: SocialId; label: string; url: string }[] = [
 
 /** Drives the sticky rail, the mobile dock, and the section order. */
 export const eras = [
-  { id: 'era-0', name: 'GeoCities', years: '1990s', label: 'GeoCities' },
-  { id: 'era-1', name: 'Frontend', years: '2006–2015', label: 'Frontend years' },
-  { id: 'era-2', name: 'ClimbingNarc', years: '2007–2015', label: 'ClimbingNarc' },
-  { id: 'era-3', name: 'Heroku', years: '2015–2021', label: 'Heroku' },
-  { id: 'era-4', name: 'HashiCorp', years: '2021–now', label: 'HashiCorp' },
-  { id: 'era-5', name: 'Next', years: 'soon', label: 'Next' },
+  { id: 'era-0', name: 'GeoCities', years: '1990s', label: 'GeoCities', hint: 'A guestbook and too many GIFs' },
+  { id: 'era-1', name: 'Frontend', years: '2006–2015', label: 'Frontend years', hint: 'Table layouts giving way to CSS' },
+  { id: 'era-2', name: 'ClimbingNarc', years: '2007–2015', label: 'ClimbingNarc', hint: 'Eight years of climbing news' },
+  { id: 'era-3', name: 'Heroku', years: '2015–2021', label: 'Heroku', hint: 'A platform from the inside' },
+  { id: 'era-4', name: 'HashiCorp', years: '2021–now', label: 'HashiCorp', hint: 'Helios, open to everyone' },
+  { id: 'era-5', name: 'Next', years: 'soon', label: 'Next', hint: 'Out again when the moon is up' },
 ];
 
 export const geocities = {

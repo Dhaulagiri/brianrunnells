@@ -58,6 +58,11 @@ const TEXT_PAIRS = [
   ['shell: muted body', '#b9b5aa', '#050608', 14, false],
   ['shell: dim footnote', '#918d84', '#050608', 14, false],
   ['shell: hero intro', '#d9d5ca', '#050608', 14, false],
+  // The phase strip sits over the photograph, where the scrim is at 0.93-1.0
+  // alpha over #050608, so the shell background is the effective backdrop.
+  ['hero: phase strip name', '#f0ece2', '#050608', 20, false],
+  ['hero: phase strip years', '#d9d5ca', '#050608', 10, false],
+  ['hero: phase strip hint', '#c3bfb4', '#050608', 11, false],
   ['rail: era name idle', '#7c7f88', '#07080c', 24, false],
   ['rail: era name past', '#8a877f', '#07080c', 24, false],
   ['rail: era name current', '#f3e6bf', '#07080c', 24, false],
