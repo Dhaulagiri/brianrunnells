@@ -1,53 +1,40 @@
-# Brianrunnells [![Build Status](https://travis-ci.org/Dhaulagiri/brianrunnells.svg?branch=master)](https://travis-ci.org/Dhaulagiri/brianrunnells)
+# Brian Runnells
 
-This README outlines the details of collaborating on this Ember application.
+A personal site built with Astro, TypeScript, and plain CSS. Static HTML, local content, and no required client JavaScript.
 
-A short introduction of this app could easily go here.
+## Develop
 
-## Prerequisites
+Use Node.js 22.12 or newer and pnpm 12.5.1.
 
-You will need the following things properly installed on your computer.
+```sh
+pnpm install
+pnpm dev
+```
 
-* [Git](http://git-scm.com/)
-* [Node.js](http://nodejs.org/) (with NPM)
-* [Bower](http://bower.io/)
-* [Ember CLI](http://www.ember-cli.com/)
-* [PhantomJS](http://phantomjs.org/)
+## Verify and preview
 
-## Installation
+```sh
+pnpm check
+pnpm test
+pnpm preview
+```
 
-* `git clone <repository-url>` this repository
-* change into the new directory
-* `npm install`
-* `bower install`
+The test command builds the site and checks the generated HTML for required routes, profile destinations, metadata, heading structure, internal links, and linked assets. Browser visual and keyboard review is a separate check. Production output is in `dist/`.
 
-## Running / Development
+## Content
 
-* `ember server`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
+Edit `src/data/site.ts` for introductions, profiles, and project stories. Page templates live in `src/pages/`, with shared styles in `src/styles/`. `CONTENT-REVIEW.md` records sources and copy that needs Brian's review before publication. `REBUILD-PLAN.md` preserves the initial brief and subsequent design constraints.
 
-### Code Generators
+The intended design is a restrained personal publication: specific writing, readable typography, and useful links. Avoid decorative hero graphics, gradients, generic cards, and invented project imagery.
 
-Make use of the many generators for code, try `ember help generate` for more details
+## Deployment
 
-### Running Tests
+This rebuild has not been published. Confirm the production domain and hosting before deployment. Set `SITE_URL` to the final origin when building so canonical URLs, sitemap entries, and social image URLs use the correct domain.
 
-* `ember test`
-* `ember test --server`
+```sh
+SITE_URL=https://brianrunnells.com pnpm build
+```
 
-### Building
+The historical `/projects` route provides a path to the new selected work. Hosting should serve the generated `404.html` for missing URLs. Review additional historical project URLs before switching production.
 
-* `ember build` (development)
-* `ember build --environment production` (production)
-
-### Deploying
-
-Specify what it takes to deploy your app.
-
-## Further Reading / Useful Links
-
-* [ember.js](http://emberjs.com/)
-* [ember-cli](http://www.ember-cli.com/)
-* Development Browser Extensions
-  * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
-  * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
+The old Ember site remains in Git history. The repository's default branch is `main`.

@@ -1,0 +1,6 @@
+---
+import { socialLinks } from '../data/site';
+---
+<ul class="profile-links" aria-label="Social profiles">
+  {socialLinks.map(({ label, url }) => <li><a href={url}>{label}<span aria-hidden="true"> ↗</span></a></li>)}
+</ul>

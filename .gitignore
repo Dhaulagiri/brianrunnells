@@ -1,19 +1,15 @@
-# See http://help.github.com/ignore-files/ for more about ignoring files.
-
-# compiled output
+# Generated output
 /dist
 /tmp
+/.astro
 
-# dependencies
+# Dependencies
 /node_modules
-/bower_components
 
-# misc
-/.sass-cache
-/connect.lock
-/coverage/*
-/libpeerconnection.log
-npm-debug.log
-testem.log
-
-.divshot-cache/
+# Local environment and editor files
+.env
+.env.*
+!.env.example
+.DS_Store
+*.log
+/coverage

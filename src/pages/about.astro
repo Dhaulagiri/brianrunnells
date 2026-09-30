@@ -1,0 +1,10 @@
+---
+import Base from '../layouts/Base.astro';
+import { profile } from '../data/site';
+---
+<Base title="About" description="I'm Brian Runnells. I work across frontend engineering and design, with a background in climbing publishing.">
+  <article class="article wrap">
+    <header class="article-header"><p class="article-label">About</p><h1>A little more <br />about me.</h1></header>
+    <div class="prose">{profile.about.map((paragraph) => <p>{paragraph}</p>)}<p>{profile.interests}</p><p><a href="/#work">Explore the work</a>, or <a href="https://www.linkedin.com/in/brianrunnells">find the professional chronology on LinkedIn</a>.</p></div>
+  </article>
+</Base>
