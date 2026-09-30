@@ -21,10 +21,36 @@ pnpm test
 pnpm preview
 ```
 
-The test command builds the site and checks the generated HTML for required
-routes, profile destinations, metadata, heading structure, internal links, and
-linked assets. Browser visual and keyboard review is a separate check.
-Production output is in `dist/`.
+The test command builds the site, then runs two validators. `validate-build.mjs`
+checks the generated HTML for required routes, profile destinations, metadata,
+heading structure, internal links, and linked assets. `validate-a11y.mjs` checks
+WCAG 2.2 Level AA. Production output is in `dist/`.
+
+## Accessibility
+
+The site targets WCAG 2.2 Level AA, enforced by `scripts/validate-a11y.mjs`
+(also runnable on its own with `pnpm test:a11y`). It has two halves:
+
+- **Contrast.** Every foreground/background pair in the design is declared in
+  that file with its font size and weight, and checked against the 1.4.3 and
+  1.4.11 thresholds. A coverage guard fails the build if the stylesheet gains a
+  text colour or colour token that no pair covers, so a colour change cannot
+  quietly stop being tested.
+- **Structure.** axe-core runs over the built HTML in jsdom for landmarks,
+  headings, ARIA, document language and duplicate ids. Contrast is disabled
+  there because jsdom has no layout engine; the pair table covers it instead.
+
+It also asserts a few things neither half catches: the hero image is present
+with real alt text, every `<img>` has non-empty alt (nothing on this page is a
+decorative image), the marquee ships a pause control, the skip link exists, and
+interactive targets declare at least 24px.
+
+Two design decisions follow from this. The era pastiches keep their period
+palettes, but several colours are shifted slightly from the source design to
+clear AA — the ClimbingNarc call to action in particular uses dark text on its
+orange rather than white, which failed at 2.73:1. And the GeoCities marquee only
+animates when JavaScript is running, because that is what supplies the pause
+control; with no script it is static, so WCAG 2.2.2 has nothing to pause.
 
 ## Content
 

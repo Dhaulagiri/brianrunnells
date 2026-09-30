@@ -10,7 +10,7 @@
   --dim: #918d84;
   --rail-bg: #07080c;
   --rule: #1a1c22;
-  --edge: #3a3c44;
+  --edge: #5a5e69;
 
   --serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
   --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
@@ -400,7 +400,7 @@ main { min-width: 0; }
 .rail-dot {
   width: 11px;
   height: 11px;
-  border: 1px solid #55585f;
+  border: 1px solid #5a5e69;
   border-radius: 50%;
   background: var(--rail-bg);
   transition: background 0.3s;
@@ -479,7 +479,7 @@ main { min-width: 0; }
   align-items: center;
   gap: 10px;
   padding: 8px 10px;
-  border: 1px solid #22242b;
+  border: 1px solid var(--edge);
   border-radius: 14px;
   background: rgba(7, 8, 12, 0.9);
   backdrop-filter: blur(10px);
@@ -687,7 +687,7 @@ main { min-width: 0; }
   font-family: Verdana, Geneva, sans-serif;
 }
 .era-frontend .era-inner { gap: 20px; }
-.era-frontend .era-kicker { color: #5c6270; }
+.era-frontend .era-kicker { color: #4d5361; }
 
 .fe-window {
   width: 100%;
