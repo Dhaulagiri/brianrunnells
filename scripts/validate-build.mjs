@@ -2,8 +2,8 @@ import { readFile, readdir, stat } from 'node:fs/promises';
 import path from 'node:path';
 
 const output = path.resolve(process.argv[2] || 'dist');
-const expected = ['index.html', 'about/index.html', 'work/helios/index.html', 'work/climbingnarc/index.html', '404.html', 'projects/index.html'];
-const profiles = ['https://www.linkedin.com/in/brianrunnells', 'https://github.com/Dhaulagiri', 'https://twitter.com/climbingnarc'];
+const expected = ['index.html', '404.html'];
+const profiles = ['https://www.linkedin.com/in/brianrunnells', 'https://github.com/Dhaulagiri', 'https://x.com/climbingnarc'];
 const errors = [];
 const fail = (file, message) => errors.push(`${file}: ${message}`);
 async function exists(file) { try { return (await stat(file)).isFile(); } catch { return false; } }
@@ -33,7 +33,7 @@ for (const fullPath of htmlFiles) {
   if (!/<main\b/i.test(html)) fail(file, 'main landmark is missing');
   const ids = new Set([...html.matchAll(/\bid=["']([^"']+)["']/g)].map(match => match[1]));
   const anchors = [...html.matchAll(/<a\b[^>]*>/gi)].map(match => attrs(match[0]));
-  if (['index.html', 'about/index.html'].includes(file)) {
+  if (file === 'index.html') {
     for (const profile of profiles) if (!anchors.some(anchor => anchor.href?.replace(/\/$/, '') === profile)) fail(file, `missing requested profile: ${profile}`);
   }
   for (const match of html.matchAll(/<(a|img|script|link|source)\b[^>]*>/gi)) {

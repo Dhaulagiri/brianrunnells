@@ -1,17 +1,17 @@
 ---
 import '../styles/global.css';
-import ProfileLinks from '../components/ProfileLinks.astro';
+import { profile } from '../data/site';
+
 interface Props { title?: string; description?: string; }
-const { title = 'Brian Runnells', description = 'Frontend platforms, design systems, and useful corners of the internet. The work and interests of Brian Runnells.' } = Astro.props;
+const { title = profile.name, description = profile.description } = Astro.props;
 const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site) : undefined;
-const active = Astro.url.pathname;
 ---
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{title === 'Brian Runnells' ? title : `${title} — Brian Runnells`}</title>
+  <title>{title === profile.name ? title : `${title} — ${profile.name}`}</title>
   <meta name="description" content={description} />
   {canonical && <link rel="canonical" href={canonical} />}
   <meta property="og:title" content={title} />
@@ -20,24 +20,22 @@ const active = Astro.url.pathname;
   {canonical && <meta property="og:url" content={canonical} />}
   <meta property="og:image" content={Astro.site ? new URL('/social-card.png', Astro.site).href : '/social-card.png'} />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#050608" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&family=Archivo:wght@400;600;800;900&display=swap"
+  />
+  <script is:inline>
+    // Marks the document before first paint so reveal animations only apply
+    // where the script can undo them. Without JS, content renders visible.
+    document.documentElement.classList.add('js');
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header wrap">
-    <a class="wordmark" href="/" aria-current={active === '/' ? 'page' : undefined}>Brian Runnells</a>
-    <nav aria-label="Main navigation">
-      <a href="/#work">Work</a>
-      <a href="/about/" aria-current={active.startsWith('/about') ? 'page' : undefined}>About</a>
-      <a href="#connect">Connect</a>
-    </nav>
-  </header>
-  <main id="main" tabindex="-1"><slot /></main>
-  <footer class="site-footer wrap" id="connect">
-    <div><h2>Keep in touch.</h2><p>Find me elsewhere on the internet.</p></div>
-    <ProfileLinks />
-    <p class="footer-note">Brian Runnells <span aria-hidden="true">·</span> Wisconsin</p>
-    <a class="back-top" href="#main">Back to top ↑</a>
-  </footer>
+  <slot />
 </body>
 </html>

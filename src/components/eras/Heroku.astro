@@ -1,0 +1,61 @@
+---
+import Icon from '../Icon.astro';
+import { heroku as era } from '../../data/site';
+---
+<section id="era-3" class="era era-heroku" data-era="3" aria-labelledby="era-3-heading">
+  <div class="era-inner" data-reveal>
+    <h2 class="era-kicker" id="era-3-heading">{era.kicker}</h2>
+
+    <p class="hk-brand" role="img" aria-label="Heroku">
+      <Icon name="heroku" /><span class="hk-wordmark">Heroku</span>
+    </p>
+
+    <p class="hk-headline">{era.headline}</p>
+
+    <div class="hk-panel">
+      <div class="hk-tabs">
+        <ul aria-hidden="true">
+          {era.tabs.map((tab, index) => <li class={index === 0 ? 'is-current' : undefined}>{tab}</li>)}
+        </ul>
+        <p class="hk-scope">{era.scope}</p>
+      </div>
+
+      <div class="hk-columns">
+        <div class="hk-column">
+          <p class="hk-column-title">Dyno formation</p>
+          <p class="hk-dyno">
+            <span class="hk-dyno-name">{era.dynos.primary.name}</span>
+            <span class="hk-dyno-blocks" aria-hidden="true">
+              {Array.from({ length: era.dynos.primary.total }, (_, index) => (
+                <span class={index < era.dynos.primary.running ? 'is-on' : undefined}></span>
+              ))}
+            </span>
+          </p>
+          <p class="hk-dyno">
+            <span class="hk-dyno-name">night-ride</span>
+            <span class="hk-dyno-status">● {era.dynos.nightRide}</span>
+          </p>
+          <div class="hk-chart" aria-hidden="true">
+            {era.chart.map((height) => <span style={`height:${height}%;`}></span>)}
+          </div>
+        </div>
+
+        <div class="hk-column">
+          <p class="hk-column-title">Latest activity</p>
+          <ul class="hk-activity">
+            {era.activity.map((entry) => (
+              <li>
+                <b>{entry.actor}</b> {entry.text}
+                {entry.code && <> <code>{entry.code}</code> {entry.suffix}</>}
+              </li>
+            ))}
+          </ul>
+          <div class="hk-terminal">
+            <p class="hk-command">{era.terminal.command}</p>
+            <p class="hk-lesson">{era.terminal.lesson}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

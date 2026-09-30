@@ -1,101 +1,160 @@
+/**
+ * Content for the Moonrise B v2 homepage: a single scroll-driven timeline of
+ * eras. Copy originates in the design file of the same name; see
+ * CONTENT-REVIEW.md for the claims that still need Brian's confirmation.
+ */
+
 export const profile = {
   name: 'Brian Runnells',
-  tagline: 'Frontend engineering, design systems, and a few ongoing interests.',
+  /** Photo location shown beside the wordmark in the hero. */
+  place: 'Longs Peak, CO',
+  headline: 'From GeoCities to Helios,',
+  /** Rendered in the accent colour as the second half of the headline. */
+  headlineAccent: 'one full moon at a time.',
   introduction:
-    "I'm Brian. I lead frontend engineering and design teams at HashiCorp, now part of IBM. Outside work, climbing has led me into writing and building websites. This is a small collection of my work.",
-  about: [
-    "My professional work sits between frontend engineering, design, and the people doing that work. At HashiCorp, I've led design systems work and helped bring Helios into the open. Before that, I worked at Heroku.",
-    "I'm interested in what makes a shared foundation useful in practice: whether someone can find what they need, understand the tradeoffs, and get on with their work. A component library is part of that. So are the documentation and the team behind it.",
-    "ClimbingNarc started with something I wanted to be able to find on the internet: climbing news gathered in one place. I ended up making that place myself.",
-  ],
-  interests:
-    "I've been climbing since 1999. I also spend time with movies. ClimbingNarc is one example of what happens when an interest turns into something I want to make.",
+    'I lead frontend engineering and design teams at HashiCorp, now part of IBM. Off the clock: moonlit adventures on two feet or two wheels.',
+  description:
+    'Brian Runnells leads frontend engineering and design teams at HashiCorp, now part of IBM. A timeline from a GeoCities homepage to the Helios design system.',
 };
 
-export const socialLinks = [
-  { label: 'LinkedIn', url: 'https://www.linkedin.com/in/brianrunnells' },
-  { label: 'GitHub', url: 'https://github.com/Dhaulagiri' },
-  { label: 'Twitter', url: 'https://twitter.com/climbingnarc' },
+export const heroImage = {
+  src: '/images/longs-dawn.jpeg',
+  alt: 'The Diamond on Longs Peak before dawn',
+};
+
+export type SocialId = 'github' | 'x' | 'linkedin';
+
+export const socialLinks: { id: SocialId; label: string; url: string }[] = [
+  { id: 'github', label: 'GitHub', url: 'https://github.com/Dhaulagiri' },
+  { id: 'x', label: 'X', url: 'https://x.com/climbingnarc' },
+  { id: 'linkedin', label: 'LinkedIn', url: 'https://www.linkedin.com/in/brianrunnells' },
 ];
 
-export const principles = [
-  {
-    title: 'The work around the work',
-    body: "I'm interested in the parts that make good technical work sustainable: useful documentation, clear decisions, and teams that can work well together. Helios is one example. ClimbingNarc shows another side of what I like to make.",
-  },
+/** Drives the sticky rail, the mobile dock, and the section order. */
+export const eras = [
+  { id: 'era-0', name: 'GeoCities', years: '1990s', label: 'GeoCities' },
+  { id: 'era-1', name: 'Frontend', years: '2006–2015', label: 'Frontend years' },
+  { id: 'era-2', name: 'ClimbingNarc', years: '2007–2015', label: 'ClimbingNarc' },
+  { id: 'era-3', name: 'Heroku', years: '2015–2021', label: 'Heroku' },
+  { id: 'era-4', name: 'HashiCorp', years: '2021–now', label: 'HashiCorp' },
+  { id: 'era-5', name: 'Next', years: 'soon', label: 'Next' },
 ];
 
-export interface Project {
-  slug: string;
-  title: string;
-  kicker: string;
-  summary: string;
-  role: string;
-  url: string;
-  sections: { title: string; paragraphs: string[] }[];
-}
+export const geocities = {
+  kicker: '1990s · GeoCities',
+  marquee:
+    '*** UNDER CONSTRUCTION *** Sign my guestbook!!! *** Now with MIDI *** Last updated: new moon ***',
+  title: "~*~ Welcome 2 Brian's Homepage ~*~",
+  links: ['Cool Sites', 'Climbing Pix', 'Sign Guestbook!!'],
+  visitorCount: '000417',
+  paragraphs: [
+    "My first site went up sometime in the '90s, around when Chris Farley was on SNL. Tiled background, a guestbook, a <marquee> or three, more GIFs than words.",
+    'It taught me you could make a thing and put it on the internet.',
+  ],
+  webring: 'Climbers Webring',
+  badges: [
+    { text: 'NETSCAPE NOW!', background: '#008080', color: '#fff' },
+    { text: '800×600', background: '#800000', color: '#ff0' },
+    { text: 'MOON: NEW', background: '#000', color: '#fff' },
+  ],
+};
 
-export const projects: Project[] = [
-  {
-    slug: 'helios',
-    title: 'Helios',
-    kicker: 'HashiCorp · Design systems',
-    summary:
-      'Shared foundations for product teams. I led the design systems team behind Helios and coauthored its public launch announcement.',
-    role: 'Design systems team leadership',
-    url: 'https://helios.hashicorp.design/',
-    sections: [
-      {
-        title: 'A common foundation',
-        paragraphs: [
-          'Helios is HashiCorp’s open source design system. It brings components, design foundations, patterns, and guidance together so product teams have a common place to start.',
-          'Accessibility and consistency are part of that foundation. Shared components give designers and engineers a way to carry those decisions into the interfaces people use.',
-        ],
-      },
-      {
-        title: 'My part',
-        paragraphs: [
-          'I joined HashiCorp to lead its new design systems team. In January 2023, we released Helios publicly. I coauthored the announcement with Misha Dhar.',
-          'This was the work of a team of designers and engineers. My role was leading that team; the system itself reflects their expertise and the needs of the product teams using it.',
-        ],
-      },
-      {
-        title: 'See the work',
-        paragraphs: [
-          'The public documentation is the best way to explore Helios: the components themselves, the guidance around them, and the source code behind the system.',
-        ],
-      },
-    ],
+export const frontend = {
+  kicker: '2006–2015 · Frontend engineer',
+  filename: 'résumé.html',
+  modified: 'last modified: some time ago',
+  summary:
+    "Between GeoCities and Heroku I was a frontend engineer at a handful of companies you've never heard of. Table layouts giving way to CSS, IE6 hacks, the arrival of jQuery. It's where I learned the craft.",
+  roles: [
+    { company: 'Associated Bag Company', role: 'Frontend engineer', years: '2006–2011' },
+    { company: 'MCFI', role: 'Frontend engineer', years: '2011–2013' },
+    { company: 'Markit', role: 'Frontend engineer', years: '2013–2015' },
+  ],
+  badges: [
+    { prefix: 'W3C', text: 'XHTML 1.0', accent: '#666' },
+    { prefix: 'W3C', text: 'CSS valid', accent: '#666' },
+    { prefix: 'RSS', text: 'feed', accent: '#c60' },
+  ],
+};
+
+export const climbingnarc = {
+  kicker: '2007–2015 · ClimbingNarc',
+  url: 'https://climbingnarc.com/',
+  logo: { src: '/images/climbingnarc-logo.jpg', alt: 'ClimbingNarc logo' },
+  tagline: 'So obsessed with climbing it hurt.',
+  nav: ['News', 'Videos', 'Comps', 'About'],
+  posts: [
+    {
+      meta: 'February 2007 · Posted by Brian · 12 comments',
+      title: 'Why I started this site',
+      body: 'Keeping up with climbing online meant checking a dozen sites a day. So I built one place for the news, videos and comp coverage, and wrote it for eight years.',
+    },
+    {
+      meta: 'Live coverage',
+      title: 'On the mic at USA Climbing Nationals',
+      body: 'Covering competitions turned into calling them: live commentary for USA Climbing national championships.',
+    },
+  ],
+  cta: 'Read the archive »',
+  stats: '1,332 posts · 9,574 reader comments',
+};
+
+export const heroku = {
+  kicker: '2015–2021 · Heroku',
+  headline: 'Six years learning how a platform feels from the inside.',
+  tabs: ['Overview', 'Resources', 'Deploy', 'Metrics', 'Activity'],
+  scope: 'brian-heroku / 2015–2021',
+  dynos: {
+    primary: { name: 'people-leader', total: 4, running: 4 },
+    nightRide: 'on under full moon',
   },
-  {
-    slug: 'climbingnarc',
-    title: 'ClimbingNarc',
-    kicker: 'Personal project · Climbing',
-    summary:
-      'A climbing news site I started in 2007, bringing reports and videos into one place. The archive is still online.',
-    role: 'Founder and writer',
-    url: 'https://climbingnarc.com/',
-    sections: [
-      {
-        title: 'It started with climbing',
-        paragraphs: [
-          'I started climbing in 1999 and launched ClimbingNarc in February 2007. There was plenty of climbing content online, but keeping up meant checking a lot of different sites.',
-          'The idea was straightforward: bring it together. News, videos, competition coverage, and reports on climbs could share one home.',
-        ],
-      },
-      {
-        title: 'A place to follow along',
-        paragraphs: [
-          'I wrote and curated the site, with readers joining the conversation in the comments. Its subjects ranged from bouldering and sport climbing to competitions and the people involved.',
-          'It was a publishing project as much as a web project: finding the material, choosing what to cover, and giving people a reason to come back.',
-        ],
-      },
-      {
-        title: 'Still there to explore',
-        paragraphs: [
-          'The archive remains online. It’s a record of that period in climbing and an earlier chapter of my habit of building websites around an interest.',
-        ],
-      },
-    ],
+  /** Bar heights, as percentages of the chart. */
+  chart: [30, 45, 38, 60, 52, 74, 68, 90],
+  activity: [
+    { actor: 'brian', text: 'scaled', code: 'brian-heroku', suffix: 'to 0 · 2021' },
+    { actor: 'brian', text: 'changed', code: 'brian-heroku', suffix: 'process type to people-leader · 2018' },
+    { actor: 'brian', text: 'scaled', code: 'brian-heroku', suffix: 'to 1 · 2015' },
+  ],
+  terminal: {
+    command: '$ heroku lessons:show --app=brian-heroku',
+    lesson: 'Where I learned good developer tools come from the people building them.'
   },
-];
+};
+
+export const hashicorp = {
+  kicker: '2021–now · HashiCorp',
+  badge: 'Open source',
+  body: 'I joined HashiCorp in 2021 to lead a new design systems team. We released Helios publicly in January 2023. Now I lead frontend engineering and design teams, as part of IBM.',
+  actions: [
+    { label: 'Documentation', url: 'https://helios.hashicorp.design/', primary: true },
+    { label: 'GitHub', url: 'https://github.com/hashicorp/design-system', primary: false },
+  ],
+  tabs: ['Components', 'Foundations', 'Patterns'],
+  callout: {
+    title: 'Released publicly',
+    body: 'Components, patterns and guidance, open to everyone since January 2023.',
+  },
+  badges: [
+    { text: 'Neutral', background: '#f1f2f3', color: '#3b3d45' },
+    { text: 'Highlight', background: '#f2f8ff', color: '#0c56e9' },
+    { text: 'Success', background: '#f2fbf6', color: '#006619' },
+    { text: 'Warning', background: '#fff9e8', color: '#9e4b00' },
+  ],
+  toggle: 'Accessible by default',
+  tokens: [
+    { name: '--token-color-foreground-action', swatch: '#1060ff' },
+    { name: '--token-color-foreground-strong', swatch: '#0c0c0e' },
+    { name: '--token-color-moon', swatch: '#f0ece2', note: '(unofficial)' },
+  ],
+};
+
+export const next = {
+  kicker: 'Next · Moon: full',
+  paragraphs: [
+    'Still leading frontend engineering and design teams, still curious about what makes shared foundations actually useful.',
+    'Still building websites around whatever I’m obsessed with. And still heading out when the moon is up. Probably',
+  ],
+  footnote: 'Last updated under a full moon',
+};
+
+export { nextFullMoon, formatFullMoon, formatFullMoonShort } from '../lib/moon';

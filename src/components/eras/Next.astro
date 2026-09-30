@@ -1,0 +1,34 @@
+---
+import Moon from '../Moon.astro';
+import SocialPills from '../SocialPills.astro';
+import { next as era, nextFullMoon, formatFullMoon, formatFullMoonShort } from '../../data/site';
+
+// Rendered at build time so the date is present without JavaScript; the
+// enhancement script recomputes it in case the page has been cached a while.
+const moon = nextFullMoon();
+const full = formatFullMoon(moon);
+const short = formatFullMoonShort(moon);
+---
+<section id="era-5" class="era era-next" data-era="5" aria-labelledby="era-5-heading">
+  <div class="nx-moon" aria-hidden="true">
+    <Moon size="clamp(190px, 26vw, 380px)" glow={120} phase={1} textured alwaysGlow gl />
+  </div>
+
+  <div class="era-inner" data-reveal>
+    <h2 class="era-kicker" id="era-5-heading">{era.kicker}</h2>
+
+    <p class="nx-headline">
+      The next full moon rises <em data-next-full>{full}</em>.
+    </p>
+
+    <div class="nx-columns">
+      <p>{era.paragraphs[0]}</p>
+      <p>{era.paragraphs[1]} <span data-next-full-short>{short}</span>.</p>
+    </div>
+  </div>
+
+  <div class="nx-footer">
+    <SocialPills variant="solid" />
+    <p class="nx-footnote">{era.footnote}</p>
+  </div>
+</section>

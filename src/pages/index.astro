@@ -1,23 +1,59 @@
 ---
 import Base from '../layouts/Base.astro';
-import ProfileLinks from '../components/ProfileLinks.astro';
-import { profile, projects, principles } from '../data/site';
+import Rail from '../components/Rail.astro';
+import Dock from '../components/Dock.astro';
+import SocialPills from '../components/SocialPills.astro';
+import Geocities from '../components/eras/Geocities.astro';
+import Frontend from '../components/eras/Frontend.astro';
+import ClimbingNarc from '../components/eras/ClimbingNarc.astro';
+import Heroku from '../components/eras/Heroku.astro';
+import HashiCorp from '../components/eras/HashiCorp.astro';
+import Next from '../components/eras/Next.astro';
+import { profile, heroImage } from '../data/site';
 ---
 <Base>
-  <section class="intro wrap" aria-labelledby="intro-heading">
-    <h1 id="intro-heading">Brian Runnells</h1>
-    <div class="intro-copy"><p class="lead">{profile.tagline}</p><p>{profile.introduction}</p><ProfileLinks /></div>
-  </section>
-  <section class="work-section wrap" id="work" aria-labelledby="work-heading">
-    <div class="section-header"><h2 id="work-heading">Selected work</h2><p>A few things I’ve helped make.</p></div>
-    {projects.map((project) => <article class={`work-row work-${project.slug}`}>
-      <div class="work-label"><p>{project.kicker}</p><p class="work-role">{project.role}</p></div>
-      <div class="work-copy"><h3><a href={`/work/${project.slug}/`}>{project.title}</a></h3><p>{project.summary}</p><a class="text-link" href={`/work/${project.slug}/`}>Read the story <span aria-hidden="true">→</span><span class="sr-only"> of {project.title}</span></a></div>
-    </article>)}
-  </section>
-  <section class="working wrap" aria-labelledby="working-heading">
-    <h2 id="working-heading">What I come back to</h2>
-    <div class="principles">{principles.map((principle) => <article><h3>{principle.title}</h3><p>{principle.body}</p></article>)}</div>
-  </section>
-  <section class="personal wrap" aria-labelledby="personal-heading"><h2 id="personal-heading">Outside the org chart</h2><div><p>{profile.interests}</p><a class="text-link" href="/about/">A little more about me <span aria-hidden="true">→</span></a></div></section>
+  <header class="hero">
+    <img
+      class="hero-photo"
+      src={heroImage.src}
+      alt={heroImage.alt}
+      fetchpriority="high"
+      decoding="async"
+    />
+    <div class="hero-scrim" aria-hidden="true"></div>
+
+    <div class="hero-bar">
+      <p class="hero-wordmark">{profile.name}</p>
+      <p class="hero-place">{profile.place}</p>
+    </div>
+
+    <div class="hero-body">
+      <h1>{profile.headline} <em>{profile.headlineAccent}</em></h1>
+      <div class="hero-footer">
+        <p class="hero-intro">{profile.introduction}</p>
+        <div class="hero-actions">
+          <SocialPills variant="glass" />
+          <a class="hero-start" href="#era-0">Start in the 1990s <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <Rail />
+    <main id="main" tabindex="-1">
+      <Geocities />
+      <Frontend />
+      <ClimbingNarc />
+      <Heroku />
+      <HashiCorp />
+      <Next />
+    </main>
+  </div>
+
+  <Dock />
+
+  <script>
+    import '../scripts/moonrise';
+  </script>
 </Base>

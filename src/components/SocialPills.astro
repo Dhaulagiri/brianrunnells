@@ -1,0 +1,16 @@
+---
+import Icon from './Icon.astro';
+import { socialLinks } from '../data/site';
+/** `glass` sits over the hero photo; `solid` sits on the flat dark footer. */
+interface Props { variant?: 'glass' | 'solid'; }
+const { variant = 'solid' } = Astro.props;
+---
+<ul class:list={['social-pills', `social-pills--${variant}`]} aria-label="Social profiles">
+  {socialLinks.map(({ id, label, url }) => (
+    <li>
+      <a href={url} rel="me noopener">
+        <Icon name={id} />{label}<span aria-hidden="true"> ↗</span>
+      </a>
+    </li>
+  ))}
+</ul>

@@ -1,6 +1,8 @@
 # Brian Runnells
 
-A personal site built with Astro, TypeScript, and plain CSS. Static HTML, local content, and no required client JavaScript.
+A personal site built with Astro, TypeScript, and plain CSS. One page: a
+scroll-driven timeline that runs from a GeoCities homepage to the Helios design
+system, with each era borrowing the visual language of its own period.
 
 ## Develop
 
@@ -19,22 +21,72 @@ pnpm test
 pnpm preview
 ```
 
-The test command builds the site and checks the generated HTML for required routes, profile destinations, metadata, heading structure, internal links, and linked assets. Browser visual and keyboard review is a separate check. Production output is in `dist/`.
+The test command builds the site, checks the generated HTML with
+`validate-build.mjs` (required routes, profile destinations, metadata, heading
+structure, internal links, linked assets), then runs the accessibility suite in
+a browser. Production output is in `dist/`.
 
-## Content
+## Accessibility
 
-Edit `src/data/site.ts` for introductions, profiles, and project stories. Page templates live in `src/pages/`, with shared styles in `src/styles/`. `CONTENT-REVIEW.md` records sources and copy that needs Brian's review before publication. `REBUILD-PLAN.md` preserves the initial brief and subsequent design constraints.
+The site targets WCAG 2.2 Level AA, enforced by Playwright tests in `tests/`
+(`pnpm test:a11y`, also part of `pnpm test`). They run against the production
+build in a real browser, which is the point: axe-core can only evaluate colour
+contrast, target size and focus occlusion where there is layout. Nothing here
+maintains a list of colour pairs — axe reads the rendered pixels.
 
-The intended design is a restrained personal publication: specific writing, readable typography, and useful links. Avoid decorative hero graphics, gradients, generic cards, and invented project imagery.
+The suite runs at three viewports, because the layout changes substantially:
+1440x900, 1280x620 (short enough to squeeze the rail), and 375x812 (where the
+rail becomes the dock). It covers axe's wcag2a through wcag22aa rules on both
+pages, plus checks those rules cannot express:
+
+- the hero photograph is present and its bytes actually decoded
+- every `<img>` has non-empty alt text, since nothing here is decorative
+- interactive targets are at least 24x24 (2.5.8)
+- the marquee's pause control works and toggles `aria-pressed` (2.2.2)
+- tabbing never leaves focus behind the fixed dock (2.4.11)
+- reduced motion reveals all content immediately
+- the page is complete and static with JavaScript disabled
+
+Two design decisions follow. The era pastiches keep their period palettes, but
+several colours are shifted from the source design to clear AA — the
+ClimbingNarc call to action uses dark text on its orange rather than white,
+which failed at 2.73:1. And the GeoCities marquee only animates when JavaScript
+is running, because that is what supplies the pause control; with no script it
+is static, so 2.2.2 has nothing to pause.
+
+Playwright uses the Chrome already installed on the machine (`channel:
+'chrome'`) rather than downloading its own build.
+
+## Images
+
+`public/images/longs-dawn.jpeg` is the hero photograph and
+`public/images/climbingnarc-logo.jpg` is the ClimbingNarc mark. The hero is
+optional at build time: without it the hero falls back to its gradient rather
+than rendering a broken image.
+
+`public/images/moon-albedo.jpg` is the lunar texture used by the WebGL moon. It
+is `lroc_color_poles_1k.jpg` from NASA's Scientific Visualization Studio CGI
+Moon Kit, built from Lunar Reconnaissance Orbiter data. NASA imagery is public
+domain and carries no attribution requirement, though crediting the source is
+courteous. A Creative Commons alternative was deliberately avoided so the site
+takes on no share-alike obligation.
+
+Source: https://svs.gsfc.nasa.gov/4720/
 
 ## Deployment
 
-This rebuild has not been published. Confirm the production domain and hosting before deployment. Set `SITE_URL` to the final origin when building so canonical URLs, sitemap entries, and social image URLs use the correct domain.
+This rebuild has not been published. Confirm the production domain and hosting
+before deployment. Set `SITE_URL` to the final origin when building so canonical
+URLs, sitemap entries, and social image URLs use the correct domain.
 
 ```sh
 SITE_URL=https://brianrunnells.com pnpm build
 ```
 
-The historical `/projects` route provides a path to the new selected work. Hosting should serve the generated `404.html` for missing URLs. Review additional historical project URLs before switching production.
+The site is now a single page. The previous `/about/`, `/projects/`, and
+`/work/<slug>/` routes have been removed; review whether hosting should redirect
+them to `/` before switching production. Hosting should serve the generated
+`404.html` for missing URLs.
 
-The old Ember site remains in Git history. The repository's default branch is `main`.
+The old Ember site remains in Git history. The repository's default branch is
+`main`.
