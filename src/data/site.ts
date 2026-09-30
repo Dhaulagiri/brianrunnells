@@ -109,7 +109,7 @@ export const heroku = {
   chart: [30, 45, 38, 60, 52, 74, 68, 90],
   activity: [
     { actor: 'brian', text: 'deployed', code: 'dashboard', suffix: '· v2021' },
-    { actor: 'brian', text: 'promoted to people leadership · 2018' },
+    { actor: 'brian', text: 'moved to people leadership · 2018' },
     { actor: 'brian', text: 'joined the team · 2015' },
   ],
   terminal: {
