@@ -1,4 +1,5 @@
 ---
+import Moon from '../Moon.astro';
 import SocialPills from '../SocialPills.astro';
 import { next as era, nextFullMoon, formatFullMoon, formatFullMoonShort } from '../../data/site';
 
@@ -9,6 +10,10 @@ const full = formatFullMoon(moon);
 const short = formatFullMoonShort(moon);
 ---
 <section id="era-5" class="era era-next" data-era="5" aria-labelledby="era-5-heading">
+  <div class="nx-moon" aria-hidden="true">
+    <Moon size="clamp(190px, 26vw, 380px)" glow={120} phase={1} textured alwaysGlow gl />
+  </div>
+
   <div class="era-inner" data-reveal>
     <h2 class="era-kicker" id="era-5-heading">{era.kicker}</h2>
 

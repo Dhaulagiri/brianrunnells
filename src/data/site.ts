@@ -103,14 +103,17 @@ export const heroku = {
   kicker: '2015–2021 · Heroku',
   headline: 'Six years learning how a platform feels from the inside.',
   tabs: ['Overview', 'Resources', 'Deploy', 'Metrics', 'Activity'],
-  scope: 'brian / 2015–2021',
-  dynos: { web: { total: 3, running: 2 }, nightRide: 'on under full moon' },
+  scope: 'brian-heroku / 2015–2021',
+  dynos: {
+    primary: { name: 'people-leader', total: 3, running: 2 },
+    nightRide: 'on under full moon',
+  },
   /** Bar heights, as percentages of the chart. */
   chart: [30, 45, 38, 60, 52, 74, 68, 90],
   activity: [
-    { actor: 'brian', text: 'deployed', code: 'dashboard', suffix: '· v2021' },
-    { actor: 'brian', text: 'moved to', code: 'people leadership', suffix: '· 2018' },
-    { actor: 'brian', text: 'joined the', code: 'team', suffix: '· 2015' },
+    { actor: 'brian', text: 'scaled', code: 'brian-heroku', suffix: 'to 0 · 2021' },
+    { actor: 'brian', text: 'changed', code: 'brian-heroku', suffix: 'process type to people-leader · 2018' },
+    { actor: 'brian', text: 'scaled', code: 'brian-heroku', suffix: 'to 1 · 2015' },
   ],
   terminal: {
     command: '$ heroku lessons:show --app=brian',

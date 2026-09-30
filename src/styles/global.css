@@ -216,21 +216,109 @@ a:focus-visible {
 
 /* ---------------------------------------------------------------- moon --- */
 
+/* The disc is the unlit side; `.moon-lit` is clipped to the illuminated
+   fraction so the terminator stays a vertical edge; `.moon-surface` holds the
+   maria and craters and rotates inside it as the phase advances. Separating
+   them is what lets the surface turn without dragging the terminator around. */
 .moon {
+  position: relative;
   flex: none;
   width: var(--moon-size);
   height: var(--moon-size);
   max-width: 100%;
   border-radius: 50%;
   background: #1b1d24;
-  box-shadow: inset calc(var(--moon-progress) * var(--moon-size) * -1) 0 0 0 var(--paper);
-  transition: box-shadow 0.25s linear;
+  overflow: hidden;
+  isolation: isolate;
 }
 
-.moon-is-full .moon {
-  box-shadow:
-    inset calc(var(--moon-progress) * var(--moon-size) * -1) 0 0 0 var(--paper),
-    0 0 var(--moon-glow) calc(var(--moon-glow) / 5) rgba(240, 236, 226, 0.25);
+/* The WebGL sphere replaces the CSS moon only once it has initialised. */
+.moon-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+.moon.is-gl > .moon-canvas { display: block; }
+.moon.is-gl > .moon-lit { display: none; }
+.moon.is-gl { background: transparent; }
+
+.moon-lit {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--paper);
+  clip-path: inset(0 0 0 calc(100% - var(--moon-progress) * 100%));
+  transition: clip-path 0.25s linear;
+}
+
+/* Limb darkening sits above the surface and must not rotate with it. */
+.moon--textured .moon-lit::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%, rgba(52, 48, 40, 0) 55%, rgba(52, 48, 40, 0.34) 100%);
+}
+
+/* Oversized so any rotation still covers the disc: a square 1.42x the diameter
+   always contains the circle. */
+.moon-surface {
+  position: absolute;
+  inset: -21%;
+  border-radius: 50%;
+  transform: rotate(calc((var(--moon-progress) - 0.5) * 46deg));
+  transition: transform 0.25s linear;
+  background:
+    /* craters: dark floor, bright rim, short ejecta falloff */
+    radial-gradient(circle at 27% 77%, rgba(104, 97, 84, 0.62) 0 46%, rgba(255, 253, 248, 0.72) 50% 60%, rgba(140, 133, 118, 0.16) 62% 72%, rgba(0, 0, 0, 0) 74%),
+    radial-gradient(circle at 79% 23%, rgba(104, 97, 84, 0.58) 0 46%, rgba(255, 253, 248, 0.68) 50% 60%, rgba(140, 133, 118, 0.14) 62% 72%, rgba(0, 0, 0, 0) 74%),
+    radial-gradient(circle at 51% 86%, rgba(104, 97, 84, 0.52) 0 48%, rgba(255, 253, 248, 0.62) 52% 64%, rgba(0, 0, 0, 0) 68%),
+    radial-gradient(circle at 69% 49%, rgba(104, 97, 84, 0.48) 0 48%, rgba(255, 253, 248, 0.58) 52% 66%, rgba(0, 0, 0, 0) 70%),
+    radial-gradient(circle at 21% 41%, rgba(104, 97, 84, 0.46) 0 48%, rgba(255, 253, 248, 0.55) 52% 66%, rgba(0, 0, 0, 0) 70%),
+    radial-gradient(circle at 37% 16%, rgba(104, 97, 84, 0.4) 0 50%, rgba(255, 253, 248, 0.5) 54% 68%, rgba(0, 0, 0, 0) 72%),
+    radial-gradient(circle at 60% 68%, rgba(104, 97, 84, 0.36) 0 52%, rgba(255, 253, 248, 0.46) 56% 70%, rgba(0, 0, 0, 0) 74%),
+    radial-gradient(circle at 44% 46%, rgba(104, 97, 84, 0.3) 0 54%, rgba(255, 253, 248, 0.4) 58% 72%, rgba(0, 0, 0, 0) 76%),
+    radial-gradient(circle at 86% 58%, rgba(104, 97, 84, 0.3) 0 54%, rgba(255, 253, 248, 0.4) 58% 72%, rgba(0, 0, 0, 0) 76%),
+    radial-gradient(circle at 14% 62%, rgba(104, 97, 84, 0.26) 0 56%, rgba(255, 253, 248, 0.36) 60% 74%, rgba(0, 0, 0, 0) 78%),
+    /* maria */
+    radial-gradient(ellipse 27% 21% at 63% 33%, rgba(138, 131, 116, 0.6), rgba(138, 131, 116, 0) 72%),
+    radial-gradient(ellipse 19% 15% at 41% 29%, rgba(138, 131, 116, 0.5), rgba(138, 131, 116, 0) 74%),
+    radial-gradient(ellipse 23% 19% at 56% 63%, rgba(138, 131, 116, 0.44), rgba(138, 131, 116, 0) 74%),
+    radial-gradient(ellipse 15% 13% at 32% 59%, rgba(138, 131, 116, 0.38), rgba(138, 131, 116, 0) 76%),
+    radial-gradient(ellipse 13% 11% at 75% 69%, rgba(138, 131, 116, 0.32), rgba(138, 131, 116, 0) 76%);
+  background-size: 100% 100%;
+}
+
+/* Regolith. Two octave sets of fractal noise: coarse mottling, then fine grain.
+   feTurbulence gives real grit that stacked gradients cannot. */
+.moon-surface::before,
+.moon-surface::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+}
+
+.moon-surface::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='c'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04' numOctaves='5' seed='7'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.85'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23c)'/%3E%3C/svg%3E");
+  background-size: 100% 100%;
+  mix-blend-mode: soft-light;
+  opacity: 0.85;
+}
+
+.moon-surface::after {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='3' seed='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23f)'/%3E%3C/svg%3E");
+  background-size: 38% 38%;
+  mix-blend-mode: overlay;
+  opacity: 0.22;
+}
+
+.moon-is-full .moon,
+.moon--glow {
+  box-shadow: 0 0 var(--moon-glow) calc(var(--moon-glow) / 5) rgba(240, 236, 226, 0.25);
 }
 
 /* -------------------------------------------------------------- layout --- */
@@ -253,16 +341,25 @@ main { min-width: 0; }
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: 24px;
   padding: 32px 28px;
   background: var(--rail-bg);
   border-right: 1px solid var(--rule);
+  /* The moon scales with viewport height, but on a short window the era list
+     can still outgrow the rail; scrolling keeps the profile links reachable
+     rather than pushing them below the fold. */
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .rail-moon {
+  flex: none;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: clamp(8px, 2vh, 18px);
 }
+
+.rail-list, .rail-social { flex: none; }
 
 .rail-phase {
   display: flex;
@@ -352,6 +449,20 @@ main { min-width: 0; }
   gap: 10px;
 }
 .rail-social a > span:last-child { color: var(--dim); }
+
+@media (min-width: 820px) and (max-height: 780px) {
+  .rail { padding: 20px 24px; gap: 14px; }
+  .rail-list a { padding: 6px 0; }
+  .rail-name { font-size: 20px; }
+  .rail-social a { padding: 6px 0; }
+}
+
+@media (min-width: 820px) and (max-height: 640px) {
+  .rail-phase { display: none; }
+  .rail-list a { padding: 4px 0; }
+  .rail-name { font-size: 18px; }
+  .rail-years { font-size: 9px; }
+}
 
 /* ---------------------------------------------------------------- dock --- */
 
@@ -718,6 +829,18 @@ main { min-width: 0; }
 .era-heroku { background: #f4f3f8; color: #2c2a3a; }
 .era-heroku .era-kicker { color: #7a7690; }
 
+.hk-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #430098;
+}
+.hk-wordmark {
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
 .hk-headline {
   max-width: 640px;
   font-size: clamp(30px, 3.6vw, 46px);
@@ -826,7 +949,6 @@ main { min-width: 0; }
   letter-spacing: -0.01em;
   color: var(--paper);
 }
-.hk-result { color: #a9e3a0; }
 
 /* ----------------------------------------------------------- hashicorp --- */
 
@@ -985,6 +1107,8 @@ main { min-width: 0; }
 /* ---------------------------------------------------------------- next --- */
 
 .era-next {
+  position: relative;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -993,7 +1117,26 @@ main { min-width: 0; }
   padding: 96px var(--gutter) 40px;
   background: var(--ink);
 }
-.era-next .era-inner { max-width: none; margin: 0; gap: 28px; }
+.era-next .era-inner,
+.era-next .nx-footer { position: relative; z-index: 1; }
+.era-next .era-inner { max-width: 66%; margin: 0; gap: 28px; }
+
+/* The section's namesake: a full moon rising at the right edge, cropped by it. */
+.nx-moon {
+  position: absolute;
+  right: -7%;
+  top: 50%;
+  translate: 0 -50%;
+  z-index: 0;
+  pointer-events: none;
+}
+.nx-moon::before {
+  content: '';
+  position: absolute;
+  inset: -45%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(240, 236, 226, 0.16), rgba(240, 236, 226, 0) 65%);
+}
 .era-next .era-kicker { color: var(--dim); }
 
 .nx-headline {
@@ -1056,6 +1199,8 @@ main { min-width: 0; }
   .dock { display: flex; }
   /* Clears the fixed dock so it never covers the last line. */
   .era-next { padding-bottom: 96px; }
+  .era-next .era-inner { max-width: none; }
+  .nx-moon { right: -24%; top: 16%; translate: 0 0; opacity: 0.45; }
   .gc-body { grid-column: auto; }
   .hk-column:first-child { border-right: 0; border-bottom: 1px solid #eeedf4; }
 }

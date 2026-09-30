@@ -30,9 +30,8 @@ Production output is in `dist/`.
 
 Edit `src/data/site.ts` for the hero and for each era's copy. The page template
 is `src/pages/index.astro`, era blocks are in `src/components/eras/`, and shared
-styles are in `src/styles/global.css`. `CONTENT-REVIEW.md` records sources and
-copy that needs Brian's review before publication. `REBUILD-PLAN.md` preserves
-the initial brief and subsequent design constraints.
+styles are in `src/styles/global.css`. `REBUILD-PLAN.md` preserves the initial
+brief and subsequent design constraints.
 
 The design is "Moonrise B v2". Each era is a period pastiche rather than a
 neutral card, so era blocks deliberately set their own typography and colour
@@ -51,12 +50,28 @@ at all. The moon is the organising idea of the design and cannot be driven from
 CSS alone, so the script is required for the full experience but not for the
 content.
 
+The moon itself is drawn in WebGL by `src/scripts/moon-gl.ts`: one full-quad
+fragment shader that reconstructs the sphere normal per pixel, samples an
+equirectangular lunar albedo map, and lights it from a sun direction derived
+from the phase. That gives real lunar features and a curved terminator. There is
+no 3D library; a dependency would be far larger than the shader. Where WebGL or
+the texture is unavailable the CSS moon underneath stays visible.
+
 ## Images
 
 `public/images/longs-dawn.jpeg` is the hero photograph and
 `public/images/climbingnarc-logo.jpg` is the ClimbingNarc mark. The hero is
 optional at build time: without it the hero falls back to its gradient rather
 than rendering a broken image.
+
+`public/images/moon-albedo.jpg` is the lunar texture used by the WebGL moon. It
+is `lroc_color_poles_1k.jpg` from NASA's Scientific Visualization Studio CGI
+Moon Kit, built from Lunar Reconnaissance Orbiter data. NASA imagery is public
+domain and carries no attribution requirement, though crediting the source is
+courteous. A Creative Commons alternative was deliberately avoided so the site
+takes on no share-alike obligation.
+
+Source: https://svs.gsfc.nasa.gov/4720/
 
 ## Deployment
 

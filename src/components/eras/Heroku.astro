@@ -1,9 +1,15 @@
 ---
+import Icon from '../Icon.astro';
 import { heroku as era } from '../../data/site';
 ---
 <section id="era-3" class="era era-heroku" data-era="3" aria-labelledby="era-3-heading">
   <div class="era-inner" data-reveal>
     <h2 class="era-kicker" id="era-3-heading">{era.kicker}</h2>
+
+    <p class="hk-brand" role="img" aria-label="Heroku">
+      <Icon name="heroku" /><span class="hk-wordmark">Heroku</span>
+    </p>
+
     <p class="hk-headline">{era.headline}</p>
 
     <div class="hk-panel">
@@ -18,10 +24,10 @@ import { heroku as era } from '../../data/site';
         <div class="hk-column">
           <p class="hk-column-title">Dyno formation</p>
           <p class="hk-dyno">
-            <span class="hk-dyno-name">web</span>
+            <span class="hk-dyno-name">{era.dynos.primary.name}</span>
             <span class="hk-dyno-blocks" aria-hidden="true">
-              {Array.from({ length: era.dynos.web.total }, (_, index) => (
-                <span class={index < era.dynos.web.running ? 'is-on' : undefined}></span>
+              {Array.from({ length: era.dynos.primary.total }, (_, index) => (
+                <span class={index < era.dynos.primary.running ? 'is-on' : undefined}></span>
               ))}
             </span>
           </p>
@@ -47,7 +53,6 @@ import { heroku as era } from '../../data/site';
           <div class="hk-terminal">
             <p class="hk-command">{era.terminal.command}</p>
             <p class="hk-lesson">{era.terminal.lesson}</p>
-            <p class="hk-result">{era.terminal.result}</p>
           </div>
         </div>
       </div>

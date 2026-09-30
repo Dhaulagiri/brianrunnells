@@ -2,14 +2,39 @@
 /**
  * A disc lit from the right in proportion to `--moon-progress`, which the
  * enhancement script ties to scroll position. Without JavaScript it stays new.
+ *
+ * Three layers, because each has to move differently: the disc is the unlit
+ * side, `.moon-lit` is clipped to the illuminated fraction so the terminator
+ * stays vertical, and `.moon-surface` carries the maria and craters and rotates
+ * within it as the phase advances.
  */
-interface Props { size: number; glow: number; }
-const { size, glow } = Astro.props;
+interface Props {
+  /** Any CSS length; the rail scales its moon with viewport height. */
+  size: string;
+  glow: number;
+  /** Lunar surface detail. Off at dock size, where it reads as noise. */
+  textured?: boolean;
+  /** Pins illumination (0–1) instead of following scroll. */
+  phase?: number;
+  /** Glow regardless of scroll position. For a fixed full moon. */
+  alwaysGlow?: boolean;
+  /** Render as a lit sphere in WebGL, falling back to the CSS moon. */
+  gl?: boolean;
+}
+const { size, glow, textured = false, phase, alwaysGlow = false, gl = false } = Astro.props;
+const vars = [
+  `--moon-size:${size}`,
+  `--moon-glow:${glow}px`,
+  phase !== undefined ? `--moon-progress:${phase}` : '',
+].filter(Boolean).join(';');
 ---
 <div
-  class="moon"
+  class:list={['moon', textured && 'moon--textured', alwaysGlow && 'moon--glow']}
   data-moon
   role="img"
   aria-hidden="true"
-  style={`--moon-size:${size}px;--moon-glow:${glow}px;`}
-></div>
+  style={vars}
+>
+  {gl && <canvas class="moon-canvas" data-moon-gl data-phase={phase !== undefined ? String(phase) : undefined}></canvas>}
+  <span class="moon-lit">{textured && <span class="moon-surface"></span>}</span>
+</div>

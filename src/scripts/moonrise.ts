@@ -7,6 +7,7 @@
  * rail tracking the section you are in, and sections fading up as they arrive.
  */
 import { nextFullMoon, formatFullMoon, formatFullMoonShort, phaseName } from '../lib/moon';
+import { initMoonGL } from './moon-gl';
 
 const root = document.documentElement;
 const sections = [...document.querySelectorAll<HTMLElement>('[data-era]')];
@@ -19,6 +20,7 @@ const revealed = new Set<HTMLElement>();
 let currentEra = -1;
 let lastProgress = -1;
 let queued = false;
+let drawMoons: ((progress: number) => void) | null = null;
 
 /** Refresh the baked-in date, in case this page was cached past the last moon. */
 function refreshMoonDate(): void {
@@ -39,6 +41,10 @@ function update(): void {
   queued = false;
 
   const progress = scrollProgress();
+  // Cheap enough to redraw unconditionally: one triangle, and it also picks up
+  // size changes after a resize.
+  drawMoons?.(progress);
+
   if (Math.abs(progress - lastProgress) > 0.002) {
     lastProgress = progress;
     root.style.setProperty('--moon-progress', String(progress));
@@ -96,6 +102,11 @@ function applyMotionPreference(): void {
 refreshMoonDate();
 applyMotionPreference();
 update();
+
+void initMoonGL().then((draw) => {
+  drawMoons = draw;
+  draw?.(scrollProgress());
+});
 
 document.addEventListener('scroll', schedule, { passive: true });
 window.addEventListener('resize', schedule, { passive: true });
