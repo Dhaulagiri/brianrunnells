@@ -116,7 +116,7 @@ export const heroku = {
     { actor: 'brian', text: 'scaled', code: 'brian-heroku', suffix: 'to 1 · 2015' },
   ],
   terminal: {
-    command: '$ heroku lessons:show --app=brian',
+    command: '$ heroku lessons:show --app=brian-heroku',
     lesson: 'Where I learned good developer tools come from the people building them.'
   },
 };
