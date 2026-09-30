@@ -21,67 +21,41 @@ pnpm test
 pnpm preview
 ```
 
-The test command builds the site, then runs two validators. `validate-build.mjs`
-checks the generated HTML for required routes, profile destinations, metadata,
-heading structure, internal links, and linked assets. `validate-a11y.mjs` checks
-WCAG 2.2 Level AA. Production output is in `dist/`.
+The test command builds the site, checks the generated HTML with
+`validate-build.mjs` (required routes, profile destinations, metadata, heading
+structure, internal links, linked assets), then runs the accessibility suite in
+a browser. Production output is in `dist/`.
 
 ## Accessibility
 
-The site targets WCAG 2.2 Level AA, enforced by `scripts/validate-a11y.mjs`
-(also runnable on its own with `pnpm test:a11y`). It has two halves:
+The site targets WCAG 2.2 Level AA, enforced by Playwright tests in `tests/`
+(`pnpm test:a11y`, also part of `pnpm test`). They run against the production
+build in a real browser, which is the point: axe-core can only evaluate colour
+contrast, target size and focus occlusion where there is layout. Nothing here
+maintains a list of colour pairs — axe reads the rendered pixels.
 
-- **Contrast.** Every foreground/background pair in the design is declared in
-  that file with its font size and weight, and checked against the 1.4.3 and
-  1.4.11 thresholds. A coverage guard fails the build if the stylesheet gains a
-  text colour or colour token that no pair covers, so a colour change cannot
-  quietly stop being tested.
-- **Structure.** axe-core runs over the built HTML in jsdom for landmarks,
-  headings, ARIA, document language and duplicate ids. Contrast is disabled
-  there because jsdom has no layout engine; the pair table covers it instead.
+The suite runs at three viewports, because the layout changes substantially:
+1440x900, 1280x620 (short enough to squeeze the rail), and 375x812 (where the
+rail becomes the dock and the phase strip scrolls). It covers axe's wcag2a
+through wcag22aa rules on both pages, plus checks those rules cannot express:
 
-It also asserts a few things neither half catches: the hero image is present
-with real alt text, every `<img>` has non-empty alt (nothing on this page is a
-decorative image), the marquee ships a pause control, the skip link exists, and
-interactive targets declare at least 24px.
+- the hero photograph is present and its bytes actually decoded
+- every `<img>` has non-empty alt text, since nothing here is decorative
+- interactive targets are at least 24x24 (2.5.8)
+- the marquee's pause control works and toggles `aria-pressed` (2.2.2)
+- tabbing never leaves focus behind the fixed dock (2.4.11)
+- reduced motion reveals all content immediately
+- the page is complete and static with JavaScript disabled
 
-Two design decisions follow from this. The era pastiches keep their period
-palettes, but several colours are shifted slightly from the source design to
-clear AA — the ClimbingNarc call to action in particular uses dark text on its
-orange rather than white, which failed at 2.73:1. And the GeoCities marquee only
-animates when JavaScript is running, because that is what supplies the pause
-control; with no script it is static, so WCAG 2.2.2 has nothing to pause.
+Two design decisions follow. The era pastiches keep their period palettes, but
+several colours are shifted from the source design to clear AA — the
+ClimbingNarc call to action uses dark text on its orange rather than white,
+which failed at 2.73:1. And the GeoCities marquee only animates when JavaScript
+is running, because that is what supplies the pause control; with no script it
+is static, so 2.2.2 has nothing to pause.
 
-## Content
-
-Edit `src/data/site.ts` for the hero and for each era's copy. The page template
-is `src/pages/index.astro`, era blocks are in `src/components/eras/`, and shared
-styles are in `src/styles/global.css`. `REBUILD-PLAN.md` preserves the initial
-brief and subsequent design constraints.
-
-The design is "Moonrise B v2". Each era is a period pastiche rather than a
-neutral card, so era blocks deliberately set their own typography and colour
-instead of inheriting the shell's.
-
-## JavaScript
-
-The page is complete without JavaScript: every section renders visible, the next
-full moon is computed at build time, and the rail and dock are ordinary in-page
-anchors. `src/scripts/moonrise.ts` adds the moon filling with scroll progress,
-the rail tracking the current era, and sections fading up as they arrive. It
-respects `prefers-reduced-motion`.
-
-This is a change from the previous rebuild, which shipped no client JavaScript
-at all. The moon is the organising idea of the design and cannot be driven from
-CSS alone, so the script is required for the full experience but not for the
-content.
-
-The moon itself is drawn in WebGL by `src/scripts/moon-gl.ts`: one full-quad
-fragment shader that reconstructs the sphere normal per pixel, samples an
-equirectangular lunar albedo map, and lights it from a sun direction derived
-from the phase. That gives real lunar features and a curved terminator. There is
-no 3D library; a dependency would be far larger than the shader. Where WebGL or
-the texture is unavailable the CSS moon underneath stays visible.
+Playwright uses the Chrome already installed on the machine (`channel:
+'chrome'`) rather than downloading its own build.
 
 ## Images
 

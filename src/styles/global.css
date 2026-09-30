@@ -619,7 +619,6 @@ main { min-width: 0; }
 .era-geocities .era-kicker { color: #99ccff; }
 
 .gc-marquee {
-  overflow: hidden;
   padding: 6px 0;
   border: 3px ridge #c0c0c0;
   background: #000;
@@ -632,19 +631,26 @@ main { min-width: 0; }
   display: flex;
   align-items: center;
   gap: 10px;
+  /* Clipping lives on the track, not here: the animated span's percentage
+     padding is wider than the bar, and it used to push the pause button
+     outside this box where it was clipped and could not be clicked. */
+  overflow: visible;
 }
-.gc-marquee > span {
+.gc-marquee-track {
   flex: 1;
   min-width: 0;
+  overflow: hidden;
+}
+.gc-marquee-track > span {
   display: inline-block;
   white-space: nowrap;
 }
 /* Only animate where the pause control is available (2.2.2). */
-.js .gc-marquee > span {
+.js .gc-marquee-track > span {
   padding-left: 100%;
   animation: marquee 14s linear infinite;
 }
-.js .gc-marquee.is-paused > span { animation-play-state: paused; }
+.js .gc-marquee.is-paused .gc-marquee-track > span { animation-play-state: paused; }
 
 .gc-marquee-pause {
   flex: none;
