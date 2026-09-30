@@ -36,8 +36,8 @@ maintains a list of colour pairs — axe reads the rendered pixels.
 
 The suite runs at three viewports, because the layout changes substantially:
 1440x900, 1280x620 (short enough to squeeze the rail), and 375x812 (where the
-rail becomes the dock and the phase strip scrolls). It covers axe's wcag2a
-through wcag22aa rules on both pages, plus checks those rules cannot express:
+rail becomes the dock). It covers axe's wcag2a through wcag22aa rules on both
+pages, plus checks those rules cannot express:
 
 - the hero photograph is present and its bytes actually decoded
 - every `<img>` has non-empty alt text, since nothing here is decorative

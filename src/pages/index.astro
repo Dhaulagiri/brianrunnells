@@ -3,7 +3,6 @@ import Base from '../layouts/Base.astro';
 import Rail from '../components/Rail.astro';
 import Dock from '../components/Dock.astro';
 import SocialPills from '../components/SocialPills.astro';
-import PhaseStrip from '../components/PhaseStrip.astro';
 import Geocities from '../components/eras/Geocities.astro';
 import Frontend from '../components/eras/Frontend.astro';
 import ClimbingNarc from '../components/eras/ClimbingNarc.astro';
@@ -34,10 +33,9 @@ import { profile, heroImage } from '../data/site';
         <p class="hero-intro">{profile.introduction}</p>
         <div class="hero-actions">
           <SocialPills variant="glass" />
+          <a class="hero-start" href="#era-0">Start in the 1990s <span aria-hidden="true">↓</span></a>
         </div>
       </div>
-
-      <PhaseStrip />
     </div>
   </header>
 

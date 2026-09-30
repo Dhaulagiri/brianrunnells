@@ -20,8 +20,8 @@ export default defineConfig({
   },
   projects: [
     { name: 'desktop', use: { ...devices['Desktop Chrome'], channel: 'chrome', viewport: { width: 1440, height: 900 } } },
-    // The rail collapses to the dock below 820px, and the phase strip starts
-    // scrolling below 620px, so both layouts need covering.
+    // The rail collapses to the dock below 820px, so both layouts need
+    // covering, along with a short viewport that squeezes the rail.
     { name: 'short', use: { ...devices['Desktop Chrome'], channel: 'chrome', viewport: { width: 1280, height: 620 } } },
     { name: 'mobile', use: { ...devices['Desktop Chrome'], channel: 'chrome', viewport: { width: 375, height: 812 } } },
   ],

@@ -91,15 +91,12 @@ a:focus-visible {
 .hero-scrim {
   position: absolute;
   inset: 0;
-  /* Keeps the summit clear, then darkens hard behind the headline, intro and
-     phase strip so small text over the photograph still clears 1.4.3. */
   background: linear-gradient(
     180deg,
     rgba(5, 6, 8, 0.55) 0%,
-    rgba(5, 6, 8, 0) 18%,
-    rgba(5, 6, 8, 0.32) 38%,
-    rgba(5, 6, 8, 0.74) 58%,
-    rgba(5, 6, 8, 0.93) 78%,
+    rgba(5, 6, 8, 0) 22%,
+    rgba(5, 6, 8, 0.15) 45%,
+    rgba(5, 6, 8, 0.82) 75%,
     #050608 100%
   );
 }
@@ -160,7 +157,6 @@ a:focus-visible {
 
 .hero-intro {
   max-width: 440px;
-  text-shadow: 0 1px 12px rgba(5, 6, 8, 0.9);
   font-family: var(--mono);
   font-size: 14px;
   line-height: 1.75;
@@ -178,73 +174,11 @@ a:focus-visible {
   display: flex;
   align-items: center;
   gap: 8px;
+  /* 2.5.8 target size. */
+  min-height: 24px;
   font-family: var(--mono);
   font-size: 13px;
   color: var(--muted);
-}
-
-/* --------------------------------------------------------- phase strip --- */
-
-/* The timeline as a lunation. One shared canvas draws all six moons (the
-   shader splits it into cells), overlaid on a six-column row of links. Each
-   link reserves the moon's height with `padding-top: 100%` — a percentage
-   padding resolves against the containing block's width, which here is exactly
-   one column, so the reserved box is square and matches its moon. That also
-   makes the moon itself part of the click target. */
-.phase-strip {
-  --phase-moon: clamp(48px, 6vw, 88px);
-  --phase-cols: 6;
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  margin-top: 32px;
-  padding-top: 22px;
-  border-top: 1px solid rgba(240, 236, 226, 0.22);
-}
-
-.phase-strip-canvas {
-  position: absolute;
-  top: 22px;
-  left: 0;
-  width: 100%;
-  height: var(--phase-moon);
-  pointer-events: none;
-}
-
-.phase-strip-list { display: contents; }
-
-.phase-strip a {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  justify-content: flex-end;
-  height: 100%;
-  padding-top: calc(var(--phase-moon) + 10px);
-  padding-right: 10px;
-}
-.phase-strip a:hover { opacity: 1; }
-.phase-strip a:hover .phase-strip-name { color: var(--accent); }
-.phase-strip a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-
-.phase-strip-name {
-  font-family: var(--serif);
-  font-size: clamp(14px, 1.35vw, 20px);
-  line-height: 1.1;
-  color: var(--paper);
-  transition: color 0.2s;
-}
-.phase-strip-years {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.06em;
-  color: #d9d5ca;
-}
-.phase-strip-hint {
-  margin-top: 4px;
-  font-family: var(--mono);
-  font-size: 11px;
-  line-height: 1.5;
-  color: #c3bfb4;
 }
 
 /* -------------------------------------------------------- social pills --- */
@@ -1300,8 +1234,8 @@ main { min-width: 0; }
 
 @media (max-width: 819px) {
   .layout { grid-template-columns: minmax(0, 1fr); }
-  /* Keeps the phase strip's labels clear of the fixed dock. */
-  .hero-body { padding-bottom: 136px; }
+  /* Keeps the hero's last control clear of the fixed dock. */
+  .hero-body { padding-bottom: 96px; }
   .rail { display: none; }
   .dock { display: flex; }
   /* Clears the fixed dock so it never covers the last line, and keeps a
@@ -1315,29 +1249,8 @@ main { min-width: 0; }
   .hk-column:first-child { border-right: 0; border-bottom: 1px solid #eeedf4; }
 }
 
-@media (max-width: 860px) {
-  .phase-strip-hint { display: none; }
-}
-
-/* Six labels cannot share a phone's width, so the strip scrolls sideways at a
-   readable column width instead of crushing the names together. The canvas is
-   absolutely positioned inside the scroller, so it scrolls with the labels. */
-@media (max-width: 620px) {
-  .phase-strip {
-    --phase-cell: 112px;
-    grid-template-columns: repeat(var(--phase-cols), var(--phase-cell));
-    overflow-x: auto;
-    overscroll-behavior-x: contain;
-    scrollbar-width: none;
-  }
-  .phase-strip::-webkit-scrollbar { display: none; }
-  .phase-strip-canvas { width: calc(var(--phase-cell) * var(--phase-cols)); }
-}
-
 @media (max-width: 560px) {
-  .hero-body { gap: 24px; padding-bottom: 136px; }
-  .phase-strip { margin-top: 28px; padding-top: 18px; }
-  .phase-strip-years { font-size: 9px; }
+  .hero-body { gap: 24px; padding-bottom: 96px; }
   .era { padding-block: 48px; }
   .cn-masthead { gap: 12px; }
   .cn-wordmark { font-size: 28px; }
