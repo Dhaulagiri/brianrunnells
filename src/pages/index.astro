@@ -9,24 +9,17 @@ import ClimbingNarc from '../components/eras/ClimbingNarc.astro';
 import Heroku from '../components/eras/Heroku.astro';
 import HashiCorp from '../components/eras/HashiCorp.astro';
 import Next from '../components/eras/Next.astro';
-import { existsSync } from 'node:fs';
 import { profile, heroImage } from '../data/site';
-
-// The hero photograph is optional at build time: without it the hero falls
-// back to its gradient rather than rendering a broken image.
-const hasHeroPhoto = existsSync(new URL(`../../public${heroImage.src}`, import.meta.url));
 ---
 <Base>
   <header class="hero">
-    {hasHeroPhoto && (
-      <img
-        class="hero-photo"
-        src={heroImage.src}
-        alt={heroImage.alt}
-        fetchpriority="high"
-        decoding="async"
-      />
-    )}
+    <img
+      class="hero-photo"
+      src={heroImage.src}
+      alt={heroImage.alt}
+      fetchpriority="high"
+      decoding="async"
+    />
     <div class="hero-scrim" aria-hidden="true"></div>
 
     <div class="hero-bar">
