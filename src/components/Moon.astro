@@ -1,0 +1,15 @@
+---
+/**
+ * A disc lit from the right in proportion to `--moon-progress`, which the
+ * enhancement script ties to scroll position. Without JavaScript it stays new.
+ */
+interface Props { size: number; glow: number; }
+const { size, glow } = Astro.props;
+---
+<div
+  class="moon"
+  data-moon
+  role="img"
+  aria-hidden="true"
+  style={`--moon-size:${size}px;--moon-glow:${glow}px;`}
+></div>

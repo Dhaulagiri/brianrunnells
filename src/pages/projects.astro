@@ -1,5 +1,0 @@
----
-import Base from '../layouts/Base.astro';
-import { projects } from '../data/site';
----
-<Base title="Projects"><section class="article wrap"><h1>Selected work</h1><p class="detail-deck">The site has a new home for these stories.</p><ul class="project-index">{projects.map(project => <li><a href={`/work/${project.slug}/`}>{project.title} →</a></li>)}</ul><a href="/#work">See all selected work</a></section></Base>

@@ -1,0 +1,38 @@
+---
+import { climbingnarc as era } from '../../data/site';
+---
+<section id="era-2" class="era era-climbingnarc" data-era="2" aria-labelledby="era-2-heading">
+  <div class="era-inner" data-reveal>
+    <h2 class="era-kicker" id="era-2-heading">{era.kicker}</h2>
+
+    <div class="cn-window">
+      <div class="cn-masthead">
+        <div class="cn-brand">
+          <img src={era.logo.src} alt={era.logo.alt} width="52" height="52" loading="lazy" decoding="async" />
+          <div>
+            <p class="cn-wordmark">Climbing <span>Narc</span></p>
+            <p class="cn-tagline">{era.tagline}</p>
+          </div>
+        </div>
+        <ul class="cn-nav" aria-hidden="true">
+          {era.nav.map((item, index) => <li class={index === 0 ? 'is-current' : undefined}>{item}</li>)}
+          <li class="cn-rss">RSS</li>
+        </ul>
+      </div>
+
+      <div class="cn-body">
+        {era.posts.map((post) => (
+          <article class="cn-post">
+            <p class="cn-meta">{post.meta}</p>
+            <h3 class="cn-post-title">{post.title}</h3>
+            <p>{post.body}</p>
+          </article>
+        ))}
+        <p class="cn-cta">
+          <a href={era.url} rel="noopener">{era.cta}</a>
+          <span class="cn-stats">{era.stats}</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

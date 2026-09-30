@@ -14,6 +14,29 @@ The draft in `src/data/site.ts` uses public sources and the rebuild brief. It in
 - Confirm the historical Twitter destination `https://twitter.com/climbingnarc`. LinkedIn and GitHub follow the brief exactly.
 - Helios leadership is publicly supported by Brian’s launch post. No claims of individual component authorship, hiring outcomes, adoption improvements, or measured accessibility results are made. Team credit is explicit.
 
+## Claims introduced by the Moonrise B v2 design
+
+The timeline design carries specific factual copy that was not in the previous
+draft and is not supported by the sources below. It came from Brian's own design
+file, so it is implemented as written, but it has not been independently
+verified and should be confirmed before publication:
+
+- Employment history and dates in the frontend era: Associated Bag Company
+  (2006–2011), MCFI (2011–2013), Markit (2013–2015).
+- Heroku dates (2015–2021) and "promoted to people leadership · 2018".
+- ClimbingNarc run of 2007–2015, the figures "1,332 posts · 9,574 reader
+  comments", the "12 comments" on the first post, and the tagline "So obsessed
+  with climbing it hurt."
+- Live commentary for USA Climbing national championships.
+- The GeoCities-era detail "around when Chris Farley was on SNL".
+- "Off the clock: moonlit adventures on two feet or two wheels."
+- The hero location "Longs Peak, CO". The previous footer said Wisconsin; this
+  labels the photograph, not a place of residence. Confirm which is intended.
+
+The social destination changed from `https://twitter.com/climbingnarc` to
+`https://x.com/climbingnarc`, following the design. `scripts/validate-build.mjs`
+was updated to match.
+
 ## Sources
 
 Read September 29, 2026:

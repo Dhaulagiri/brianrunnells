@@ -1,0 +1,12 @@
+---
+import Moon from './Moon.astro';
+import { eras } from '../data/site';
+---
+<nav class="dock" aria-label="Timeline">
+  <Moon size={28} glow={20} />
+  <ol class="dock-list">
+    {eras.map((era) => (
+      <li><a href={`#${era.id}`} data-era-link={era.id}>{era.name}</a></li>
+    ))}
+  </ol>
+</nav>
