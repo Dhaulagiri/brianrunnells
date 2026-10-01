@@ -64,7 +64,7 @@ export const frontend = {
   filename: 'résumé.html',
   modified: 'last modified: some time ago',
   summary:
-    "Between GeoCities and Heroku I was a frontend engineer at a handful of companies you've never heard of. Table layouts giving way to CSS, IE6 hacks, the arrival of jQuery. It's where I learned the craft.",
+    "Between GeoCities and Heroku I was a frontend engineer at a handful of companies you've never heard of. Table layouts giving way to CSS, AJAX, IE6 hacks, the arrival of jQuery. It's where I learned the craft.",
   roles: [
     { company: 'Associated Bag Company', role: 'Frontend engineer', years: '2006–2011' },
     { company: 'MCFI', role: 'Frontend engineer', years: '2011–2013' },
@@ -91,8 +91,8 @@ export const climbingnarc = {
     },
     {
       meta: 'Live coverage',
-      title: 'On the mic at USA Climbing Nationals',
-      body: 'Covering competitions turned into calling them: live commentary for USA Climbing national championships.',
+      title: 'On the mic for Louder Than 11',
+      body: 'Covering competitions turned into calling them: live commentary for USA Climbing National Championships, Portland Boulder Rally and the Psicobloc Masters.',
     },
   ],
   cta: 'Read the archive »',

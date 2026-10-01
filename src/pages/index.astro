@@ -2,40 +2,20 @@
 import Base from '../layouts/Base.astro';
 import Rail from '../components/Rail.astro';
 import Dock from '../components/Dock.astro';
-import SocialPills from '../components/SocialPills.astro';
+import ProfileLinks from '../components/ProfileLinks.astro';
 import Geocities from '../components/eras/Geocities.astro';
 import Frontend from '../components/eras/Frontend.astro';
 import ClimbingNarc from '../components/eras/ClimbingNarc.astro';
 import Heroku from '../components/eras/Heroku.astro';
 import HashiCorp from '../components/eras/HashiCorp.astro';
 import Next from '../components/eras/Next.astro';
-import { profile, heroImage } from '../data/site';
+import { profile } from '../data/site';
 ---
 <Base>
-  <header class="hero">
-    <img
-      class="hero-photo"
-      src={heroImage.src}
-      alt={heroImage.alt}
-      fetchpriority="high"
-      decoding="async"
-    />
-    <div class="hero-scrim" aria-hidden="true"></div>
-
-    <div class="hero-bar">
-      <p class="hero-wordmark">{profile.name}</p>
-      <p class="hero-place">{profile.place}</p>
-    </div>
-
-    <div class="hero-body">
-      <h1>{profile.headline} <em>{profile.headlineAccent}</em></h1>
-      <div class="hero-footer">
-        <p class="hero-intro">{profile.introduction}</p>
-        <div class="hero-actions">
-          <SocialPills variant="glass" />
-          <a class="hero-start" href="#era-0">Start in the 1990s <span aria-hidden="true">↓</span></a>
-        </div>
-      </div>
+  <header class="site-intro">
+    <div class="intro-bar">
+      <h1>{profile.name}</h1>
+      <ProfileLinks />
     </div>
   </header>
 

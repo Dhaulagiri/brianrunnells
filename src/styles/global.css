@@ -66,119 +66,45 @@ a:focus-visible {
 }
 .skip-link:focus { top: 12px; }
 
-/* ---------------------------------------------------------------- hero --- */
+/* ------------------------------------------------------- introduction --- */
 
-.hero {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  min-height: 100svh;
-  overflow: hidden;
-  /* Stands in for the photograph while it loads, or if it is missing. */
-  background: radial-gradient(120% 90% at 70% 15%, #1d2433 0%, #0a0c12 55%, #050608 100%);
+.site-intro {
+  padding: 20px var(--gutter);
+  border-bottom: 1px solid var(--rule);
 }
 
-.hero-photo {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 50% 30%;
-}
-
-.hero-scrim {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(5, 6, 8, 0.55) 0%,
-    rgba(5, 6, 8, 0) 22%,
-    rgba(5, 6, 8, 0.15) 45%,
-    rgba(5, 6, 8, 0.82) 75%,
-    #050608 100%
-  );
-}
-
-.hero-bar,
-.hero-body { position: relative; }
-
-.hero-bar {
-  display: flex;
-  justify-content: space-between;
+.intro-bar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  gap: 16px;
-  padding: 28px var(--gutter);
-}
-
-.hero-wordmark {
-  font-family: var(--mono);
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.hero-place {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  color: #d9d5ca;
-  text-transform: uppercase;
-}
-
-.hero-body {
-  margin-top: auto;
-  padding: 0 var(--gutter) 56px;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-}
-
-.hero h1 {
-  max-width: 1150px;
-  font-family: var(--serif);
-  font-size: clamp(52px, 8vw, 136px);
-  line-height: 0.92;
-  letter-spacing: -0.025em;
-  text-wrap: balance;
-  text-shadow: 0 2px 30px rgba(5, 6, 8, 0.5);
-}
-.hero h1 em { color: var(--accent); }
-
-.hero-footer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: flex-end;
   gap: 28px;
 }
 
-.hero-intro {
-  max-width: 440px;
-  font-family: var(--mono);
-  font-size: 14px;
-  line-height: 1.75;
-  color: #d9d5ca;
+.site-intro h1 {
+  font-family: var(--sans);
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.025em;
 }
 
-.hero-actions {
+.intro-bar .profile-links {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 22px;
-}
-
-.hero-start {
-  display: flex;
-  align-items: center;
+  flex: none;
   gap: 8px;
-  /* 2.5.8 target size. */
-  min-height: 24px;
-  font-family: var(--mono);
-  font-size: 13px;
+}
+
+.intro-bar .profile-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
   color: var(--muted);
+}
+
+.intro-bar .profile-links a:hover {
+  color: var(--paper);
+  opacity: 1;
 }
 
 /* -------------------------------------------------------- social pills --- */
@@ -536,10 +462,15 @@ main { min-width: 0; }
 }
 
 .era-kicker {
+  align-self: flex-start;
+  padding-bottom: 10px;
+  border-bottom: 2px solid currentColor;
+  margin-bottom: 8px;
   font-family: var(--mono);
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: 0.08em;
+  font-size: clamp(14px, 1.3vw, 16px);
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
@@ -1234,8 +1165,6 @@ main { min-width: 0; }
 
 @media (max-width: 819px) {
   .layout { grid-template-columns: minmax(0, 1fr); }
-  /* Keeps the hero's last control clear of the fixed dock. */
-  .hero-body { padding-bottom: 96px; }
   .rail { display: none; }
   .dock { display: flex; }
   /* Clears the fixed dock so it never covers the last line, and keeps a
@@ -1250,7 +1179,7 @@ main { min-width: 0; }
 }
 
 @media (max-width: 560px) {
-  .hero-body { gap: 24px; padding-bottom: 96px; }
+  .intro-bar .profile-links { gap: 4px; }
   .era { padding-block: 48px; }
   .cn-masthead { gap: 12px; }
   .cn-wordmark { font-size: 28px; }

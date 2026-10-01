@@ -39,15 +39,10 @@ for (const path of PAGES) {
   });
 }
 
-test('hero photograph is present and actually loads', async ({ page }) => {
+test('introduction leads directly into the eras', async ({ page }) => {
   await page.goto('/');
-  const hero = page.locator('img.hero-photo');
-  await expect(hero).toHaveCount(1);
-  await expect(hero).toHaveAttribute('alt', /\S/);
-  // A build once dropped this image entirely, and a broken src would look the
-  // same to a markup-only check, so assert the bytes decoded.
-  const width = await hero.evaluate((img: HTMLImageElement) => img.naturalWidth);
-  expect(width).toBeGreaterThan(0);
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Brian Runnells');
+  await expect(page.locator('#era-0')).toBeVisible();
 });
 
 test('every image has meaningful alt text', async ({ page }) => {
