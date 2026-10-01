@@ -1,7 +1,7 @@
 /**
  * Content for the Moonrise B v2 homepage: a single scroll-driven timeline of
- * eras. Copy originates in the design file of the same name; see
- * CONTENT-REVIEW.md for the claims that still need Brian's confirmation.
+ * eras. Career details checked against Brian's LinkedIn profile;
+ * see CONTENT-SOURCES.md for the source and scope of those claims.
  */
 
 export const profile = {
@@ -64,11 +64,11 @@ export const frontend = {
   filename: 'résumé.html',
   modified: 'last modified: some time ago',
   summary:
-    "Between GeoCities and Heroku I was a frontend engineer at a handful of companies you've never heard of. Table layouts giving way to CSS, AJAX, IE6 hacks, the arrival of jQuery. It's where I learned the craft.",
+    "From user support to application development and frontend engineering. Table layouts giving way to CSS, AJAX, IE6 hacks, the arrival of jQuery. It's where I learned the craft, and how much the people using the software matter.",
   roles: [
-    { company: 'Associated Bag Company', role: 'Frontend engineer', years: '2006–2011' },
-    { company: 'MCFI', role: 'Frontend engineer', years: '2011–2013' },
-    { company: 'Markit', role: 'Frontend engineer', years: '2013–2015' },
+    { company: 'Associated Bag Company', role: 'User support → programmer analyst', years: '2006–2011' },
+    { company: 'Milwaukee Center for Independence', role: 'Applications developer team lead', years: '2011–2013' },
+    { company: 'Markit on Demand', role: 'Web developer', years: '2013–2015' },
   ],
   badges: [
     { prefix: 'W3C', text: 'XHTML 1.0', accent: '#666' },
@@ -102,6 +102,7 @@ export const climbingnarc = {
 export const heroku = {
   kicker: '2015–2021 · Heroku',
   headline: 'Six years learning how a platform feels from the inside.',
+  body: 'I started on the Heroku Dashboard, built a shared component library, and cut test run times by 90%. Later I led a 20+ person organization across Dashboard, CLI and oclif, helping teams build on shared developer tools.',
   tabs: ['Overview', 'Resources', 'Deploy', 'Metrics', 'Activity'],
   scope: 'brian-heroku / 2015–2021',
   dynos: {
@@ -124,7 +125,7 @@ export const heroku = {
 export const hashicorp = {
   kicker: '2021–now · HashiCorp',
   badge: 'Open source',
-  body: 'I joined HashiCorp in 2021 to lead a new design systems team. We released Helios publicly in January 2023. Now I lead frontend engineering and design teams, as part of IBM.',
+  body: 'I joined HashiCorp in 2021 to build and lead the Helios team, bringing design and engineering together to build a shared UI foundation. I also  established our accessibility function and scaled its impact across the company. Now, as part of IBM, I lead frontend architecture, design systems, accessibility and developer experience across Terraform.',
   actions: [
     { label: 'Documentation', url: 'https://helios.hashicorp.design/', primary: true },
     { label: 'GitHub', url: 'https://github.com/hashicorp/design-system', primary: false },
@@ -151,10 +152,10 @@ export const hashicorp = {
 export const next = {
   kicker: 'Next · Moon: full',
   paragraphs: [
-    'Still leading frontend engineering and design teams, still curious about what makes shared foundations actually useful.',
+    'Want to talk frontend platforms, design systems, or making software easier to use? Find me on LinkedIn or Twitter.',
     'Still building websites around whatever I’m obsessed with. And still heading out when the moon is up. Probably',
   ],
-  footnote: 'Last updated under a full moon',
+  footnote: 'Built for the web. Best enjoyed under a full moon.',
 };
 
 export { nextFullMoon, formatFullMoon, formatFullMoonShort } from '../lib/moon';

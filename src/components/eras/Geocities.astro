@@ -19,7 +19,11 @@ import { geocities as era } from '../../data/site';
     <div class="gc-columns">
       <div class="gc-panel">
         <b>MY LINKS</b>
-        <ul>{era.links.map((link) => <li><u>{link}</u></li>)}</ul>
+        <ul class="gc-real-links">
+          <li><a href="https://github.com/Dhaulagiri">Cool Sites</a></li>
+          <li><a href="/images/longs-dawn.jpeg">Climbing Pix</a></li>
+          <li><details><summary>Sign Guestbook!!</summary><p>Leave a tiny trail marker:</p><button type="button" data-guestbook aria-pressed="false" disabled>Brian was here. You were too.</button><p data-guestbook-status role="status"></p></details></li>
+        </ul>
         <p class="gc-visitor-label">You are visitor #</p>
         <p class="gc-visitor">{era.visitorCount}</p>
       </div>
@@ -32,7 +36,7 @@ import { geocities as era } from '../../data/site';
 
     <div class="gc-footer">
       <p class="gc-webring">
-        [ &lt;&lt; prev | <u>{era.webring}</u> | random | next &gt;&gt; ]
+        [ <a href="#era-5">&lt;&lt; prev</a> | {era.webring} | <button type="button" data-webring disabled>random</button> | <a href="#era-1">next &gt;&gt;</a> ]
       </p>
       <ul class="gc-badges">
         {era.badges.map((badge) => (
@@ -42,3 +46,16 @@ import { geocities as era } from '../../data/site';
     </div>
   </div>
 </section>
+
+<style>
+  .gc-panel { --focus-ring: #000066; }
+  .gc-real-links a, .gc-webring a, summary { display: inline-block; min-height: 24px; min-width: 24px; }
+  .gc-real-links a, summary { color: inherit; cursor: pointer; }
+  .gc-real-links a { color: #0000cc; text-decoration: underline; }
+  .gc-real-links summary { text-decoration: underline; }
+  button { font: inherit; color: inherit; cursor: pointer; min-height: 24px; }
+  .gc-marquee-pause { color: #000; }
+  .gc-webring button { border: 0; padding: 2px 4px; background: transparent; text-decoration: underline; }
+  .gc-real-links button { padding: 6px; background: #000; color: #fff; border: 1px solid currentColor; }
+</style>
+<script>import '../../scripts/easter-eggs';</script>

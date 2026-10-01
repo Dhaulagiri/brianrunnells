@@ -11,16 +11,18 @@ import { heroku as era } from '../../data/site';
     </p>
 
     <p class="hk-headline">{era.headline}</p>
+    <p class="hk-body">{era.body}</p>
 
     <div class="hk-panel">
       <div class="hk-tabs">
-        <ul aria-hidden="true">
-          {era.tabs.map((tab, index) => <li class={index === 0 ? 'is-current' : undefined}>{tab}</li>)}
+        <ul aria-label="Play with the dashboard">
+          {era.tabs.map((tab, index) => <li class={index === 0 ? 'is-current' : undefined}><button type="button" data-heroku-view={tab} disabled aria-pressed={index === 0 ? 'true' : 'false'}>{tab}</button></li>)}
         </ul>
         <p class="hk-scope">{era.scope}</p>
       </div>
 
-      <div class="hk-columns">
+      <p class="hk-demo" data-heroku-status role="status" hidden></p>
+      <div class="hk-columns" data-heroku-overview>
         <div class="hk-column">
           <p class="hk-column-title">Dyno formation</p>
           <p class="hk-dyno">
@@ -59,3 +61,11 @@ import { heroku as era } from '../../data/site';
     </div>
   </div>
 </section>
+
+<style>
+  .hk-body { max-width: 640px; font-size: 17px; line-height: 1.6; margin-bottom: 24px; }
+  .hk-tabs ul { flex-wrap: wrap; gap: 8px 16px; }
+  .hk-tabs button { background: transparent; border: 0; color: inherit; font: inherit; padding: 4px 0; min-height: 28px; cursor: pointer; }
+  .hk-demo { padding: 24px; color: #352c5c; line-height: 1.6; }
+  [hidden] { display: none !important; }
+</style>

@@ -28,11 +28,6 @@ const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site) : undefin
     rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&family=Archivo:wght@400;600;800;900&display=swap"
   />
-  <script is:inline>
-    // Marks the document before first paint so reveal animations only apply
-    // where the script can undo them. Without JS, content renders visible.
-    document.documentElement.classList.add('js');
-  </script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>

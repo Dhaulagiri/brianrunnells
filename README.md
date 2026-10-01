@@ -28,11 +28,12 @@ a browser. Production output is in `dist/`.
 
 ## Accessibility
 
-The site targets WCAG 2.2 Level AA, enforced by Playwright tests in `tests/`
+The site targets WCAG 2.2 Level AA, checked by Playwright tests in `tests/`
 (`pnpm test:a11y`, also part of `pnpm test`). They run against the production
-build in a real browser, which is the point: axe-core can only evaluate colour
-contrast, target size and focus occlusion where there is layout. Nothing here
-maintains a list of colour pairs — axe reads the rendered pixels.
+build in a real browser. Axe evaluates supported accessibility rules using the
+rendered DOM and computed styles; additional tests measure target geometry,
+focus ring contrast and focus occlusion. Automated checks cover part of WCAG;
+they do not certify full compliance.
 
 The suite runs at three viewports, because the layout changes substantially:
 1440x900, 1280x620 (short enough to squeeze the rail), and 375x812 (where the
@@ -46,6 +47,13 @@ pages, plus checks those rules cannot express:
 - tabbing never leaves focus behind the fixed dock (2.4.11)
 - reduced motion reveals all content immediately
 - the page is complete and static with JavaScript disabled
+- failed JavaScript requests leave the page readable
+- narrow 320px layouts work with increased text spacing
+- the current mobile era stays visible within the scrolling dock
+- playful controls work with keyboard input and expose their state
+
+Career copy is distilled from Brian's LinkedIn profile. See
+`CONTENT-SOURCES.md` for the specific claims and their scope.
 
 Two design decisions follow. The era pastiches keep their period palettes, but
 several colours are shifted from the source design to clear AA — the

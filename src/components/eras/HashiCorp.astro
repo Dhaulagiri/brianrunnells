@@ -29,13 +29,13 @@ import { hashicorp as era } from '../../data/site';
       </div>
 
       <div class="hc-panel">
-        <ul class="hc-tabs" aria-hidden="true">
-          {era.tabs.map((tab, index) => <li class={index === 0 ? 'is-current' : undefined}>{tab}</li>)}
+        <ul class="hc-tabs" aria-label="Explore the miniature design system">
+          {era.tabs.map((tab, index) => <li class={index === 0 ? 'is-current' : undefined}><button type="button" data-helios-view={tab} disabled aria-pressed={index === 0 ? 'true' : 'false'}>{tab}</button></li>)}
         </ul>
         <div class="hc-panel-body">
           <div class="hc-callout">
             <span class="hc-callout-mark" aria-hidden="true"></span>
-            <p><b>{era.callout.title}</b><br />{era.callout.body}</p>
+            <p data-helios-status role="status"><b>{era.callout.title}</b><br />{era.callout.body}</p>
           </div>
           <ul class="hc-tags">
             {era.badges.map((badge) => (
@@ -43,8 +43,8 @@ import { hashicorp as era } from '../../data/site';
             ))}
           </ul>
           <p class="hc-toggle">
-            <span>{era.toggle}</span>
-            <span class="hc-switch" aria-hidden="true"></span>
+            <span>Moon mode <span data-moon-label>off</span></span>
+            <button type="button" class="hc-switch" role="switch" aria-checked="false" aria-label="Moon mode" data-moon-switch disabled></button>
           </p>
           <ul class="hc-tokens">
             {era.tokens.map((token) => (
@@ -59,3 +59,15 @@ import { hashicorp as era } from '../../data/site';
     </div>
   </div>
 </section>
+
+<style>
+  .hc-tabs { flex-wrap: wrap; gap: 8px 20px; }
+  .hc-tabs button { background: transparent; border: 0; color: inherit; font: inherit; padding: 4px 0; min-height: 28px; cursor: pointer; }
+  .hc-switch { border: 0; min-width: 40px; min-height: 24px; cursor: pointer; background: #656a76; }
+  .hc-switch::after { width: 18px; height: 18px; top: 3px; left: 3px; right: auto; }
+  .hc-switch[aria-checked="true"] { background: #1060ff; }
+  .hc-switch[aria-checked="true"]::after { left: auto; right: 3px; }
+  .hc-panel.moon-mode .hc-panel-body { background: #eeeaf7; }
+  .hc-panel.moon-mode .hc-note { color: #4c505c; }
+  .hc-panel.moon-mode .hc-callout-mark { background: #352c5c; border-color: #352c5c; }
+</style>

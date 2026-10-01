@@ -30,12 +30,13 @@ function initMarqueePause(): void {
   const button = document.querySelector<HTMLButtonElement>('[data-marquee-pause]');
   const marquee = button?.closest<HTMLElement>('.gc-marquee');
   if (!button || !marquee) return;
-  button.hidden = false;
   button.addEventListener('click', () => {
     const paused = marquee.classList.toggle('is-paused');
     button.setAttribute('aria-pressed', String(paused));
     button.textContent = paused ? 'Play' : 'Pause';
   });
+  button.hidden = false;
+  marquee.classList.add('has-pause-control');
 }
 
 /** Refresh the baked-in date, in case this page was cached past the last moon. */
@@ -93,8 +94,31 @@ function update(): void {
       link.classList.toggle('is-past', index < active);
       if (index === active) link.setAttribute('aria-current', 'true');
       else link.removeAttribute('aria-current');
+      if (index === active && link.closest('.dock')) keepDockLinkVisible(link);
     }
   }
+}
+
+/** Scroll only the dock, without moving the document or stealing focus. */
+function keepDockLinkVisible(link: HTMLAnchorElement): void {
+  const list = link.closest<HTMLElement>('.dock-list');
+  if (!list || list.clientWidth === 0) return;
+  const viewport = list.getBoundingClientRect();
+  const item = link.getBoundingClientRect();
+  const inset = 8;
+  if (item.left < viewport.left + inset) {
+    list.scrollLeft += item.left - viewport.left - inset;
+  } else if (item.right > viewport.right - inset) {
+    list.scrollLeft += item.right - viewport.right + inset;
+  }
+}
+
+function updateDockOverflow(): void {
+  const list = document.querySelector<HTMLElement>('.dock-list');
+  const cue = document.querySelector<HTMLElement>('.dock-scroll-cue');
+  if (list && cue) cue.hidden = list.scrollWidth <= list.clientWidth;
+  const active = list?.querySelector<HTMLAnchorElement>('[aria-current]');
+  if (active) keepDockLinkVisible(active);
 }
 
 function schedule(): void {
@@ -126,8 +150,16 @@ void initMoonGL().then((draw) => {
 });
 
 document.addEventListener('scroll', schedule, { passive: true });
-window.addEventListener('resize', schedule, { passive: true });
+window.addEventListener('resize', () => {
+  updateDockOverflow();
+  schedule();
+}, { passive: true });
 reducedMotion.addEventListener('change', () => {
   applyMotionPreference();
   schedule();
 });
+
+// Content stays visible if the bundle fails to load or initialization throws.
+// Install the reveal listeners and mark the initial viewport before opting in.
+updateDockOverflow();
+root.classList.add('js');

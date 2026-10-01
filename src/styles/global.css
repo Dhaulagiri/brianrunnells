@@ -46,9 +46,9 @@ h1, h2, h3 { font-weight: 400; }
 img { display: block; max-width: 100%; }
 
 a { color: inherit; text-decoration: none; }
-a:hover { opacity: 0.7; }
-a:focus-visible {
-  outline: 2px solid var(--accent);
+a:hover { text-decoration: underline; text-underline-offset: 0.2em; }
+:is(a, button, input, textarea, select, summary):focus-visible {
+  outline: 3px solid var(--focus-ring, var(--accent));
   outline-offset: 3px;
   border-radius: 2px;
 }
@@ -443,6 +443,8 @@ main { min-width: 0; }
 .era { padding: 64px var(--gutter); }
 
 .era-inner {
+  min-width: 0;
+  overflow-wrap: anywhere;
   max-width: 960px;
   margin: 0 auto;
   display: flex;
@@ -455,6 +457,11 @@ main { min-width: 0; }
   opacity: 0;
   transform: translateY(28px);
   transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.js .era-inner[data-reveal]:focus-within {
+  opacity: 1;
+  transform: none;
+  transition: none;
 }
 .js .era-inner[data-reveal].is-visible {
   opacity: 1;
@@ -511,11 +518,11 @@ main { min-width: 0; }
   white-space: nowrap;
 }
 /* Only animate where the pause control is available (2.2.2). */
-.js .gc-marquee-track > span {
+.gc-marquee.has-pause-control .gc-marquee-track > span {
   padding-left: 100%;
   animation: marquee 14s linear infinite;
 }
-.js .gc-marquee.is-paused .gc-marquee-track > span { animation-play-state: paused; }
+.gc-marquee.has-pause-control.is-paused .gc-marquee-track > span { animation-play-state: paused; }
 
 .gc-marquee-pause {
   flex: none;
@@ -553,7 +560,7 @@ main { min-width: 0; }
 
 .gc-columns {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
   gap: 24px;
 }
 
@@ -621,6 +628,7 @@ main { min-width: 0; }
 /* ------------------------------------------------------ frontend years --- */
 
 .era-frontend {
+  --focus-ring: #1b365d;
   background: #d6d9de;
   color: #333;
   font-family: Verdana, Geneva, sans-serif;
@@ -666,6 +674,8 @@ main { min-width: 0; }
   width: 100%;
   border: 1px solid #c9ced6;
   border-collapse: collapse;
+  table-layout: fixed;
+  overflow-wrap: anywhere;
   text-align: left;
 }
 .fe-table th {
@@ -677,14 +687,14 @@ main { min-width: 0; }
 }
 .fe-table td { padding: 8px 10px; border-top: 1px solid #e1e4e9; }
 .fe-table tbody tr:nth-child(even) { background: #fafbfc; }
-.fe-years { color: #6b6b6b; white-space: nowrap; }
+.fe-years { color: #6b6b6b; }
 
 .fe-badges { display: flex; flex-wrap: wrap; gap: 6px; }
 .fe-badges li {
   display: flex;
   flex: none;
   align-items: center;
-  height: 15px;
+  min-height: 15px;
   border: 1px solid var(--badge-accent);
   font-size: 9px;
   font-weight: bold;
@@ -703,6 +713,7 @@ main { min-width: 0; }
 /* -------------------------------------------------------- climbingnarc --- */
 
 .era-climbingnarc {
+  --focus-ring: #173f28;
   background: #f4f7ef;
   color: #18201b;
   font-family: Verdana, Geneva, sans-serif;
@@ -716,6 +727,7 @@ main { min-width: 0; }
 }
 
 .cn-masthead {
+  --focus-ring: #fffdf8;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -796,7 +808,7 @@ main { min-width: 0; }
 
 /* -------------------------------------------------------------- heroku --- */
 
-.era-heroku { background: #f4f3f8; color: #2c2a3a; }
+.era-heroku { --focus-ring: #430098; background: #f4f3f8; color: #2c2a3a; }
 .era-heroku .era-kicker { color: #66627d; }
 
 .hk-brand {
@@ -838,7 +850,7 @@ main { min-width: 0; }
   border-bottom: 1px solid #e6e3ef;
   background: #fbfafd;
 }
-.hk-tabs ul { display: flex; gap: 20px; font-weight: 600; color: #6e6a86; }
+.hk-tabs ul { display: flex; flex-wrap: wrap; gap: 20px; font-weight: 600; color: #6e6a86; }
 .hk-tabs .is-current {
   padding-bottom: 4px;
   border-bottom: 2px solid #6b4fa0;
@@ -846,7 +858,7 @@ main { min-width: 0; }
 }
 .hk-scope { font-family: var(--mono); font-size: 12px; color: #6e6a86; }
 
-.hk-columns { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.hk-columns { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); }
 .hk-column {
   display: flex;
   flex-direction: column;
@@ -923,13 +935,14 @@ main { min-width: 0; }
 /* ----------------------------------------------------------- hashicorp --- */
 
 .era-hashicorp {
+  --focus-ring: #003b9e;
   background: #fafafa;
   color: #0c0c0e;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, sans-serif;
 }
 .era-hashicorp .era-kicker { color: #656a76; }
 
-.hc-columns { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+.hc-columns { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 40px; }
 .hc-intro { display: flex; flex-direction: column; gap: 18px; }
 
 .hc-brand { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
@@ -986,6 +999,7 @@ main { min-width: 0; }
 
 .hc-tabs {
   display: flex;
+  flex-wrap: wrap;
   gap: 24px;
   padding: 0 20px;
   border-bottom: 1px solid #dedfe3;
@@ -1042,6 +1056,7 @@ main { min-width: 0; }
   color: #3b3d45;
 }
 .hc-switch {
+  flex-shrink: 0;
   position: relative;
   width: 32px;
   height: 18px;
@@ -1070,7 +1085,7 @@ main { min-width: 0; }
   color: #656a76;
 }
 .hc-tokens li { display: flex; align-items: center; gap: 8px; }
-.hc-swatch { width: 12px; height: 12px; border-radius: 3px; }
+.hc-swatch { flex-shrink: 0; width: 12px; height: 12px; border-radius: 3px; }
 .hc-tokens li:last-child .hc-swatch { border: 1px solid #dedfe3; }
 .hc-note { color: #70747f; }
 
@@ -1121,7 +1136,7 @@ main { min-width: 0; }
 
 .nx-columns {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
   gap: 32px;
   max-width: 900px;
   font-family: var(--mono);
@@ -1181,6 +1196,7 @@ main { min-width: 0; }
 @media (max-width: 560px) {
   .intro-bar .profile-links { gap: 4px; }
   .era { padding-block: 48px; }
+  .era-next { padding-bottom: 96px; }
   .cn-masthead { gap: 12px; }
   .cn-wordmark { font-size: 28px; }
   .fe-titlebar { gap: 6px; }
