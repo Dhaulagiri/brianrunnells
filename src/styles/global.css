@@ -959,6 +959,9 @@ main {
 /* -------------------------------------------------------- climbingnarc --- */
 
 .era-climbingnarc {
+  /* The archive earns its place, but it was set loosely enough to outrun both
+     Heroku and HashiCorp. Tightened rather than cut: the material is real. */
+  padding-block: 48px;
   --focus-ring: #173f28;
   background: #f4f7ef;
   color: #18201b;
@@ -1032,9 +1035,9 @@ main {
 .cn-body {
   display: flex;
   flex-direction: column;
-  gap: 26px;
+  gap: 20px;
   max-width: 680px;
-  padding: 28px 24px;
+  padding: 22px 24px;
   background: #fffdf8;
 }
 
@@ -1044,7 +1047,7 @@ main {
   gap: 10px;
 }
 .cn-post + .cn-post {
-  padding-top: 22px;
+  padding-top: 18px;
   border-top: 1px solid #dde5d9;
 }
 .cn-meta {
@@ -1054,15 +1057,15 @@ main {
 }
 .cn-post-title {
   font-family: Georgia, serif;
-  font-size: 28px;
+  font-size: 24px;
   color: #2f6f3e;
 }
 .cn-post + .cn-post .cn-post-title {
-  font-size: 24px;
+  font-size: 21px;
 }
 .cn-post p {
   font-size: 14px;
-  line-height: 1.75;
+  line-height: 1.65;
 }
 
 .cn-cta {

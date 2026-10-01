@@ -187,21 +187,27 @@ export const hashicorp = {
   kicker: '2021–now · HashiCorp',
   badge: 'Open source',
   headline: 'Putting design and engineering on the same team, in public.',
-  body: 'I joined HashiCorp in 2021 to build and lead the Helios team: one group of designers and engineers responsible for the shared UI foundation, rather than two groups negotiating across a handoff. Now, as part of IBM, I lead frontend architecture, design systems, accessibility and developer experience across Terraform.',
+  body: 'I joined HashiCorp in 2021 to build and lead Helios: designers, engineers and accessibility specialists in one group responsible for the shared UI foundation, rather than two functions negotiating across a handoff. That group is now Frontend Experiences — nearly 40 people setting UI direction across Terraform, HCP and the rest of the product suite.',
   /* Each line is one concrete piece of the role. Keep them short enough to
-     scan in a column; the paragraph above carries the connective tissue. */
+     scan in a column; the paragraph above carries the connective tissue.
+     Attribution is deliberate: the accessibility function was built by the
+     leader Brian recruited, so the line credits her rather than claiming it. */
   highlights: [
     {
       label: 'Built and led',
-      text: 'the Helios team — designers and engineers in one group, shipping the shared UI foundation.',
+      text: 'the Helios team from its inception — design and engineering strategy developed together, not handed across a function boundary.',
     },
     {
-      label: 'Established',
-      text: 'the company’s accessibility function, and scaled its reach beyond a single product.',
+      label: 'Grew it',
+      text: 'into a nearly 40-person design engineering organization spanning frontend architecture, design systems, accessibility and developer experience.',
+    },
+    {
+      label: 'Recruited and backed',
+      text: 'the leader of HashiCorp’s accessibility function, who turned it into a company capability — stronger VPATs, better enterprise deal readiness.',
     },
     {
       label: 'Now leading',
-      text: 'frontend architecture, design systems, accessibility and developer experience across Terraform.',
+      text: 'the incremental move from Helios to IBM Carbon: better alignment, without forcing rewrites or stalling product delivery.',
     },
   ],
   actions: [
