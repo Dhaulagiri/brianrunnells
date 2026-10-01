@@ -1,14 +1,51 @@
 ---
 import Base from '../layouts/Base.astro';
+import Moon from '../components/Moon.astro';
 ---
 <Base
   noindex
   title="Page not found"
-  description="That page isn't here. The site is now a single timeline, running from a GeoCities homepage to the Helios design system."
+  description="A little lost in space? Head back to the homepage."
 >
-  <main id="main" tabindex="-1" class="article">
-    <h1>This page isn’t here.</h1>
-    <p>The site has changed. It is one page now: a timeline that runs from a GeoCities homepage to the Helios design system.</p>
-    <p><a href="/">Start at the beginning</a></p>
+  <main id="main" tabindex="-1" class="not-found">
+    <Moon size="clamp(160px, 40vw, 280px)" glow={80} phase={1} textured alwaysGlow gl />
+    <div class="message">
+      <p class="error-code">404</p>
+      <h1>A little lost in space?</h1>
+      <a href="/">Back to the homepage <span aria-hidden="true">→</span></a>
+    </div>
   </main>
 </Base>
+
+<script>
+  import { initMoonGL } from '../scripts/moon-gl';
+  void initMoonGL().then((draw) => draw?.(1));
+</script>
+
+<style>
+  .not-found {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 48px;
+    padding: 64px 24px;
+    text-align: center;
+  }
+  .message { display: grid; justify-items: center; gap: 16px; }
+  .error-code { color: var(--muted); font-family: var(--mono); font-size: 14px; }
+  h1 { font-family: var(--serif); font-size: clamp(36px, 7vw, 56px); line-height: 1.15; }
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 44px;
+    padding: 10px 12px;
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 14px;
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+  }
+</style>
