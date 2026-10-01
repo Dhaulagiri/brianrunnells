@@ -2,6 +2,12 @@
 import '../styles/global.css';
 import { profile, socialLinks } from '../data/site';
 
+// Imported rather than written as literal paths so the preload href is the same
+// content-hashed URL the stylesheet asks for. A mismatch would download both
+// copies and warn in the console.
+import serifLatin from '../assets/fonts/instrument-serif-latin.woff2?url';
+import monoLatin from '../assets/fonts/jetbrains-mono-latin.woff2?url';
+
 interface Props {
   title?: string;
   description?: string;
@@ -96,14 +102,14 @@ const profileSchema =
       rel="preload"
       as="font"
       type="font/woff2"
-      href="/fonts/instrument-serif-latin.woff2"
+      href={serifLatin}
       crossorigin
     />
     <link
       rel="preload"
       as="font"
       type="font/woff2"
-      href="/fonts/jetbrains-mono-latin.woff2"
+      href={monoLatin}
       crossorigin
     />
   </head>

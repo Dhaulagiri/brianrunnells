@@ -1,11 +1,18 @@
 # Fonts
 
 Three families, self-hosted. They used to arrive from `fonts.googleapis.com` at
-runtime; now they sit here and ship from our own origin. The `@font-face` rules
-that point at these files are in [`src/styles/fonts.css`](../../src/styles/fonts.css).
+runtime; now they ship from our own origin. The `@font-face` rules are in
+[`src/styles/fonts.css`](../../src/styles/fonts.css).
 
-All three are SIL Open Font License 1.1. The licences are next to the fonts, as
-the OFL asks:
+**The `woff2` files live in [`src/assets/fonts/`](../../src/assets/fonts), not
+here.** Vercel only grants `immutable` caching to content-hashed filenames, and
+everything under `public/` is served `max-age=0, must-revalidate` — which would
+mean a conditional request per font on every repeat visit. Letting Vite bundle
+them gets `/_astro/instrument-serif-latin.<hash>.woff2` with a year of immutable
+caching, and cache-busting for free whenever a font is regenerated.
+
+Only the licences stay here, so they keep stable public URLs. All three families
+are SIL Open Font License 1.1:
 
 | Family           | Licence                    | Upstream                                                        |
 | ---------------- | -------------------------- | --------------------------------------------------------------- |
@@ -49,9 +56,9 @@ a one-off local install and not a project dependency:
 python3 -m venv /tmp/fonts && /tmp/fonts/bin/pip install "fonttools[woff]"
 ```
 
-Fetch the upstream sources, pin the variable axes, then subset. `LATIN` and
-`LATINX` below are Google Fonts' own ranges; the serif drops `U+2191-2193`
-because it has no arrows.
+Fetch the upstream sources, pin the variable axes, then subset, and drop the
+eight results into `src/assets/fonts/`. `LATIN` and `LATINX` below are Google
+Fonts' own ranges; the serif drops `U+2191-2193` because it has no arrows.
 
 ```sh
 base=https://raw.githubusercontent.com/google/fonts/main/ofl
@@ -81,3 +88,6 @@ sub InstrumentSerif-Italic.ttf  instrument-serif-italic-latin-ext.woff2 "$LATINX
 
 If you add a character to the copy that lives outside these ranges, it will
 quietly render in a fallback face. Widen `LATIN` and regenerate.
+
+Filenames do not need bumping when you do: the bundler hashes them, so a changed
+file gets a new URL on its own.
