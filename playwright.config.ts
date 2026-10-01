@@ -1,8 +1,8 @@
 import { defineConfig, devices } from '@playwright/test';
 
 /**
- * Accessibility tests run against the production build, served by `astro
- * preview`, in a real browser — which is the point: axe can only evaluate
+ * Accessibility tests run against the production build, served by the preview
+ * server in `scripts/preview-server.mjs`, in a real browser — which is the point: axe can only evaluate
  * colour contrast, target size and focus occlusion where there is layout.
  *
  * `channel: 'chrome'` uses the Chrome already on the machine rather than
@@ -47,7 +47,7 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: 'pnpm preview --port 4325',
+    command: 'node scripts/preview-server.mjs',
     url: 'http://localhost:4325',
     reuseExistingServer: !process.env.CI,
     timeout: 60_000,
