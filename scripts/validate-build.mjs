@@ -34,8 +34,20 @@ for (const fullPath of htmlFiles) {
   const ids = new Set([...html.matchAll(/\bid=["']([^"']+)["']/g)].map(match => match[1]));
   const anchors = [...html.matchAll(/<a\b[^>]*>/gi)].map(match => attrs(match[0]));
   if (file === 'index.html') {
+    const canonical = [...html.matchAll(/<link\b[^>]*>/gi)].map(match => attrs(match[0])).find(link => link.rel === 'canonical')?.href;
+    if (!canonical || !/^https:\/\//.test(canonical)) fail(file, 'absolute HTTPS canonical URL is missing');
+    try {
+      const schema = JSON.parse(html.match(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/i)?.[1] || 'null');
+      if (schema?.['@type'] !== 'ProfilePage' || schema.mainEntity?.['@type'] !== 'Person' || schema.mainEntity.name !== 'Brian Runnells' || schema.url !== canonical) fail(file, 'profile structured data is missing or inconsistent');
+      for (const profile of profiles) if (!schema?.mainEntity?.sameAs?.includes(profile)) fail(file, `structured data lacks profile: ${profile}`);
+    } catch { fail(file, 'profile structured data must be valid JSON'); }
+    const sitemap = await readFile(path.join(output, 'sitemap.xml'), 'utf8');
+    if (!canonical || !sitemap.includes(`<loc>${canonical}</loc>`)) fail('sitemap.xml', 'homepage canonical is missing from sitemap');
+    const robots = await readFile(path.join(output, 'robots.txt'), 'utf8');
+    if (!canonical || !robots.includes(`Sitemap: ${new URL('/sitemap.xml', canonical).href}`)) fail('robots.txt', 'absolute sitemap declaration is missing');
     for (const profile of profiles) if (!anchors.some(anchor => anchor.href?.replace(/\/$/, '') === profile)) fail(file, `missing requested profile: ${profile}`);
   }
+  if (file === '404.html' && !metas.some(meta => meta.name === 'robots' && meta.content?.includes('noindex'))) fail(file, 'error page must be noindex');
   for (const match of html.matchAll(/<(a|img|script|link|source)\b[^>]*>/gi)) {
     const tag = match[1].toLowerCase();
     const attributes = attrs(match[0]);
