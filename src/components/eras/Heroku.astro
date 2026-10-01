@@ -7,19 +7,21 @@ import { heroku as era } from '../../data/site';
   id="era-3"
   class="era era-heroku"
   data-era="3"
-  aria-labelledby="era-3-heading"
+  aria-labelledby="era-3-kicker era-3-heading"
 >
   <div class="era-inner" data-reveal>
-    <h2 class="era-kicker" id="era-3-heading">
+    <p class="era-kicker" id="era-3-kicker">
       {era.kicker}
-    </h2>
+    </p>
 
     <p class="hk-brand" role="img" aria-label="Heroku">
       <Icon name="heroku" />
       <span class="hk-wordmark">Heroku</span>
     </p>
 
-    <p class="hk-headline">{era.headline}</p>
+    <h2 class="hk-headline" id="era-3-heading">
+      {era.headline}
+    </h2>
     <p class="hk-body">{era.body}</p>
 
     <div class="hk-panel">

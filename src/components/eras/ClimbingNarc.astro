@@ -6,12 +6,12 @@ import { climbingnarc as era } from '../../data/site';
   id="era-2"
   class="era era-climbingnarc"
   data-era="2"
-  aria-labelledby="era-2-heading"
+  aria-labelledby="era-2-kicker era-2-heading"
 >
   <div class="era-inner" data-reveal>
-    <h2 class="era-kicker" id="era-2-heading">
+    <p class="era-kicker" id="era-2-kicker">
       {era.kicker}
-    </h2>
+    </p>
 
     <div class="cn-window">
       <div class="cn-masthead">
@@ -25,9 +25,9 @@ import { climbingnarc as era } from '../../data/site';
             decoding="async"
           />
           <div>
-            <p class="cn-wordmark">
+            <h2 class="cn-wordmark" id="era-2-heading">
               Climbing <span>Narc</span>
-            </p>
+            </h2>
             <p class="cn-tagline">{era.tagline}</p>
           </div>
         </div>

@@ -7,12 +7,12 @@ import { hashicorp as era } from '../../data/site';
   id="era-4"
   class="era era-hashicorp"
   data-era="4"
-  aria-labelledby="era-4-heading"
+  aria-labelledby="era-4-kicker era-4-heading"
 >
   <div class="era-inner" data-reveal>
-    <h2 class="era-kicker" id="era-4-heading">
+    <p class="era-kicker" id="era-4-kicker">
       {era.kicker}
-    </h2>
+    </p>
 
     <div class="hc-columns">
       <div class="hc-intro">
@@ -27,7 +27,19 @@ import { hashicorp as era } from '../../data/site';
           </span>
         </div>
 
+        <h2 class="hc-headline" id="era-4-heading">
+          {era.headline}
+        </h2>
+
         <p class="hc-body">{era.body}</p>
+
+        <ul class="hc-highlights">
+          {era.highlights.map((item) => (
+            <li>
+              <b>{item.label}</b> {item.text}
+            </li>
+          ))}
+        </ul>
 
         <ul class="hc-actions">
           {era.actions.map((action) => (
