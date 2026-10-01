@@ -1388,8 +1388,12 @@ main {
   background: #0c56e9;
 }
 
+/* Centred rather than top-aligned: the prose column is now roughly twice the
+   panel's height, so pinning it to the top left a well of dead space beneath
+   it. In the stacked single-column layout each item owns its row, so this has
+   no effect there. */
 .hc-panel {
-  align-self: start;
+  align-self: center;
   overflow: hidden;
   border: 1px solid #dedfe3;
   border-radius: 8px;
