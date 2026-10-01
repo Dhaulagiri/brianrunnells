@@ -2,6 +2,12 @@
 import '../styles/global.css';
 import { profile, socialLinks } from '../data/site';
 
+// Imported rather than written as literal paths so the preload href is the same
+// content-hashed URL the stylesheet asks for. A mismatch would download both
+// copies and warn in the console.
+import serifLatin from '../assets/fonts/instrument-serif-latin.woff2?url';
+import monoLatin from '../assets/fonts/jetbrains-mono-latin.woff2?url';
+
 interface Props {
   title?: string;
   description?: string;
@@ -88,11 +94,23 @@ const profileSchema =
     )}
     <meta name="theme-color" content="#050608" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    {/* The two faces the first screen needs: the serif sets the h1, and the
+        mono sets the kickers and the "Jump to today" button. Everything else
+        (serif italic, Archivo, the latin-ext subsets) is discovered from CSS
+        when something on the page asks for it. */}
     <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&family=Archivo:wght@400;600;800;900&display=swap"
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href={serifLatin}
+      crossorigin
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href={monoLatin}
+      crossorigin
     />
   </head>
   <body>
