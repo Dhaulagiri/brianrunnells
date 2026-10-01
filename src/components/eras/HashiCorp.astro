@@ -2,17 +2,29 @@
 import Icon from '../Icon.astro';
 import { hashicorp as era } from '../../data/site';
 ---
-<section id="era-4" class="era era-hashicorp" data-era="4" aria-labelledby="era-4-heading">
+
+<section
+  id="era-4"
+  class="era era-hashicorp"
+  data-era="4"
+  aria-labelledby="era-4-heading"
+>
   <div class="era-inner" data-reveal>
-    <h2 class="era-kicker" id="era-4-heading">{era.kicker}</h2>
+    <h2 class="era-kicker" id="era-4-heading">
+      {era.kicker}
+    </h2>
 
     <div class="hc-columns">
       <div class="hc-intro">
         <div class="hc-brand">
           <span class="hc-logo" role="img" aria-label="Helios">
-            <Icon name="helios" /><Icon name="helios-wordmark" />
+            <Icon name="helios" />
+            <Icon name="helios-wordmark" />
           </span>
-          <span class="hc-badge"><span class="hc-dot" aria-hidden="true"></span>{era.badge}</span>
+          <span class="hc-badge">
+            <span class="hc-dot" aria-hidden="true"></span>
+            {era.badge}
+          </span>
         </div>
 
         <p class="hc-body">{era.body}</p>
@@ -20,8 +32,14 @@ import { hashicorp as era } from '../../data/site';
         <ul class="hc-actions">
           {era.actions.map((action) => (
             <li>
-              <a href={action.url} rel="noopener" class={action.primary ? 'is-primary' : undefined}>
-                {!action.primary && <Icon name="github" />}{action.label}<span aria-hidden="true"> ↗</span>
+              <a
+                href={action.url}
+                rel="noopener"
+                class={action.primary ? 'is-primary' : undefined}
+              >
+                {!action.primary && <Icon name="github" />}
+                {action.label}
+                <span aria-hidden="true"> ↗</span>
               </a>
             </li>
           ))}
@@ -30,27 +48,61 @@ import { hashicorp as era } from '../../data/site';
 
       <div class="hc-panel">
         <ul class="hc-tabs" aria-label="Explore the miniature design system">
-          {era.tabs.map((tab, index) => <li class={index === 0 ? 'is-current' : undefined}><button type="button" data-helios-view={tab} disabled aria-pressed={index === 0 ? 'true' : 'false'}>{tab}</button></li>)}
+          {era.tabs.map((tab, index) => (
+            <li class={index === 0 ? 'is-current' : undefined}>
+              <button
+                type="button"
+                data-helios-view={tab}
+                disabled
+                aria-pressed={index === 0 ? 'true' : 'false'}
+              >
+                {tab}
+              </button>
+            </li>
+          ))}
         </ul>
         <div class="hc-panel-body">
           <div class="hc-callout">
             <span class="hc-callout-mark" aria-hidden="true"></span>
-            <p data-helios-status role="status"><b>{era.callout.title}</b><br />{era.callout.body}</p>
+            <p data-helios-status role="status">
+              <b>{era.callout.title}</b>
+              <br />
+              {era.callout.body}
+            </p>
           </div>
           <ul class="hc-tags">
             {era.badges.map((badge) => (
-              <li style={`background:${badge.background};color:${badge.color};`}>{badge.text}</li>
+              <li
+                style={`background:${badge.background};color:${badge.color};`}
+              >
+                {badge.text}
+              </li>
             ))}
           </ul>
           <p class="hc-toggle">
-            <span>Moon mode <span data-moon-label>off</span></span>
-            <button type="button" class="hc-switch" role="switch" aria-checked="false" aria-label="Moon mode" data-moon-switch disabled></button>
+            <span>
+              Moon mode <span data-moon-label>off</span>
+            </span>
+            <button
+              type="button"
+              class="hc-switch"
+              role="switch"
+              aria-checked="false"
+              aria-label="Moon mode"
+              data-moon-switch
+              disabled
+            ></button>
           </p>
           <ul class="hc-tokens">
             {era.tokens.map((token) => (
               <li>
-                <span class="hc-swatch" style={`background:${token.swatch};`} aria-hidden="true"></span>
-                {token.name}{token.note && <span class="hc-note"> {token.note}</span>}
+                <span
+                  class="hc-swatch"
+                  style={`background:${token.swatch};`}
+                  aria-hidden="true"
+                ></span>
+                {token.name}
+                {token.note && <span class="hc-note"> {token.note}</span>}
               </li>
             ))}
           </ul>
@@ -61,13 +113,48 @@ import { hashicorp as era } from '../../data/site';
 </section>
 
 <style>
-  .hc-tabs { flex-wrap: wrap; gap: 8px 20px; }
-  .hc-tabs button { background: transparent; border: 0; color: inherit; font: inherit; padding: 4px 0; min-height: 28px; cursor: pointer; }
-  .hc-switch { border: 0; min-width: 40px; min-height: 24px; cursor: pointer; background: #656a76; }
-  .hc-switch::after { width: 18px; height: 18px; top: 3px; left: 3px; right: auto; }
-  .hc-switch[aria-checked="true"] { background: #1060ff; }
-  .hc-switch[aria-checked="true"]::after { left: auto; right: 3px; }
-  .hc-panel.moon-mode .hc-panel-body { background: #eeeaf7; }
-  .hc-panel.moon-mode .hc-note { color: #4c505c; }
-  .hc-panel.moon-mode .hc-callout-mark { background: #352c5c; border-color: #352c5c; }
+  .hc-tabs {
+    flex-wrap: wrap;
+    gap: 8px 20px;
+  }
+  .hc-tabs button {
+    background: transparent;
+    border: 0;
+    color: inherit;
+    font: inherit;
+    padding: 4px 0;
+    min-height: 28px;
+    cursor: pointer;
+  }
+  .hc-switch {
+    border: 0;
+    min-width: 40px;
+    min-height: 24px;
+    cursor: pointer;
+    background: #656a76;
+  }
+  .hc-switch::after {
+    width: 18px;
+    height: 18px;
+    top: 3px;
+    left: 3px;
+    right: auto;
+  }
+  .hc-switch[aria-checked='true'] {
+    background: #1060ff;
+  }
+  .hc-switch[aria-checked='true']::after {
+    left: auto;
+    right: 3px;
+  }
+  .hc-panel.moon-mode .hc-panel-body {
+    background: #eeeaf7;
+  }
+  .hc-panel.moon-mode .hc-note {
+    color: #4c505c;
+  }
+  .hc-panel.moon-mode .hc-callout-mark {
+    background: #352c5c;
+    border-color: #352c5c;
+  }
 </style>

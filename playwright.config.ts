@@ -19,11 +19,32 @@ export default defineConfig({
     channel: 'chrome',
   },
   projects: [
-    { name: 'desktop', use: { ...devices['Desktop Chrome'], channel: 'chrome', viewport: { width: 1440, height: 900 } } },
+    {
+      name: 'desktop',
+      use: {
+        ...devices['Desktop Chrome'],
+        channel: 'chrome',
+        viewport: { width: 1440, height: 900 },
+      },
+    },
     // The rail collapses to the dock below 820px, so both layouts need
     // covering, along with a short viewport that squeezes the rail.
-    { name: 'short', use: { ...devices['Desktop Chrome'], channel: 'chrome', viewport: { width: 1280, height: 620 } } },
-    { name: 'mobile', use: { ...devices['Desktop Chrome'], channel: 'chrome', viewport: { width: 375, height: 812 } } },
+    {
+      name: 'short',
+      use: {
+        ...devices['Desktop Chrome'],
+        channel: 'chrome',
+        viewport: { width: 1280, height: 620 },
+      },
+    },
+    {
+      name: 'mobile',
+      use: {
+        ...devices['Desktop Chrome'],
+        channel: 'chrome',
+        viewport: { width: 375, height: 812 },
+      },
+    },
   ],
   webServer: {
     command: 'pnpm preview --port 4325',

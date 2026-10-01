@@ -22,11 +22,11 @@ Keep the voice direct, specific, and lightly self-aware. Avoid leadership slogan
 
 ## Research and implications
 
-| Reference | What works | Application here |
-| --- | --- | --- |
-| [Frank Chimero](https://frankchimero.com/about/) | An identifiable person, concise introduction, concrete work, and a durable archive | Lead with a clear point of view; let selected work establish credibility |
-| [Maggie Appleton's garden](https://maggieappleton.com/garden) | Ongoing curiosity becomes navigable through different kinds of material | Allow projects and eventual notes to coexist, without requiring a blog at launch |
-| [Tania Rascia](https://www.taniarascia.com/) | Professional depth sits alongside hobbies and runnable projects | Present personal interests as part of the same person; link directly to things visitors can use |
+| Reference                                                     | What works                                                                         | Application here                                                                                |
+| ------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| [Frank Chimero](https://frankchimero.com/about/)              | An identifiable person, concise introduction, concrete work, and a durable archive | Lead with a clear point of view; let selected work establish credibility                        |
+| [Maggie Appleton's garden](https://maggieappleton.com/garden) | Ongoing curiosity becomes navigable through different kinds of material            | Allow projects and eventual notes to coexist, without requiring a blog at launch                |
+| [Tania Rascia](https://www.taniarascia.com/)                  | Professional depth sits alongside hobbies and runnable projects                    | Present personal interests as part of the same person; link directly to things visitors can use |
 
 These are content and structure references, not designs to reproduce. The recommendation is an editorial site with a small, deliberate collection rather than a large garden that needs constant tending.
 

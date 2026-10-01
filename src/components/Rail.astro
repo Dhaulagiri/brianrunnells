@@ -3,12 +3,17 @@ import Icon from './Icon.astro';
 import Moon from './Moon.astro';
 import { eras, socialLinks } from '../data/site';
 ---
+
 <nav class="rail" aria-label="Timeline">
   <div class="rail-moon">
     <Moon size="clamp(88px, 19vh, 200px)" glow={90} textured gl />
     <p class="rail-phase">
-      <span class="rail-phase-name" data-phase-name>New moon</span>
-      <span class="rail-phase-pct"><span data-phase-pct>0%</span> illuminated</span>
+      <span class="rail-phase-name" data-phase-name>
+        New moon
+      </span>
+      <span class="rail-phase-pct">
+        <span data-phase-pct>0%</span> illuminated
+      </span>
     </p>
   </div>
 
@@ -30,7 +35,11 @@ import { eras, socialLinks } from '../data/site';
     {socialLinks.map(({ id, label, url }) => (
       <li>
         <a href={url} rel="me noopener">
-          <span><Icon name={id} />{label}</span><span aria-hidden="true">↗</span>
+          <span>
+            <Icon name={id} />
+            {label}
+          </span>
+          <span aria-hidden="true">↗</span>
         </a>
       </li>
     ))}
