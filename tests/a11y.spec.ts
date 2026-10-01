@@ -40,6 +40,37 @@ for (const path of PAGES) {
   });
 }
 
+/**
+ * The sticky rail and dock float over six sections with wildly different
+ * backgrounds — GeoCities navy, ClimbingNarc cream, HashiCorp near-white. A
+ * scan at the top of the document only ever measures them against the first
+ * one, which is how a 4.48:1 dock label over the white HashiCorp panel sat
+ * here undetected. Park at each era and re-measure.
+ */
+for (const era of ['era-0', 'era-1', 'era-2', 'era-3', 'era-4', 'era-5']) {
+  test(`overlay chrome stays legible over #${era}`, async ({ page }) => {
+    await page.goto('/');
+    await settle(page);
+    await page.evaluate((id) => {
+      document.getElementById(id)?.scrollIntoView();
+    }, era);
+    // Past the 0.25s clip-path/transform transitions on the moon and reveals.
+    await page.waitForTimeout(600);
+
+    const results = await new AxeBuilder({ page })
+      .include('.dock')
+      .include('.rail')
+      .withTags(TAGS)
+      .analyze();
+
+    const summary = results.violations.map(
+      (v) =>
+        `${v.id} (${v.impact}): ${v.help}\n    ${v.nodes.map((n) => n.target.join(' ')).join('\n    ')}`,
+    );
+    expect(summary, summary.join('\n')).toEqual([]);
+  });
+}
+
 test('introduction leads directly into the eras', async ({ page }) => {
   await page.goto('/');
   await expect(page.getByRole('heading', { level: 1 })).toHaveText(

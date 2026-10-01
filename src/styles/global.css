@@ -98,7 +98,7 @@ a:hover {
 /* ------------------------------------------------------- introduction --- */
 
 .site-intro {
-  padding: 20px var(--gutter);
+  padding: 28px var(--gutter) 30px;
   border-bottom: 1px solid var(--rule);
 }
 
@@ -110,10 +110,9 @@ a:hover {
 }
 
 .site-intro h1 {
-  font-family: 'Fraunces', Georgia, serif;
-  font-size: clamp(26px, 2.2vw, 30px);
-  font-weight: 600;
-  letter-spacing: -0.025em;
+  font-family: var(--serif);
+  font-size: clamp(28px, 2.4vw, 34px);
+  letter-spacing: -0.015em;
 }
 
 .intro-bar .profile-links {
@@ -470,8 +469,7 @@ main {
 }
 
 .rail-name {
-  font-family: 'Newsreader', Georgia, serif;
-  font-weight: 500;
+  font-family: var(--serif);
   font-size: 26px;
   line-height: 1;
   color: #7c7f88;
@@ -560,7 +558,7 @@ main {
   padding: 8px 10px;
   border: 1px solid var(--edge);
   border-radius: 14px;
-  background: rgba(7, 8, 12, 0.9);
+  background: rgba(7, 8, 12, 0.96);
   backdrop-filter: blur(10px);
 }
 
@@ -570,6 +568,19 @@ main {
   min-width: 0;
   gap: 4px;
   overflow-x: auto;
+  scroll-snap-type: x proximity;
+  /* Fades the cut edges, so a half-scrolled label reads as "more this way"
+     rather than as text that has been chopped. */
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 16px,
+    #000 calc(100% - 16px),
+    transparent 100%
+  );
+}
+.dock-list a {
+  scroll-snap-align: center;
 }
 
 .dock-list a {
@@ -581,10 +592,10 @@ main {
   border-radius: 10px;
   font-family: var(--mono);
   font-size: 12px;
-  color: #7c7f88;
+  color: #a8abb4;
 }
 .dock-list a.is-past {
-  color: #8a877f;
+  color: #b2afa6;
 }
 .dock-list a.is-current {
   color: var(--accent);
@@ -641,6 +652,8 @@ main {
 /* ----------------------------------------------------------- geocities --- */
 
 .era-geocities {
+  /* The joke lands fast; it does not need a full screen to do it. */
+  padding-block: 44px;
   background: #000066
     repeating-linear-gradient(45deg, #00007a 0 10px, #000060 10px 20px);
   color: #ffff66;
@@ -677,10 +690,23 @@ main {
   display: inline-block;
   white-space: nowrap;
 }
+/* Two copies sit end to end and the track travels exactly one copy, so the
+   loop is seamless and the bar always has text in it. */
+.gc-marquee-track > span {
+  display: flex;
+}
+.gc-marquee-text {
+  flex: none;
+  padding-right: 3em;
+}
+/* Without the pause control nothing moves, so the second copy would just be
+   the sentence printed twice. */
+.gc-marquee:not(.has-pause-control) .gc-marquee-text + .gc-marquee-text {
+  display: none;
+}
 /* Only animate where the pause control is available (2.2.2). */
 .gc-marquee.has-pause-control .gc-marquee-track > span {
-  padding-left: 100%;
-  animation: marquee 14s linear infinite;
+  animation: marquee 22s linear infinite;
 }
 .gc-marquee.has-pause-control.is-paused .gc-marquee-track > span {
   animation-play-state: paused;
@@ -711,12 +737,12 @@ main {
     transform: translateX(0);
   }
   to {
-    transform: translateX(-200%);
+    transform: translateX(-50%);
   }
 }
 
 .gc-title {
-  font-size: clamp(32px, 5vw, 60px);
+  font-size: clamp(28px, 4vw, 46px);
   font-weight: bold;
   line-height: 1.1;
   text-align: center;
@@ -774,7 +800,7 @@ main {
   flex-direction: column;
   gap: 16px;
   color: #fff;
-  font-size: 21px;
+  font-size: 18px;
   line-height: 1.55;
 }
 
@@ -933,6 +959,9 @@ main {
 /* -------------------------------------------------------- climbingnarc --- */
 
 .era-climbingnarc {
+  /* The archive earns its place, but it was set loosely enough to outrun both
+     Heroku and HashiCorp. Tightened rather than cut: the material is real. */
+  padding-block: 48px;
   --focus-ring: #173f28;
   background: #f4f7ef;
   color: #18201b;
@@ -1006,9 +1035,9 @@ main {
 .cn-body {
   display: flex;
   flex-direction: column;
-  gap: 26px;
+  gap: 20px;
   max-width: 680px;
-  padding: 28px 24px;
+  padding: 22px 24px;
   background: #fffdf8;
 }
 
@@ -1018,7 +1047,7 @@ main {
   gap: 10px;
 }
 .cn-post + .cn-post {
-  padding-top: 22px;
+  padding-top: 18px;
   border-top: 1px solid #dde5d9;
 }
 .cn-meta {
@@ -1028,15 +1057,15 @@ main {
 }
 .cn-post-title {
   font-family: Georgia, serif;
-  font-size: 28px;
+  font-size: 24px;
   color: #2f6f3e;
 }
 .cn-post + .cn-post .cn-post-title {
-  font-size: 24px;
+  font-size: 21px;
 }
 .cn-post p {
   font-size: 14px;
-  line-height: 1.75;
+  line-height: 1.65;
 }
 
 .cn-cta {
@@ -1291,8 +1320,36 @@ main {
   background: #008a22;
 }
 
+.hc-headline {
+  max-width: 460px;
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #0c0c0e;
+  text-wrap: balance;
+}
+
+.hc-highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 460px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: #3b3d45;
+}
+.hc-highlights li {
+  padding-left: 14px;
+  border-left: 2px solid #dedfe3;
+}
+.hc-highlights b {
+  font-weight: 600;
+  color: #0c0c0e;
+}
+
 .hc-body {
-  max-width: 440px;
+  max-width: 460px;
   font-size: 17px;
   line-height: 1.6;
   color: #3b3d45;
@@ -1657,7 +1714,7 @@ main {
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
   }
-  .gc-marquee span {
-    padding-left: 0;
+  .gc-marquee-text + .gc-marquee-text {
+    display: none;
   }
 }

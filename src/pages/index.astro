@@ -3,7 +3,6 @@ import Base from '../layouts/Base.astro';
 import Rail from '../components/Rail.astro';
 import Dock from '../components/Dock.astro';
 import ProfileLinks from '../components/ProfileLinks.astro';
-import Moon from '../components/Moon.astro';
 import Geocities from '../components/eras/Geocities.astro';
 import Frontend from '../components/eras/Frontend.astro';
 import ClimbingNarc from '../components/eras/ClimbingNarc.astro';
@@ -15,18 +14,16 @@ import { profile } from '../data/site';
 
 <Base>
   <header class="site-intro">
-    <div class="intro-moon" aria-hidden="true">
-      <Moon size="144px" glow={0} phase={0.35} textured />
-    </div>
     <div class="intro-bar">
       <h1>{profile.name}</h1>
       <ProfileLinks />
     </div>
     <div class="intro-summary">
-      <p>Frontend engineering &amp; design at HashiCorp, now part of IBM.</p>
-      <a href="#era-4">
+      <p class="intro-bio">{profile.introduction}</p>
+      <a class="intro-jump" href="#era-4">
         Jump to today <span aria-hidden="true">↓</span>
       </a>
+      <p class="intro-meta">{profile.introductionMeta}</p>
     </div>
   </header>
 
@@ -53,58 +50,67 @@ import { profile } from '../data/site';
   .site-intro {
     position: relative;
     isolation: isolate;
-    overflow: hidden;
   }
-  .intro-moon {
-    position: absolute;
-    z-index: -1;
-    top: 50%;
-    right: 20%;
-    transform: translateY(-50%);
-    opacity: 0.1;
-    pointer-events: none;
-  }
+  /* Bio and shortcut share the first row; the signpost sits under the bio,
+     so the eye goes name → what I do → the way out, in that order. */
   .intro-summary {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
-    align-items: center;
-    gap: 16px;
-    margin-top: 4px;
+    align-items: start;
+    gap: 10px 32px;
+    margin-top: 10px;
+  }
+  .intro-bio {
+    max-width: 58ch;
     color: var(--muted);
     font-size: 14px;
-    line-height: 1.5;
-  }
-  .intro-summary p {
-    max-width: 560px;
+    line-height: 1.55;
     text-wrap: pretty;
   }
-  .intro-summary a {
+  .intro-meta {
+    grid-column: 1;
+    color: var(--dim);
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  /* This is the lede's escape hatch, so it reads as the one button here. */
+  .intro-jump {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: center;
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    min-height: 36px;
-    padding: 6px 12px;
-    border: 1px solid var(--edge);
+    min-height: 40px;
+    padding: 8px 16px;
+    border: 1px solid var(--accent);
     border-radius: 6px;
     font-family: var(--mono);
-    font-size: 12px;
+    font-size: 13px;
     color: var(--accent);
     text-decoration: none;
+    transition:
+      background 0.2s,
+      color 0.2s;
   }
-  .intro-summary a:hover {
-    background: #1c1e26;
+  .intro-jump:hover {
+    background: var(--accent);
+    color: var(--ink);
+    text-decoration: none;
   }
-  @media (max-width: 560px) {
+  @media (max-width: 720px) {
     .intro-summary {
-      gap: 12px;
-      margin-top: 8px;
+      grid-template-columns: minmax(0, 1fr);
+      justify-items: start;
     }
-    .intro-summary p {
-      font-size: 13px;
+    .intro-meta,
+    .intro-jump {
+      grid-column: 1;
     }
-    .intro-summary a {
-      padding-inline: 8px;
-      font-size: 11px;
+    .intro-jump {
+      grid-row: auto;
+      margin-top: 4px;
     }
   }
 </style>

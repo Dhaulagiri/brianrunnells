@@ -11,8 +11,11 @@ export const profile = {
   headline: 'From GeoCities to Helios,',
   /** Rendered in the accent colour as the second half of the headline. */
   headlineAccent: 'one full moon at a time.',
+  /** Two lines, not a paragraph: who, then how to read the page. */
   introduction:
-    'I lead frontend engineering and design teams at HashiCorp, now part of IBM. Off the clock: moonlit adventures on two feet or two wheels.',
+    'I build design systems, developer tools, and the teams behind them. Currently frontend engineering and design at HashiCorp, now part of IBM.',
+  /** The signpost. Set small and dim; it explains the timeline, it isn’t the bio. */
+  introductionMeta: 'Below: twenty-five years of the web, in period dress.',
   description:
     'Brian Runnells leads frontend engineering and design teams at HashiCorp, now part of IBM. A timeline from a GeoCities homepage to the Helios design system.',
 };
@@ -51,7 +54,7 @@ export const eras = [
   },
   { id: 'era-3', name: 'Heroku', years: '2015–2021', label: 'Heroku' },
   { id: 'era-4', name: 'HashiCorp', years: '2021–now', label: 'HashiCorp' },
-  { id: 'era-5', name: 'Next', years: '...', label: 'Next' },
+  { id: 'era-5', name: 'Next', years: '→', label: 'Next' },
 ];
 
 export const geocities = {
@@ -183,7 +186,30 @@ export const heroku = {
 export const hashicorp = {
   kicker: '2021–now · HashiCorp',
   badge: 'Open source',
-  body: 'I joined HashiCorp in 2021 to build and lead the Helios team, bringing design and engineering together to build a shared UI foundation. I also  established our accessibility function and scaled its impact across the company. Now, as part of IBM, I lead frontend architecture, design systems, accessibility and developer experience across Terraform.',
+  headline: 'Putting design and engineering on the same team, in public.',
+  body: 'I joined HashiCorp in 2021 to build and lead Helios: designers, engineers and accessibility specialists in one group responsible for the shared UI foundation, rather than two functions negotiating across a handoff. That group is now Frontend Experiences — nearly 40 people setting UI direction across Terraform, HCP and the rest of the product suite.',
+  /* Each line is one concrete piece of the role. Keep them short enough to
+     scan in a column; the paragraph above carries the connective tissue.
+     Attribution is deliberate: the accessibility function was built by the
+     leader Brian recruited, so the line credits her rather than claiming it. */
+  highlights: [
+    {
+      label: 'Built and led',
+      text: 'the Helios team from its inception — design and engineering strategy developed together, not handed across a function boundary.',
+    },
+    {
+      label: 'Grew it',
+      text: 'into a nearly 40-person design engineering organization spanning frontend architecture, design systems, accessibility and developer experience.',
+    },
+    {
+      label: 'Recruited and backed',
+      text: 'the leader of HashiCorp’s accessibility function, who turned it into a company capability — stronger VPATs, better enterprise deal readiness.',
+    },
+    {
+      label: 'Now leading',
+      text: 'the incremental move from Helios to IBM Carbon: better alignment, without forcing rewrites or stalling product delivery.',
+    },
+  ],
   actions: [
     {
       label: 'Documentation',

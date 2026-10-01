@@ -19,7 +19,7 @@ const short = formatFullMoonShort(moon);
   id="era-5"
   class="era era-next"
   data-era="5"
-  aria-labelledby="era-5-heading"
+  aria-labelledby="era-5-kicker era-5-heading"
 >
   <div class="nx-moon" aria-hidden="true">
     <Moon
@@ -33,13 +33,13 @@ const short = formatFullMoonShort(moon);
   </div>
 
   <div class="era-inner" data-reveal>
-    <h2 class="era-kicker" id="era-5-heading">
+    <p class="era-kicker" id="era-5-kicker">
       {era.kicker}
-    </h2>
-
-    <p class="nx-headline">
-      The next full moon is around <em data-next-full>{full}</em>.
     </p>
+
+    <h2 class="nx-headline" id="era-5-heading">
+      The next full moon is around <em data-next-full>{full}</em>.
+    </h2>
 
     <div class="nx-columns">
       <p>{era.paragraphs[0]}</p>

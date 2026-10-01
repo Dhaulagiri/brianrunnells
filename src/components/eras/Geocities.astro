@@ -6,16 +6,21 @@ import { geocities as era } from '../../data/site';
   id="era-0"
   class="era era-geocities"
   data-era="0"
-  aria-labelledby="era-0-heading"
+  aria-labelledby="era-0-kicker era-0-heading"
 >
   <div class="era-inner" data-reveal>
-    <h2 class="era-kicker" id="era-0-heading">
+    <p class="era-kicker" id="era-0-kicker">
       {era.kicker}
-    </h2>
+    </p>
 
     <div class="gc-marquee">
       <span class="gc-marquee-track">
-        <span data-marquee>{era.marquee}</span>
+        <span data-marquee>
+          <span class="gc-marquee-text">{era.marquee}</span>
+          <span class="gc-marquee-text" aria-hidden="true">
+            {era.marquee}
+          </span>
+        </span>
       </span>
       <button
         type="button"
@@ -28,7 +33,9 @@ import { geocities as era } from '../../data/site';
       </button>
     </div>
 
-    <p class="gc-title">{era.title}</p>
+    <h2 class="gc-title" id="era-0-heading">
+      {era.title}
+    </h2>
 
     <div class="gc-rule" aria-hidden="true"></div>
 
