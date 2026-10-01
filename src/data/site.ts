@@ -37,7 +37,7 @@ export const eras = [
   { id: 'era-2', name: 'ClimbingNarc', years: '2007–2015', label: 'ClimbingNarc' },
   { id: 'era-3', name: 'Heroku', years: '2015–2021', label: 'Heroku' },
   { id: 'era-4', name: 'HashiCorp', years: '2021–now', label: 'HashiCorp' },
-  { id: 'era-5', name: 'Next', years: 'soon', label: 'Next' },
+  { id: 'era-5', name: 'Next', years: '...', label: 'Next' },
 ];
 
 export const geocities = {
