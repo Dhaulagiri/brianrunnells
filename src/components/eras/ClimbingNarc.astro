@@ -32,6 +32,17 @@ import { climbingnarc as era } from '../../data/site';
             <p>{post.body}</p>
           </article>
         ))}
+        <div class="cn-interviews">
+          <h3 class="cn-post-title">On the other side of the questions</h3>
+          <ul>
+            {era.interviews.map((interview) => (
+              <li>
+                <a href={interview.url}>{interview.title}</a>
+                <span class="cn-meta">{interview.publication} · {interview.year}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
         <p class="cn-cta">
           <a href={era.url} rel="noopener">{era.cta}</a>
           <span class="cn-stats">{era.stats}</span>
@@ -42,3 +53,17 @@ import { climbingnarc as era } from '../../data/site';
 </section>
 
 <style>.cn-nav { flex-wrap: wrap; } .cn-nav a { color: #fffdf8; display: inline-block; min-width: 24px; min-height: 24px; padding: 4px 0; text-decoration: underline; } .cn-rss a { color: #231c14; }</style>
+
+<style>
+  .cn-interviews { margin-block: 24px; }
+  .cn-interviews ul { list-style: none; padding: 0; display: grid; gap: 12px; }
+  .cn-interviews a {
+    display: inline-block;
+    min-height: 24px;
+    padding-block: 4px;
+    color: #67400a;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .cn-interviews .cn-meta { display: block; margin: 0; }
+</style>

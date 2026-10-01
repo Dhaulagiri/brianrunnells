@@ -97,6 +97,26 @@ export const climbingnarc = {
   ],
   cta: 'Read the archive »',
   stats: '1,332 posts · 9,574 reader comments',
+  interviews: [
+    {
+      title: 'Interview with the ClimbingNarc',
+      publication: 'Splitter Choss',
+      year: '2010',
+      url: 'https://www.splitterchoss.com/2010/03/09/interview-with-the-climbingnarc/',
+    },
+    {
+      title: 'Players: Brian Runnells (aka The Climbing Narc)',
+      publication: 'Climbing',
+      year: '2011',
+      url: 'https://www.climbing.com/news/players-brian-runnells-aka-the-climbing-narc/',
+    },
+    {
+      title: 'The Boys in the Booth, with Chris Weidner',
+      publication: 'Thundercling · podcast on iVoox',
+      year: '2018',
+      url: 'https://www.ivoox.com/episode-4-brian-runnells-and-chris-weidner-8212-audios-mp3_rf_30894463_1.html',
+    },
+  ],
 };
 
 export const heroku = {
