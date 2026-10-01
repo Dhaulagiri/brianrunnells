@@ -83,9 +83,10 @@ Source: https://svs.gsfc.nasa.gov/4720/
 
 ## Deployment
 
-This rebuild has not been published. Confirm the production domain and hosting
-before deployment. Set `SITE_URL` to the final origin when building so canonical
-URLs, sitemap entries, and social image URLs use the correct domain.
+Production runs on Vercel at `https://brianrunnells.com`. The Astro configuration
+defaults to this origin; `SITE_URL` can override it. Vercel also sets this variable
+for Production. Canonical URLs, sitemap entries, structured data, and social
+image URLs all use that origin.
 
 ```sh
 SITE_URL=https://brianrunnells.com pnpm build
@@ -95,6 +96,11 @@ The site is now a single page. The previous `/about/`, `/projects/`, and
 `/work/<slug>/` routes have been removed; review whether hosting should redirect
 them to `/` before switching production. Hosting should serve the generated
 `404.html` for missing URLs.
+
+Google Search Console uses a verified Domain property for `brianrunnells.com`.
+Keep its verification TXT record in Vercel DNS (DreamHost is the registrar,
+but the domain uses Vercel nameservers). The submitted sitemap is
+`https://brianrunnells.com/sitemap.xml`.
 
 The old Ember site remains in Git history. The repository's default branch is
 `main`.

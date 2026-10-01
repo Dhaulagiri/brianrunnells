@@ -1,8 +1,8 @@
 import { defineConfig } from 'astro/config';
 
-// Supply the confirmed production origin at build time.
+// Use the confirmed production origin even in builds without environment config.
 export default defineConfig({
-  site: process.env.SITE_URL || undefined,
+  site: process.env.SITE_URL || 'https://brianrunnells.com',
   output: 'static',
   trailingSlash: 'always',
 });
