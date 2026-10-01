@@ -2,6 +2,8 @@
    visual language of its own period, so era blocks set their own type and
    colour rather than inheriting the shell's. */
 
+@import './fonts.css';
+
 :root {
   --ink: #050608;
   --paper: #f0ece2;
@@ -12,7 +14,9 @@
   --rule: #1a1c22;
   --edge: #5a5e69;
 
-  --serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+  --serif:
+    'Instrument Serif', 'Instrument Serif Fallback', Georgia, 'Times New Roman',
+    serif;
   --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
   --sans: 'Archivo', system-ui, -apple-system, 'Segoe UI', sans-serif;
 
