@@ -2,60 +2,103 @@
 import '../styles/global.css';
 import { profile, socialLinks } from '../data/site';
 
-interface Props { title?: string; description?: string; noindex?: boolean; }
-const { title = profile.name, description = profile.description, noindex = false } = Astro.props;
-const pageTitle = title === profile.name ? `${profile.name} — Frontend engineering & design leadership` : `${title} — ${profile.name}`;
-const canonical = !noindex && Astro.site ? new URL(Astro.url.pathname, Astro.site) : undefined;
-const profileSchema = canonical && Astro.url.pathname === '/' ? {
-  '@context': 'https://schema.org',
-  '@type': 'ProfilePage',
-  '@id': `${canonical.href}#profile`,
-  url: canonical.href,
-  name: pageTitle,
-  mainEntity: {
-    '@type': 'Person',
-    '@id': `${canonical.href}#person`,
-    name: profile.name,
-    url: canonical.href,
-    description: profile.description,
-    sameAs: socialLinks.map(link => link.url),
-  },
-} : undefined;
+interface Props {
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+}
+const {
+  title = profile.name,
+  description = profile.description,
+  noindex = false,
+} = Astro.props;
+const pageTitle =
+  title === profile.name
+    ? `${profile.name} — Frontend engineering & design leadership`
+    : `${title} — ${profile.name}`;
+const canonical =
+  !noindex && Astro.site ? new URL(Astro.url.pathname, Astro.site) : undefined;
+const profileSchema =
+  canonical && Astro.url.pathname === '/'
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'ProfilePage',
+        '@id': `${canonical.href}#profile`,
+        url: canonical.href,
+        name: pageTitle,
+        mainEntity: {
+          '@type': 'Person',
+          '@id': `${canonical.href}#person`,
+          name: profile.name,
+          url: canonical.href,
+          description: profile.description,
+          sameAs: socialLinks.map((link) => link.url),
+        },
+      }
+    : undefined;
 ---
+
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{pageTitle}</title>
-  <meta name="description" content={description} />
-  {canonical && <link rel="canonical" href={canonical} />}
-  {noindex && <meta name="robots" content="noindex, follow" />}
-  <meta property="og:title" content={pageTitle} />
-  <meta property="og:site_name" content={profile.name} />
-  <meta property="og:locale" content="en_US" />
-  <meta property="og:description" content={description} />
-  <meta property="og:type" content="website" />
-  {canonical && <meta property="og:url" content={canonical} />}
-  <meta property="og:image" content={Astro.site ? new URL('/social-card.png', Astro.site).href : '/social-card.png'} />
-  <meta property="og:image:alt" content="Brian Runnells — from GeoCities to Helios, one full moon at a time." />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content={pageTitle} />
-  <meta name="twitter:description" content={description} />
-  <meta name="twitter:image" content={Astro.site ? new URL('/social-card.png', Astro.site).href : '/social-card.png'} />
-  <meta name="twitter:image:alt" content="Brian Runnells — from GeoCities to Helios, one full moon at a time." />
-  {profileSchema && <script type="application/ld+json" set:html={JSON.stringify(profileSchema).replace(/</g, '\\u003c')} />}
-  <meta name="theme-color" content="#050608" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&family=Archivo:wght@400;600;800;900&family=Fraunces:opsz,wght@30,600&family=Newsreader:opsz,wght@24,500&display=swap"
-  />
-</head>
-<body>
-  <a class="skip-link" href="#main">Skip to content</a>
-  <slot />
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    {canonical && <link rel="canonical" href={canonical} />}
+    {noindex && <meta name="robots" content="noindex, follow" />}
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:site_name" content={profile.name} />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    {canonical && <meta property="og:url" content={canonical} />}
+    <meta
+      property="og:image"
+      content={
+        Astro.site
+          ? new URL('/social-card.png', Astro.site).href
+          : '/social-card.png'
+      }
+    />
+    <meta
+      property="og:image:alt"
+      content="Brian Runnells — from GeoCities to Helios, one full moon at a time."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta
+      name="twitter:image"
+      content={
+        Astro.site
+          ? new URL('/social-card.png', Astro.site).href
+          : '/social-card.png'
+      }
+    />
+    <meta
+      name="twitter:image:alt"
+      content="Brian Runnells — from GeoCities to Helios, one full moon at a time."
+    />
+    {profileSchema && (
+      <script
+        type="application/ld+json"
+        set:html={JSON.stringify(profileSchema).replace(/</g, '\\u003c')}
+      />
+    )}
+    <meta name="theme-color" content="#050608" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&family=Archivo:wght@400;600;800;900&family=Fraunces:opsz,wght@30,600&family=Newsreader:opsz,wght@24,500&display=swap"
+    />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">
+      Skip to content
+    </a>
+    <slot />
+  </body>
 </html>

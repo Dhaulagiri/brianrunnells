@@ -27,14 +27,28 @@ export type SocialId = 'github' | 'x' | 'linkedin';
 export const socialLinks: { id: SocialId; label: string; url: string }[] = [
   { id: 'github', label: 'GitHub', url: 'https://github.com/Dhaulagiri' },
   { id: 'x', label: 'X', url: 'https://x.com/climbingnarc' },
-  { id: 'linkedin', label: 'LinkedIn', url: 'https://www.linkedin.com/in/brianrunnells' },
+  {
+    id: 'linkedin',
+    label: 'LinkedIn',
+    url: 'https://www.linkedin.com/in/brianrunnells',
+  },
 ];
 
 /** Drives the sticky rail, the mobile dock, and the section order. */
 export const eras = [
   { id: 'era-0', name: 'GeoCities', years: '1990s', label: 'GeoCities' },
-  { id: 'era-1', name: 'Frontend', years: '2006–2015', label: 'Frontend years' },
-  { id: 'era-2', name: 'ClimbingNarc', years: '2007–2015', label: 'ClimbingNarc' },
+  {
+    id: 'era-1',
+    name: 'Frontend',
+    years: '2006–2015',
+    label: 'Frontend years',
+  },
+  {
+    id: 'era-2',
+    name: 'ClimbingNarc',
+    years: '2007–2015',
+    label: 'ClimbingNarc',
+  },
   { id: 'era-3', name: 'Heroku', years: '2015–2021', label: 'Heroku' },
   { id: 'era-4', name: 'HashiCorp', years: '2021–now', label: 'HashiCorp' },
   { id: 'era-5', name: 'Next', years: '...', label: 'Next' },
@@ -66,8 +80,16 @@ export const frontend = {
   summary:
     "From user support to application development and frontend engineering. Table layouts giving way to CSS, AJAX, IE6 hacks, the arrival of jQuery. It's where I learned the craft, and how much the people using the software matter.",
   roles: [
-    { company: 'Associated Bag Company', role: 'User support → programmer analyst', years: '2006–2011' },
-    { company: 'Milwaukee Center for Independence', role: 'Applications developer team lead', years: '2011–2013' },
+    {
+      company: 'Associated Bag Company',
+      role: 'User support → programmer analyst',
+      years: '2006–2011',
+    },
+    {
+      company: 'Milwaukee Center for Independence',
+      role: 'Applications developer team lead',
+      years: '2011–2013',
+    },
     { company: 'Markit on Demand', role: 'Web developer', years: '2013–2015' },
   ],
   badges: [
@@ -132,13 +154,29 @@ export const heroku = {
   /** Bar heights, as percentages of the chart. */
   chart: [30, 45, 38, 60, 52, 74, 68, 90],
   activity: [
-    { actor: 'brian', text: 'scaled', code: 'brian-heroku', suffix: 'to 0 · 2021' },
-    { actor: 'brian', text: 'changed', code: 'brian-heroku', suffix: 'process type to people-leader · 2018' },
-    { actor: 'brian', text: 'scaled', code: 'brian-heroku', suffix: 'to 1 · 2015' },
+    {
+      actor: 'brian',
+      text: 'scaled',
+      code: 'brian-heroku',
+      suffix: 'to 0 · 2021',
+    },
+    {
+      actor: 'brian',
+      text: 'changed',
+      code: 'brian-heroku',
+      suffix: 'process type to people-leader · 2018',
+    },
+    {
+      actor: 'brian',
+      text: 'scaled',
+      code: 'brian-heroku',
+      suffix: 'to 1 · 2015',
+    },
   ],
   terminal: {
     command: '$ heroku lessons:show --app=brian-heroku',
-    lesson: 'Where I learned good developer tools come from the people building them.'
+    lesson:
+      'Where I learned good developer tools come from the people building them.',
   },
 };
 
@@ -147,8 +185,16 @@ export const hashicorp = {
   badge: 'Open source',
   body: 'I joined HashiCorp in 2021 to build and lead the Helios team, bringing design and engineering together to build a shared UI foundation. I also  established our accessibility function and scaled its impact across the company. Now, as part of IBM, I lead frontend architecture, design systems, accessibility and developer experience across Terraform.',
   actions: [
-    { label: 'Documentation', url: 'https://helios.hashicorp.design/', primary: true },
-    { label: 'GitHub', url: 'https://github.com/hashicorp/design-system', primary: false },
+    {
+      label: 'Documentation',
+      url: 'https://helios.hashicorp.design/',
+      primary: true,
+    },
+    {
+      label: 'GitHub',
+      url: 'https://github.com/hashicorp/design-system',
+      primary: false,
+    },
   ],
   tabs: ['Components', 'Foundations', 'Patterns'],
   callout: {

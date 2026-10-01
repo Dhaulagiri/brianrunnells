@@ -13,6 +13,12 @@ pnpm install
 pnpm dev
 ```
 
+## Formatting
+
+Run `pnpm format` to format source and documentation, or `pnpm format:check`
+to check without writing. Prettier uses the Astro plugin for `.astro` files and
+respects the repository’s EditorConfig and Git ignore rules.
+
 ## Verify and preview
 
 ```sh

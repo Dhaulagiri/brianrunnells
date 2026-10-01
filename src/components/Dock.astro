@@ -2,15 +2,25 @@
 import Moon from './Moon.astro';
 import { eras } from '../data/site';
 ---
+
 <nav class="dock" aria-label="Timeline" aria-describedby="dock-scroll-help">
   <Moon size="28px" glow={20} />
   <ol class="dock-list">
     {eras.map((era) => (
-      <li><a href={`#${era.id}`} data-era-link={era.id}>{era.name}</a></li>
+      <li>
+        <a href={`#${era.id}`} data-era-link={era.id}>
+          {era.name}
+        </a>
+      </li>
     ))}
   </ol>
-  <span class="dock-scroll-cue" aria-hidden="true">↔</span>
-  <span id="dock-scroll-help" class="sr-only">Scroll horizontally for more eras. Tab through the links to navigate by keyboard.</span>
+  <span class="dock-scroll-cue" aria-hidden="true">
+    ↔
+  </span>
+  <span id="dock-scroll-help" class="sr-only">
+    Scroll horizontally for more eras. Tab through the links to navigate by
+    keyboard.
+  </span>
 </nav>
 
 <style>
@@ -31,7 +41,11 @@ import { eras } from '../data/site';
     font-size: 24px;
     line-height: 1;
   }
-  .dock-scroll-cue[hidden] { display: none; }
+  .dock-scroll-cue[hidden] {
+    display: none;
+  }
   /* Leave room for the outline inside the scrolling viewport. */
-  .dock-list { padding: 4px; }
+  .dock-list {
+    padding: 4px;
+  }
 </style>

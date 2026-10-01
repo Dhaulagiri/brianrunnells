@@ -71,7 +71,11 @@ void main() {
   gl_FragColor = vec4(col, alpha);
 }`;
 
-function compile(gl: WebGLRenderingContext, type: number, source: string): WebGLShader | null {
+function compile(
+  gl: WebGLRenderingContext,
+  type: number,
+  source: string,
+): WebGLShader | null {
   const shader = gl.createShader(type);
   if (!shader) return null;
   gl.shaderSource(shader, source);
@@ -89,7 +93,10 @@ interface Renderer {
   draw(progress: number): void;
 }
 
-function createRenderer(canvas: HTMLCanvasElement, image: HTMLImageElement): Renderer | null {
+function createRenderer(
+  canvas: HTMLCanvasElement,
+  image: HTMLImageElement,
+): Renderer | null {
   const gl = canvas.getContext('webgl', {
     alpha: true,
     premultipliedAlpha: false,
@@ -111,7 +118,11 @@ function createRenderer(canvas: HTMLCanvasElement, image: HTMLImageElement): Ren
 
   const buffer = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+  gl.bufferData(
+    gl.ARRAY_BUFFER,
+    new Float32Array([-1, -1, 3, -1, -1, 3]),
+    gl.STATIC_DRAW,
+  );
   const aPos = gl.getAttribLocation(program, 'aPos');
   gl.enableVertexAttribArray(aPos);
   gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
@@ -121,14 +132,23 @@ function createRenderer(canvas: HTMLCanvasElement, image: HTMLImageElement): Ren
   // The map wraps in longitude and is clamped at the poles.
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.REPEAT);
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR);
+  gl.texParameteri(
+    gl.TEXTURE_2D,
+    gl.TEXTURE_MIN_FILTER,
+    gl.LINEAR_MIPMAP_LINEAR,
+  );
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
   gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 0);
   gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
   gl.generateMipmap(gl.TEXTURE_2D);
 
   gl.enable(gl.BLEND);
-  gl.blendFuncSeparate(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA, gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+  gl.blendFuncSeparate(
+    gl.SRC_ALPHA,
+    gl.ONE_MINUS_SRC_ALPHA,
+    gl.ONE,
+    gl.ONE_MINUS_SRC_ALPHA,
+  );
 
   const uPhase = gl.getUniformLocation(program, 'uPhase');
   const uRot = gl.getUniformLocation(program, 'uRot');
@@ -174,7 +194,9 @@ function createRenderer(canvas: HTMLCanvasElement, image: HTMLImageElement): Ren
  * null when WebGL or the texture is unavailable and the CSS moon should stand.
  */
 export function initMoonGL(): Promise<((progress: number) => void) | null> {
-  const canvases = [...document.querySelectorAll<HTMLCanvasElement>('[data-moon-gl]')];
+  const canvases = [
+    ...document.querySelectorAll<HTMLCanvasElement>('[data-moon-gl]'),
+  ];
   if (canvases.length === 0) return Promise.resolve(null);
 
   return new Promise((resolve) => {

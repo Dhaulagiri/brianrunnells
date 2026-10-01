@@ -21,5 +21,6 @@ jobs:
       # Accessibility tests run in a real browser so axe can evaluate colour
       # contrast, target size and focus occlusion against actual layout.
       - run: pnpm exec playwright install --with-deps chrome
+      - run: pnpm format:check
       - run: pnpm check
       - run: pnpm test

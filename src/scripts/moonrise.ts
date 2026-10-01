@@ -6,12 +6,19 @@
  * in-page anchors. What this adds is the moon filling with scroll progress, the
  * rail tracking the section you are in, and sections fading up as they arrive.
  */
-import { nextFullMoon, formatFullMoon, formatFullMoonShort, phaseName } from '../lib/moon';
+import {
+  nextFullMoon,
+  formatFullMoon,
+  formatFullMoonShort,
+  phaseName,
+} from '../lib/moon';
 import { initMoonGL } from './moon-gl';
 
 const root = document.documentElement;
 const sections = [...document.querySelectorAll<HTMLElement>('[data-era]')];
-const eraLinks = [...document.querySelectorAll<HTMLAnchorElement>('[data-era-link]')];
+const eraLinks = [
+  ...document.querySelectorAll<HTMLAnchorElement>('[data-era-link]'),
+];
 const phaseNameEl = document.querySelector<HTMLElement>('[data-phase-name]');
 const phasePctEl = document.querySelector<HTMLElement>('[data-phase-pct]');
 
@@ -27,7 +34,9 @@ let drawMoons: ((progress: number) => void) | null = null;
  * Stop, Hide) is satisfied: with no script there is no motion to stop.
  */
 function initMarqueePause(): void {
-  const button = document.querySelector<HTMLButtonElement>('[data-marquee-pause]');
+  const button = document.querySelector<HTMLButtonElement>(
+    '[data-marquee-pause]',
+  );
   const marquee = button?.closest<HTMLElement>('.gc-marquee');
   if (!button || !marquee) return;
   button.addEventListener('click', () => {
@@ -89,7 +98,9 @@ function update(): void {
   if (active !== currentEra) {
     currentEra = active;
     for (const link of eraLinks) {
-      const index = sections.findIndex((section) => section.id === link.dataset.eraLink);
+      const index = sections.findIndex(
+        (section) => section.id === link.dataset.eraLink,
+      );
       link.classList.toggle('is-current', index === active);
       link.classList.toggle('is-past', index < active);
       if (index === active) link.setAttribute('aria-current', 'true');
@@ -129,7 +140,9 @@ function schedule(): void {
 
 /** With reduced motion, show everything at once and skip the fade entirely. */
 function revealAll(): void {
-  for (const target of document.querySelectorAll<HTMLElement>('[data-reveal]')) {
+  for (const target of document.querySelectorAll<HTMLElement>(
+    '[data-reveal]',
+  )) {
     revealed.add(target);
     target.classList.add('is-visible');
   }
@@ -150,10 +163,14 @@ void initMoonGL().then((draw) => {
 });
 
 document.addEventListener('scroll', schedule, { passive: true });
-window.addEventListener('resize', () => {
-  updateDockOverflow();
-  schedule();
-}, { passive: true });
+window.addEventListener(
+  'resize',
+  () => {
+    updateDockOverflow();
+    schedule();
+  },
+  { passive: true },
+);
 reducedMotion.addEventListener('change', () => {
   applyMotionPreference();
   schedule();

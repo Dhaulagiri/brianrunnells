@@ -1,26 +1,53 @@
 ---
 import { climbingnarc as era } from '../../data/site';
 ---
-<section id="era-2" class="era era-climbingnarc" data-era="2" aria-labelledby="era-2-heading">
+
+<section
+  id="era-2"
+  class="era era-climbingnarc"
+  data-era="2"
+  aria-labelledby="era-2-heading"
+>
   <div class="era-inner" data-reveal>
-    <h2 class="era-kicker" id="era-2-heading">{era.kicker}</h2>
+    <h2 class="era-kicker" id="era-2-heading">
+      {era.kicker}
+    </h2>
 
     <div class="cn-window">
       <div class="cn-masthead">
         <div class="cn-brand">
-          <img src={era.logo.src} alt={era.logo.alt} width="52" height="52" loading="lazy" decoding="async" />
+          <img
+            src={era.logo.src}
+            alt={era.logo.alt}
+            width="52"
+            height="52"
+            loading="lazy"
+            decoding="async"
+          />
           <div>
-            <p class="cn-wordmark">Climbing <span>Narc</span></p>
+            <p class="cn-wordmark">
+              Climbing <span>Narc</span>
+            </p>
             <p class="cn-tagline">{era.tagline}</p>
           </div>
         </div>
         <ul class="cn-nav" aria-label="ClimbingNarc archive links">
           {era.nav.map((item) => (
-            <li><a href={item === 'News' ? era.url : `${era.url}?s=${encodeURIComponent(item === 'Comps' ? 'competition' : item)}`}>
-              {item === 'About' ? 'About search' : item}
-            </a></li>
+            <li>
+              <a
+                href={
+                  item === 'News'
+                    ? era.url
+                    : `${era.url}?s=${encodeURIComponent(item === 'Comps' ? 'competition' : item)}`
+                }
+              >
+                {item === 'About' ? 'About search' : item}
+              </a>
+            </li>
           ))}
-          <li class="cn-rss"><a href="https://climbingnarc.com/feed/">RSS</a></li>
+          <li class="cn-rss">
+            <a href="https://climbingnarc.com/feed/">RSS</a>
+          </li>
         </ul>
       </div>
 
@@ -38,13 +65,17 @@ import { climbingnarc as era } from '../../data/site';
             {era.interviews.map((interview) => (
               <li>
                 <a href={interview.url}>{interview.title}</a>
-                <span class="cn-meta">{interview.publication} · {interview.year}</span>
+                <span class="cn-meta">
+                  {interview.publication} · {interview.year}
+                </span>
               </li>
             ))}
           </ul>
         </div>
         <p class="cn-cta">
-          <a href={era.url} rel="noopener">{era.cta}</a>
+          <a href={era.url} rel="noopener">
+            {era.cta}
+          </a>
           <span class="cn-stats">{era.stats}</span>
         </p>
       </div>
@@ -52,11 +83,33 @@ import { climbingnarc as era } from '../../data/site';
   </div>
 </section>
 
-<style>.cn-nav { flex-wrap: wrap; } .cn-nav a { color: #fffdf8; display: inline-block; min-width: 24px; min-height: 24px; padding: 4px 0; text-decoration: underline; } .cn-rss a { color: #231c14; }</style>
+<style>
+  .cn-nav {
+    flex-wrap: wrap;
+  }
+  .cn-nav a {
+    color: #fffdf8;
+    display: inline-block;
+    min-width: 24px;
+    min-height: 24px;
+    padding: 4px 0;
+    text-decoration: underline;
+  }
+  .cn-rss a {
+    color: #231c14;
+  }
+</style>
 
 <style>
-  .cn-interviews { margin-block: 24px; }
-  .cn-interviews ul { list-style: none; padding: 0; display: grid; gap: 12px; }
+  .cn-interviews {
+    margin-block: 24px;
+  }
+  .cn-interviews ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 12px;
+  }
   .cn-interviews a {
     display: inline-block;
     min-height: 24px;
@@ -65,5 +118,8 @@ import { climbingnarc as era } from '../../data/site';
     text-decoration: underline;
     text-underline-offset: 3px;
   }
-  .cn-interviews .cn-meta { display: block; margin: 0; }
+  .cn-interviews .cn-meta {
+    display: block;
+    margin: 0;
+  }
 </style>

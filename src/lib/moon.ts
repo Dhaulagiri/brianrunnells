@@ -12,12 +12,18 @@ const DAY_MS = 864e5;
 
 /** The next full moon at or after `now`. */
 export function nextFullMoon(now: number = Date.now()): Date {
-  const cycles = Math.ceil((now - REFERENCE_FULL_MOON) / DAY_MS / SYNODIC_MONTH);
+  const cycles = Math.ceil(
+    (now - REFERENCE_FULL_MOON) / DAY_MS / SYNODIC_MONTH,
+  );
   return new Date(REFERENCE_FULL_MOON + cycles * SYNODIC_MONTH * DAY_MS);
 }
 
 export function formatFullMoon(date: Date): string {
-  return date.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+  return date.toLocaleDateString('en-US', {
+    weekday: 'long',
+    month: 'long',
+    day: 'numeric',
+  });
 }
 
 export function formatFullMoonShort(date: Date): string {

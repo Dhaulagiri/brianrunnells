@@ -21,19 +21,39 @@ interface Props {
   /** Render as a lit sphere in WebGL, falling back to the CSS moon. */
   gl?: boolean;
 }
-const { size, glow, textured = false, phase, alwaysGlow = false, gl = false } = Astro.props;
+const {
+  size,
+  glow,
+  textured = false,
+  phase,
+  alwaysGlow = false,
+  gl = false,
+} = Astro.props;
 const vars = [
   `--moon-size:${size}`,
   `--moon-glow:${glow}px`,
   phase !== undefined ? `--moon-progress:${phase}` : '',
-].filter(Boolean).join(';');
+]
+  .filter(Boolean)
+  .join(';');
 ---
+
 <div
-  class:list={['moon', textured && 'moon--textured', alwaysGlow && 'moon--glow']}
+  class:list={[
+    'moon',
+    textured && 'moon--textured',
+    alwaysGlow && 'moon--glow',
+  ]}
   data-moon
   aria-hidden="true"
   style={vars}
 >
-  {gl && <canvas class="moon-canvas" data-moon-gl data-phase={phase !== undefined ? String(phase) : undefined}></canvas>}
+  {gl && (
+    <canvas
+      class="moon-canvas"
+      data-moon-gl
+      data-phase={phase !== undefined ? String(phase) : undefined}
+    ></canvas>
+  )}
   <span class="moon-lit">{textured && <span class="moon-surface"></span>}</span>
 </div>
