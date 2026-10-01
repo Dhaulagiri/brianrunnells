@@ -1,2 +1,5 @@
 # Generated dependency lockfile
 pnpm-lock.yaml
+
+# Agent worktrees and local scratch
+.claude/
