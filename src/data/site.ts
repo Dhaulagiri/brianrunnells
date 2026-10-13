@@ -13,9 +13,10 @@ export const profile = {
   headlineAccent: 'one full moon at a time.',
   /** Two lines, not a paragraph: who, then how to read the page. */
   introduction:
-    'I build design systems, developer tools, and the teams behind them. Currently frontend engineering and design at HashiCorp, now part of IBM.',
+    'I build frontend platforms for user-facing products, and lead the teams behind them. Currently leading design and engineering at HashiCorp, now part of IBM.',
   /** The signpost. Set small and dim; it explains the timeline, it isn’t the bio. */
-  introductionMeta: 'Below: twenty-five years of the web, in period dress.',
+  introductionMeta:
+    'Helios adopted by 100+ engineers and designers · Heroku test runs cut by 90%.',
   description:
     'Brian Runnells leads frontend engineering and design teams at HashiCorp, now part of IBM. A timeline from a GeoCities homepage to the Helios design system.',
 };
@@ -193,6 +194,10 @@ export const hashicorp = {
      Attribution is deliberate: the accessibility function was built by the
      leader Brian recruited, so the line credits her rather than claiming it. */
   highlights: [
+    {
+      label: 'Made it useful at scale',
+      text: 'Helios was adopted by more than 100 engineers and designers across HashiCorp.',
+    },
     {
       label: 'Built and led',
       text: 'the Helios team from its inception — design and engineering strategy developed together, not handed across a function boundary.',
