@@ -348,11 +348,11 @@ export const heliosCaseStudy = {
       },
       paragraphs: [
         'The system came out of real product work rather than a list of what a design system ought to have. A component earned its place because a team needed it for something they were building, and the shape it took came from how they needed to use it.',
-        'That applies to the technical work too. I led discovery and proofs of concept for our move to TypeScript and GTS, and we sequenced it around what teams were already shipping rather than asking them to stop.',
+        'That applies to the technical work too. I led discovery and proofs of concept for our move to TypeScript and GTS.',
         'It applies to where the system goes next as well. The move from Helios to IBM Carbon is happening incrementally, so product teams get better alignment without being pushed into rewrites.',
       ],
       tradeoff:
-        'Building for what products need now means the system is always a little behind what someone wishes it had. And working around other teams’ delivery keeps the old code alive longer than anyone wants.',
+        'Building for what products need now means the system is always a little behind what someone wishes it had.',
     },
     {
       id: 'consider-everyone',
@@ -382,7 +382,7 @@ export const heliosCaseStudy = {
       paragraphs: [
         'Design systems usually live in one function and negotiate with the other. I recruited and led all three disciplines instead — engineering, design, and accessibility — in one group responsible for the whole system. I defined the roles and the hiring profiles, and hired into them.',
         'That put the arguments that normally happen across a handoff inside one team, which is what kept the Figma library and the code in agreement.',
-        'Outside the team, guilds, office hours, and regular conversations with product teams did more for migration than a mandate would have, because the obstacles were specific to each team. Teams also reported faster delivery, although we didn’t measure velocity directly.',
+        'Outside the team, guilds, office hours, and regular conversations with product teams did more for migration than a mandate would have, because the obstacles were specific to each team.',
       ],
       tradeoff:
         'Hiring is slower when every role has to work across disciplines. And the team is accountable for adoption that happens in other people’s roadmaps.',
