@@ -61,8 +61,9 @@ of Helios.
   not an assertion that each named product used Helios or is one of the eight
   interfaces counted in the adoption dashboard.
 - **Launch:** the [January 31, 2023 announcement](https://www.hashicorp.com/en/blog/introducing-helios-hashicorp-s-new-design-system)
-  carries Brian and Misha Dhar's bylines and reports support for the full cloud
-  product suite, following an internal launch six months earlier.
+  reports support for the full cloud product suite, following an internal launch
+  six months earlier. The page links to it without naming its co-author, who
+  was a byline on the post rather than a contributor to the system.
 
 No confidential screenshots, internal dashboards, individual coaching detail,
 or private colleague names are included. Copy is centralized in

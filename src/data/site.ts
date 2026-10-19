@@ -14,8 +14,6 @@ export const profile = {
   /** Two lines, not a paragraph: who, then how to read the page. */
   introduction:
     'I build design systems, developer tools, and the teams behind them. Currently frontend engineering and design at HashiCorp, now part of IBM.',
-  /** The signpost. Set small and dim; it explains the timeline, it isn’t the bio. */
-  introductionMeta: 'Below: twenty-five years of the web, in period dress.',
   featuredWork: {
     label: 'Read the Helios case study',
     url: '/work/helios/',
@@ -278,7 +276,7 @@ export const heliosCaseStudy = {
   ],
   principles: {
     heading: 'We consider the whole when creating the parts.',
-    body: 'The team wrote six principles and published them. They frame this work better than anything I would write after the fact, so the sections below follow them in order: what each one meant in practice, and what it cost to hold.',
+    body: 'The team wrote six principles and published them. They frame this work better than anything I would write after the fact, so the story follows them in order.',
     link: {
       label: 'The six principles',
       url: 'https://helios.hashicorp.design/about/principles',
@@ -289,6 +287,7 @@ export const heliosCaseStudy = {
       id: 'rooted-in-reality',
       label: '01 / Rooted in reality',
       heading: 'We looked at what was there.',
+      lede: 'We replaced the old system because of what we could observe — then built the dashboard that let us keep observing.',
       principle: {
         number: '01',
         name: 'Rooted in reality',
@@ -305,6 +304,7 @@ export const heliosCaseStudy = {
       id: 'guidance-over-control',
       label: '02 / Guidance over control',
       heading: 'One foundation, across different products.',
+      lede: 'A broad portfolio doing different jobs, and a balance between consistency and flexibility that never fully settles.',
       principle: {
         number: '02',
         name: 'Guidance over control',
@@ -325,6 +325,7 @@ export const heliosCaseStudy = {
       id: 'quality-by-default',
       label: '03 / Quality by default',
       heading: 'Done meant more than working.',
+      lede: 'Documented, accessible, resilient across real use, and matching between Figma and code. Anything less wasn’t finished.',
       principle: {
         number: '03',
         name: 'Quality by default',
@@ -341,6 +342,7 @@ export const heliosCaseStudy = {
       id: 'design-in-context',
       label: '04 / Design in context',
       heading: 'We built what the products needed.',
+      lede: 'The system came out of real product work, and every migration was sequenced around what teams were already shipping.',
       principle: {
         number: '04',
         name: 'Design in context',
@@ -358,6 +360,7 @@ export const heliosCaseStudy = {
       id: 'consider-everyone',
       label: '05 / Consider everyone',
       heading: 'Accessibility had an owner.',
+      lede: 'I recruited the leader who turned accessibility into a company capability, and that expertise went into the components.',
       principle: {
         number: '05',
         name: 'Consider everyone',
@@ -374,6 +377,7 @@ export const heliosCaseStudy = {
       id: 'invite-feedback',
       label: '06 / Invite feedback',
       heading: 'One team, and a lot of conversations.',
+      lede: 'Engineering, design and accessibility in one group — and a standing invitation to everyone building on it.',
       principle: {
         number: '06',
         name: 'Invite feedback',
@@ -390,19 +394,25 @@ export const heliosCaseStudy = {
   ],
   artifacts: {
     heading: 'See what we shipped.',
-    body: 'We open sourced Helios in January 2023. You can read the launch post Misha and I wrote, explore the documentation, or look through the code.',
+    body: 'We open sourced Helios in January 2023. The documentation, the source, and the launch announcement are all public — the best way to judge the work is to look at it.',
     links: [
       {
-        label: 'Launch announcement, co-written with Misha Dhar',
-        url: 'https://www.hashicorp.com/en/blog/introducing-helios-hashicorp-s-new-design-system',
-      },
-      {
         label: 'Helios documentation',
+        short: 'Documentation',
+        note: 'Components, foundations, patterns and guidance',
         url: 'https://helios.hashicorp.design/',
       },
       {
         label: 'Source on GitHub',
+        short: 'GitHub',
+        note: 'Everything the team shipped, open since 2023',
         url: 'https://github.com/hashicorp/design-system',
+      },
+      {
+        label: 'The launch announcement',
+        short: 'Launch post',
+        note: 'January 2023',
+        url: 'https://www.hashicorp.com/en/blog/introducing-helios-hashicorp-s-new-design-system',
       },
     ],
   },

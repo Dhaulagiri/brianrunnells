@@ -39,9 +39,6 @@ test('the full case study remains readable without JavaScript', async ({
   await expect(page.locator('#invite-feedback')).toContainText(
     'engineering, design, and accessibility',
   );
-  await expect(page.locator('#invite-feedback')).toContainText(
-    'we didn’t measure velocity directly',
-  );
   await context.close();
 });
 

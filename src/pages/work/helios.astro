@@ -21,6 +21,15 @@ import { heliosCaseStudy as story, profile } from '../../data/site';
           <h1 id="case-title">{story.heading}</h1>
           <p class="case-introduction">{story.introduction}</p>
           <p class="case-role">{story.role}</p>
+          <ul class="case-jump" aria-label="The published work">
+            {story.artifacts.links.map((link) => (
+              <li>
+                <a href={link.url}>
+                  {link.short} <span aria-hidden="true">↗</span>
+                </a>
+              </li>
+            ))}
+          </ul>
           <a class="case-read" href="#rooted-in-reality">
             Read the story <span aria-hidden="true">↓</span>
           </a>
@@ -69,6 +78,9 @@ import { heliosCaseStudy as story, profile } from '../../data/site';
               aria-labelledby={`${section.id}-heading`}
             >
               <div class="case-aside">
+                <span class="case-numeral" aria-hidden="true">
+                  {section.principle.number}
+                </span>
                 {section.principle && (
                   <div class="case-principle">
                     <p class="case-principle-head">
@@ -81,6 +93,7 @@ import { heliosCaseStudy as story, profile } from '../../data/site';
               </div>
               <div class="case-prose">
                 <h2 id={`${section.id}-heading`}>{section.heading}</h2>
+                {section.lede && <p class="case-lede">{section.lede}</p>}
                 {section.paragraphs.map((paragraph) => (
                   <p>{paragraph}</p>
                 ))}
@@ -111,6 +124,7 @@ import { heliosCaseStudy as story, profile } from '../../data/site';
                     <a href={link.url}>
                       {link.label} <span aria-hidden="true">↗</span>
                     </a>
+                    <span>{link.note}</span>
                   </li>
                 ))}
               </ul>
@@ -184,8 +198,26 @@ import { heliosCaseStudy as story, profile } from '../../data/site';
     font: 12px/1.9 var(--mono);
     margin-top: 28px;
   }
+  .case-jump {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 28px;
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--edge);
+  }
+  .case-jump a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 40px;
+    color: var(--accent);
+    font: 13px/1.6 var(--mono);
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
+  }
   .case-read {
-    margin-top: 28px;
+    margin-top: 20px;
     color: var(--accent);
   }
   .case-emblem {
@@ -245,6 +277,12 @@ import { heliosCaseStudy as story, profile } from '../../data/site';
     display: flex;
     flex-direction: column;
     gap: 12px;
+    padding-left: 24px;
+    border-left: 1px solid var(--token-color-border-primary);
+  }
+  dl > div:first-child {
+    padding-left: 0;
+    border-left: 0;
   }
   dt {
     max-width: 28ch;
@@ -282,24 +320,44 @@ import { heliosCaseStudy as story, profile } from '../../data/site';
   .case-prose p {
     font: var(--token-typography-body-300);
   }
+  .case-prose .case-lede {
+    font: clamp(20px, 2.2vw, 24px)/1.5 var(--serif);
+    max-width: 48ch;
+    text-wrap: pretty;
+    margin-bottom: 30px;
+  }
   .case-prose p + p {
     margin-top: 20px;
   }
+  /* Rows, not a wrapped line of small text: these three links are the only
+     way a reader can check the work for themselves, so they get the weight. */
   .case-links {
+    margin-top: 28px;
+    border-top: 1px solid var(--token-color-border-primary);
+  }
+  .case-links li {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px 28px;
-    margin-top: 24px;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 4px 24px;
+    border-bottom: 1px solid var(--token-color-border-primary);
   }
   .case-links a {
     display: inline-flex;
-    gap: 8px;
+    gap: 10px;
     align-items: center;
-    min-height: 40px;
+    min-height: 56px;
     color: var(--token-color-foreground-action);
     text-decoration: underline;
     text-underline-offset: 0.25em;
-    font-size: 14px;
+    font-size: clamp(17px, 2vw, 19px);
+  }
+  .case-links li > span {
+    color: var(--token-color-foreground-faint);
+    font-size: 13px;
+    line-height: 1.6;
+    padding-bottom: 14px;
   }
   .case-source {
     display: inline-flex;
@@ -316,6 +374,11 @@ import { heliosCaseStudy as story, profile } from '../../data/site';
     flex-direction: column;
     gap: 20px;
     align-content: start;
+  }
+  .case-numeral {
+    font: clamp(44px, 5vw, 64px)/0.9 var(--serif);
+    letter-spacing: -0.03em;
+    color: #848c9a;
   }
   /* The principle sits in the margin like a citation, because that is what it
      is: the decision beside it was settled by the rule, not the other way
@@ -340,16 +403,20 @@ import { heliosCaseStudy as story, profile } from '../../data/site';
      reads as narration; set apart, it reads as the price of the sentence
      above it. */
   .case-prose .case-cost {
-    margin-top: 28px;
-    padding-top: 20px;
-    border-top: 1px solid var(--token-color-border-primary);
+    margin-top: 32px;
+    padding: 22px 24px;
+    border: 0;
+    border-left: 2px solid var(--token-color-foreground-action);
+    background: #f1efe9;
     font-size: 15px;
     line-height: 1.8;
     max-width: 62ch;
   }
   .case-cost b {
+    display: block;
+    margin-bottom: 6px;
     color: var(--token-color-foreground-action);
-    font: 11px/1.7 var(--mono);
+    font: var(--token-typography-code-100);
     letter-spacing: 0.03em;
   }
   .case-principles .case-prose,
@@ -394,6 +461,8 @@ import { heliosCaseStudy as story, profile } from '../../data/site';
       gap: 24px;
     }
     dl > div {
+      padding-left: 0;
+      border-left: 0;
       display: grid;
       grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
       gap: 16px;
@@ -414,10 +483,6 @@ import { heliosCaseStudy as story, profile } from '../../data/site';
     }
     .case-aside {
       gap: 14px;
-    }
-    .case-principles .case-prose,
-    .case-artifacts .case-prose {
-      grid-column: 2;
     }
     .case-principles .case-prose h2 {
       max-width: none;

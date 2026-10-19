@@ -31,7 +31,6 @@ import { profile } from '../data/site';
           Jump to today <span aria-hidden="true">↓</span>
         </a>
       </nav>
-      <p class="intro-meta">{profile.introductionMeta}</p>
     </div>
   </header>
 
@@ -75,13 +74,6 @@ import { profile } from '../data/site';
     line-height: 1.55;
     text-wrap: pretty;
   }
-  .intro-meta {
-    grid-column: 1;
-    color: var(--dim);
-    font-family: var(--mono);
-    font-size: 12px;
-    letter-spacing: 0.02em;
-  }
   .intro-actions {
     grid-column: 2;
     grid-row: 1 / span 2;
@@ -124,7 +116,6 @@ import { profile } from '../data/site';
       grid-template-columns: minmax(0, 1fr);
       justify-items: start;
     }
-    .intro-meta,
     .intro-actions {
       grid-column: 1;
     }
