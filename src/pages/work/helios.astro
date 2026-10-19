@@ -1,8 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
-import Drift from '../../components/Drift.astro';
-import SystemStrip from '../../components/SystemStrip.astro';
 import { heliosCaseStudy as story, profile } from '../../data/site';
 ---
 
@@ -20,7 +18,6 @@ import { heliosCaseStudy as story, profile } from '../../data/site';
     <article aria-labelledby="case-title">
       <div class="case-hero">
         <div class="case-width">
-          <p class="case-kicker">{story.kicker}</p>
           <h1 id="case-title">{story.heading}</h1>
           <p class="case-introduction">{story.introduction}</p>
           <p class="case-role">{story.role}</p>
@@ -38,7 +35,7 @@ import { heliosCaseStudy as story, profile } from '../../data/site';
           class="case-width case-outcomes"
           aria-labelledby="outcomes-title"
         >
-          <h2 class="case-label" id="outcomes-title">
+          <h2 class="case-hidden" id="outcomes-title">
             {story.outcomesLabel}
           </h2>
           <dl>
@@ -57,9 +54,6 @@ import { heliosCaseStudy as story, profile } from '../../data/site';
             class="case-section case-principles"
             aria-labelledby="principles-title"
           >
-            <div class="case-aside">
-              <p class="case-label">{story.principles.label}</p>
-            </div>
             <div class="case-prose">
               <h2 id="principles-title">{story.principles.heading}</h2>
               <p>{story.principles.body}</p>
@@ -76,7 +70,6 @@ import { heliosCaseStudy as story, profile } from '../../data/site';
               aria-labelledby={`${section.id}-heading`}
             >
               <div class="case-aside">
-                <p class="case-label">{section.label}</p>
                 {section.principle && (
                   <div class="case-principle">
                     <p class="case-principle-head">
@@ -92,17 +85,6 @@ import { heliosCaseStudy as story, profile } from '../../data/site';
                 {section.paragraphs.map((paragraph) => (
                   <p>{paragraph}</p>
                 ))}
-                {section.products && (
-                  <ul
-                    class="case-products"
-                    aria-label="HashiCorp product portfolio at the time"
-                  >
-                    {section.products.map((product) => (
-                      <li>{product}</li>
-                    ))}
-                  </ul>
-                )}
-                {section.drift && <Drift />}
                 {section.tradeoff && (
                   <p class="case-cost">
                     <b>The tradeoff.</b> {section.tradeoff}
@@ -117,13 +99,10 @@ import { heliosCaseStudy as story, profile } from '../../data/site';
             </section>
           ))}
 
-          <SystemStrip />
-
           <section
             class="case-section case-artifacts"
             aria-labelledby="artifacts-title"
           >
-            <p class="case-label">{story.artifacts.label}</p>
             <div class="case-prose">
               <h2 id="artifacts-title">{story.artifacts.heading}</h2>
               <p>{story.artifacts.body}</p>
@@ -189,10 +168,6 @@ import { heliosCaseStudy as story, profile } from '../../data/site';
   .case-hero .case-width {
     position: relative;
   }
-  .case-kicker {
-    font: 12px/1.6 var(--mono);
-    color: var(--accent);
-  }
   h1 {
     font: clamp(64px, 10vw, 124px)/1.06 var(--serif);
     letter-spacing: -0.035em;
@@ -247,10 +222,15 @@ import { heliosCaseStudy as story, profile } from '../../data/site';
     background: var(--token-color-surface-faint);
     color: var(--token-color-foreground-primary);
   }
-  .case-label {
-    color: var(--token-color-foreground-faint);
-    font: 11px/1.8 var(--mono);
-    letter-spacing: 0.03em;
+  .case-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
   }
   .case-outcomes {
     padding-block: 40px;
@@ -328,15 +308,6 @@ import { heliosCaseStudy as story, profile } from '../../data/site';
     text-underline-offset: 0.25em;
     font-size: 14px;
   }
-  .case-products {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 16px 24px;
-    margin-block: 28px 16px;
-    padding-block: 24px;
-    border-block: 1px solid var(--token-color-border-primary);
-    font: 13px/1.6 var(--mono);
-  }
   .case-source {
     display: inline-flex;
     align-items: center;
@@ -388,6 +359,10 @@ import { heliosCaseStudy as story, profile } from '../../data/site';
     font: 11px/1.7 var(--mono);
     letter-spacing: 0.03em;
   }
+  .case-principles .case-prose,
+  .case-artifacts .case-prose {
+    grid-column: 2;
+  }
   .case-principles .case-prose h2 {
     max-width: 18ch;
   }
@@ -412,9 +387,6 @@ import { heliosCaseStudy as story, profile } from '../../data/site';
     }
   }
   @media (max-width: 620px) {
-    .case-products {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
     .case-header {
       padding-block: 16px;
     }
@@ -449,6 +421,10 @@ import { heliosCaseStudy as story, profile } from '../../data/site';
     }
     .case-aside {
       gap: 14px;
+    }
+    .case-principles .case-prose,
+    .case-artifacts .case-prose {
+      grid-column: 2;
     }
     .case-principles .case-prose h2 {
       max-width: none;

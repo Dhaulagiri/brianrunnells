@@ -253,102 +253,6 @@ export const hashicorp = {
   ],
 };
 
-/* Copy for the before/after illustration in the Helios case study. The hex
-   values are invented for the reconstruction — they are not HashiCorp's, and
-   the component comment explains why they are all still AA against white. */
-export const heliosDrift = {
-  before: {
-    label: 'Before · the system we replaced',
-    buttonLabel: 'One primary button, as four teams shipped it',
-    buttons: [
-      { variant: 1, text: 'Create cluster' },
-      { variant: 2, text: 'Create cluster' },
-      { variant: 3, text: 'Create Cluster' },
-      { variant: 4, text: 'Create cluster' },
-    ],
-    swatchLabel: 'One brand blue, stored five times',
-    swatches: ['#0f4fb8', '#1a56c4', '#2563cf', '#1b60d6', '#1060ff'],
-  },
-  after: {
-    label: 'After · Helios',
-    buttonLabel: 'One primary button, shipped once',
-    buttons: [
-      'Create cluster',
-      'Create cluster',
-      'Create cluster',
-      'Create cluster',
-    ],
-    swatchLabel: 'One brand blue, stored once',
-    swatch: '#1060ff',
-    token: '--token-color-palette-blue-300',
-  },
-  caption:
-    'An illustration, not a screenshot: no internal interface is reproduced here. It shows the kind of drift that accumulates when a Figma library and several codebases each hold their own copy of the same decision — which is the argument for replacing a foundation rather than extending it.',
-};
-
-/* The closing section of the case study lists the tokens the page itself is
-   set with. The names follow Helios conventions; the values are this site's,
-   because this is a personal site wearing the system's grammar rather than a
-   copy of its palette. */
-export const heliosSystemStrip = {
-  label: 'The system, applied',
-  heading: 'This page is set with the grammar it describes.',
-  body: 'Every rule above is declared once, named the way the system names things, and used by reference. The specimens below are painted with those same declarations rather than with copies of their values, so this list cannot drift from the page it documents. That is the entire argument for a design system, rendered at the scale of one page.',
-  groups: [
-    {
-      kind: 'color',
-      label: 'Color',
-      tokens: [
-        {
-          name: '--token-color-surface-faint',
-          use: 'the paper this section is printed on',
-        },
-        {
-          name: '--token-color-foreground-primary',
-          use: 'body copy, at 16px and 1.85 line height',
-        },
-        {
-          name: '--token-color-foreground-faint',
-          use: 'margin notes, captions, the costs of decisions',
-        },
-        {
-          name: '--token-color-foreground-action',
-          use: 'links, principle citations, every rule in the margin',
-        },
-        {
-          name: '--token-color-border-primary',
-          use: 'the line between one decision and the next',
-        },
-      ],
-    },
-    {
-      kind: 'type',
-      label: 'Typography',
-      tokens: [
-        { name: '--token-typography-display-500', use: 'decision headings' },
-        { name: '--token-typography-body-300', use: 'the prose column' },
-        { name: '--token-typography-code-100', use: 'labels and token names' },
-      ],
-    },
-    {
-      kind: 'space',
-      label: 'Spacing',
-      tokens: [
-        { name: '--token-space-16', use: 'inside a row' },
-        {
-          name: '--token-space-24',
-          use: 'between a heading and its paragraph',
-        },
-        { name: '--token-space-52', use: 'between one decision and the next' },
-      ],
-    },
-  ],
-  link: {
-    label: 'Foundations in the Helios documentation',
-    url: 'https://helios.hashicorp.design/foundations/tokens',
-  },
-};
-
 /* The case study is organised by the six principles the Helios team wrote and
    published, in their order, rather than as a chronology or as a list of
    decisions in Brian's words. Each section carries the tradeoff that principle
@@ -361,7 +265,7 @@ export const heliosCaseStudy = {
   kicker: 'Case study · HashiCorp',
   heading: 'Building Helios.',
   introduction:
-    'I joined HashiCorp in 2021 with a fairly open brief: improve how we built product interfaces. I built the team behind Helios and led its development and adoption across the product suite.',
+    'I joined HashiCorp in 2021 to build the design system and the accessibility practice. Everyone wanted a great one. Nobody had decided how to build it, and the approach I argued for drew real pushback. I recruited and led all three disciplines behind Helios — engineering, design, and accessibility — and stuck with it.',
   role: 'Joined HashiCorp in 2021 · Helios launched publicly in January 2023',
   outcomesLabel: 'Helios in use',
   outcomes: [
@@ -375,7 +279,6 @@ export const heliosCaseStudy = {
   outcomesNote:
     'Adoption snapshot from the dashboard we built while I led Helios.',
   principles: {
-    label: 'How we decided',
     heading: 'We consider the whole when creating the parts.',
     body: 'The team wrote six principles and published them. They frame this work better than anything I would write after the fact, so the sections below follow them in order: what each one meant in practice, and what it cost to hold.',
     link: {
@@ -395,9 +298,9 @@ export const heliosCaseStudy = {
       },
       paragraphs: [
         'The existing system’s design library and code didn’t agree. Its implementation was hard to scale, and adoption was uneven. That is what the case for replacing it rested on.',
-        'We kept the same habit afterwards. The dashboard we built tracked Helios usage alongside the legacy components it was replacing, so we could see where migration was progressing instead of guessing.',
+        'Not everyone agreed. Replacing a system that already exists is an expensive argument to win, and I made it more than once. What I kept coming back to was what we could actually observe.',
+        'That habit outlasted the argument. The dashboard we built tracked Helios usage alongside the legacy components it was replacing, so we could see where migration was progressing instead of guessing. It reached more than 100 engineers and designers, and net adoption of more than 20,000 component instances across roughly eight products.',
       ],
-      drift: true,
       tradeoff:
         'That tooling took engineering time and shipped no components. And a replacement starts at zero adoption, where extending would have started wherever the old system already was.',
     },
@@ -413,16 +316,6 @@ export const heliosCaseStudy = {
       paragraphs: [
         'HashiCorp had a broad mix of infrastructure and security products, and a growing cloud platform in HCP. The products did different things, but their interfaces had plenty in common.',
         'A foundation serving that range has to be opinionated enough to create consistency and open enough that a team with an unusual problem isn’t stuck. That balance is ongoing work, not something you settle once.',
-      ],
-      products: [
-        'Terraform',
-        'Vault',
-        'Consul',
-        'Nomad',
-        'Boundary',
-        'Waypoint',
-        'Packer',
-        'Vagrant',
       ],
       source: {
         label: 'The product portfolio in 2022',
@@ -450,19 +343,19 @@ export const heliosCaseStudy = {
     {
       id: 'design-in-context',
       label: '04 / Design in context',
-      heading: 'Getting teams to switch.',
+      heading: 'We built what the products needed.',
       principle: {
         number: '04',
         name: 'Design in context',
         text: 'We meet consumers where they are and consider both the current and future context in which they use the system.',
       },
       paragraphs: [
-        'A replacement has to earn its place in products that already work. Guilds, office hours, and conversations with product teams did more for migration than a mandate would have, because the obstacles were specific to each team.',
-        'We reached more than 100 engineers and designers, and the dashboard tracked net adoption of more than 20,000 component instances across roughly eight products. I stayed close to the technical work too, leading discovery and proofs of concept for our move to TypeScript and GTS while the team kept shipping.',
-        'Teams also reported faster delivery, although we didn’t measure velocity directly.',
+        'The system came out of real product work rather than a list of what a design system ought to have. A component earned its place because a team needed it for something they were building, and the shape it took came from how they needed to use it.',
+        'That applies to the technical work too. I led discovery and proofs of concept for our move to TypeScript and GTS, and we sequenced it around what teams were already shipping rather than asking them to stop.',
+        'It applies to where the system goes next as well. The move from Helios to IBM Carbon is happening incrementally, so product teams get better alignment without being pushed into rewrites.',
       ],
       tradeoff:
-        'Meeting teams where they are means migration runs on their timelines. The old system stays alive longer than anyone wants.',
+        'Building for what products need now means the system is always a little behind what someone wishes it had. And working around other teams’ delivery keeps the old code alive longer than anyone wants.',
     },
     {
       id: 'consider-everyone',
@@ -483,22 +376,22 @@ export const heliosCaseStudy = {
     {
       id: 'invite-feedback',
       label: '06 / Invite feedback',
-      heading: 'One team, so the conversations happened inside it.',
+      heading: 'One team, and a lot of conversations.',
       principle: {
         number: '06',
         name: 'Invite feedback',
         text: 'We take time to have the right conversations with the appropriate stakeholders, to validate and create trust in the outcome.',
       },
       paragraphs: [
-        'Design systems usually live in one function and negotiate with the other. I defined the roles, hired the team, and brought engineering, design, and accessibility into one group responsible for the whole system.',
-        'The conversations that normally happen across a handoff happened inside one team. That is what kept the Figma library and the code in agreement, and it is why these six principles read as one point of view.',
+        'Design systems usually live in one function and negotiate with the other. I recruited and led all three disciplines instead — engineering, design, and accessibility — in one group responsible for the whole system. I defined the roles and the hiring profiles, and hired into them.',
+        'That put the arguments that normally happen across a handoff inside one team, which is what kept the Figma library and the code in agreement.',
+        'Outside the team, guilds, office hours, and regular conversations with product teams did more for migration than a mandate would have, because the obstacles were specific to each team. Teams also reported faster delivery, although we didn’t measure velocity directly.',
       ],
       tradeoff:
         'Hiring is slower when every role has to work across disciplines. And the team is accountable for adoption that happens in other people’s roadmaps.',
     },
   ],
   artifacts: {
-    label: 'Explore the work',
     heading: 'See what we shipped.',
     body: 'We open sourced Helios in January 2023. You can read the launch post Misha and I wrote, explore the documentation, or look through the code.',
     links: [

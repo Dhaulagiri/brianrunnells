@@ -1,5 +1,9 @@
 # Helios case study: claim scope
 
+The earlier before/after illustration and the token-specimen section have been
+removed: the first was a reconstruction rather than evidence, and the second
+added nothing the prose did not already say.
+
 The page is organised by the six Helios principles, in their published order,
 with one section per principle. The principle text is quoted verbatim from
 [the published principles](https://helios.hashicorp.design/about/principles),
@@ -22,8 +26,11 @@ implementation. It makes no claim that he individually designed or coded all
 of Helios.
 
 - **Mandate and replacement decision:** Brian's firsthand account, October 18,
-  2026: hired with an open-ended mandate, built the team and system, and
-  successfully advocated replacing the existing system.
+  2026: hired with a brief specific to the design system and accessibility,
+  with the approach left undecided. He recruited and led engineering, design,
+  and accessibility, and successfully advocated replacing the existing system
+  against significant internal pushback. The pushback is his account; no
+  individual or team is identified.
   Brian further clarified that design/code inconsistency, code scalability,
   and uneven adoption motivated the replacement.
 - **Figma/code parity:** Brian reports full parity, enabling Design and

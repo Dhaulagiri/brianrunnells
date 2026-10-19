@@ -29,17 +29,7 @@ test('the full case study remains readable without JavaScript', async ({
   const context = await browser.newContext({ javaScriptEnabled: false });
   const page = await context.newPage();
   await page.goto('/work/helios/');
-  await expect(page.getByRole('heading', { level: 2 })).toHaveCount(10);
-  await expect(page.locator('.case-products li')).toHaveText([
-    'Terraform',
-    'Vault',
-    'Consul',
-    'Nomad',
-    'Boundary',
-    'Waypoint',
-    'Packer',
-    'Vagrant',
-  ]);
+  await expect(page.getByRole('heading', { level: 2 })).toHaveCount(9);
   await expect(page.locator('#invite-feedback .case-principle')).toContainText(
     'Principle 06 · Invite feedback',
   );
@@ -49,7 +39,7 @@ test('the full case study remains readable without JavaScript', async ({
   await expect(page.locator('#invite-feedback')).toContainText(
     'engineering, design, and accessibility',
   );
-  await expect(page.locator('#design-in-context')).toContainText(
+  await expect(page.locator('#invite-feedback')).toContainText(
     'we didn’t measure velocity directly',
   );
   await expect(page.locator('.case-note')).toContainText('while I led Helios');
