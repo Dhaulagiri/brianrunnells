@@ -385,7 +385,7 @@ export const heliosCaseStudy = {
         'Outside the team, guilds, office hours, and regular conversations with product teams did more for migration than a mandate would have, because the obstacles were specific to each team.',
       ],
       tradeoff:
-        'Asking for feedback means spending the time on it. Guilds and office hours are a standing commitment, and a team running them is a team not building. It also means turning down some of what you asked for, which costs more trust than never having asked.',
+        'Communication is hard. Inviting it meant a lot of difficult conversations, and plenty of them ended without everyone happy — sometimes because we couldn’t do what was being asked for, sometimes because we decided not to.',
     },
   ],
   artifacts: {
