@@ -222,6 +222,13 @@ export const hashicorp = {
       primary: false,
     },
   ],
+  caseStudy: {
+    url: '/work/helios/',
+    label: 'The story behind the system',
+    title: 'Building Helios',
+    summary:
+      'An open-ended mandate, a team built from scratch, and a shared foundation for design and engineering.',
+  },
   tabs: ['Components', 'Foundations', 'Patterns'],
   callout: {
     title: 'Released publicly',
@@ -239,6 +246,115 @@ export const hashicorp = {
     { name: '--token-color-foreground-strong', swatch: '#0c0c0e' },
     { name: '--token-color-moon', swatch: '#f0ece2', note: '(unofficial)' },
   ],
+};
+
+export const heliosCaseStudy = {
+  title: 'Building Helios',
+  description:
+    'How I built the team behind HashiCorp’s Helios Design System and led the replacement of an existing system with a shared foundation for design and engineering.',
+  back: { label: 'Back to the timeline', url: '/#era-4' },
+  kicker: 'Case study · HashiCorp',
+  heading: 'Building Helios.',
+  introduction:
+    'I joined HashiCorp with an open-ended mandate to build a better frontend foundation. I built the team and led the creation of Helios, replacing an existing system and bringing design and engineering onto the same footing.',
+  role: 'Team building · Technical direction · Design and engineering partnership · Adoption',
+  outcomesLabel: 'What we built together',
+  outcomes: [
+    { value: '100%', label: 'parity between Figma and code' },
+    { value: '100+', label: 'engineers and designers using Helios' },
+    {
+      value: '20,000+',
+      label: 'component instances tracked across roughly eight products',
+    },
+  ],
+  outcomesNote:
+    'A snapshot from my time leading Helios. Adoption figures came from the dashboard I built; they are not a current usage count.',
+  sections: [
+    {
+      id: 'the-portfolio',
+      label: '01 / The portfolio',
+      heading: 'A shared layer for a broad product suite.',
+      paragraphs: [
+        'HashiCorp’s portfolio at the time spanned Terraform, Vault, Consul, Nomad, Boundary, Waypoint, Packer, and Vagrant, alongside the growing HashiCorp Cloud Platform (HCP). These products served different infrastructure and security workflows, with a mix of cloud services and self-managed tools.',
+        'For the teams building product interfaces, a shared UI foundation was a way to make accessibility, interaction patterns, and visual consistency carry across those different experiences. Each team could focus more of its attention on the problems specific to its product.',
+      ],
+      products: [
+        'Terraform',
+        'Vault',
+        'Consul',
+        'Nomad',
+        'Boundary',
+        'Waypoint',
+        'Packer',
+        'Vagrant',
+      ],
+      source: {
+        label: 'The product portfolio in 2022',
+        url: 'https://www.hashicorp.com/en/blog/hashicorp-2022-year-in-review',
+      },
+    },
+    {
+      id: 'the-decision',
+      label: '02 / The decision',
+      heading: 'Replace the foundation.',
+      paragraphs: [
+        'There was already a system in place, but its design library and code implementations were inconsistent. The code was hard to scale, and adoption varied across teams. Extending it would have meant continuing to build on those limitations.',
+        'My mandate left room to decide what should come next. I argued for replacing the existing system and pushed for a shared foundation that design and engineering could develop together.',
+        'That became Helios: a shared foundation for building HashiCorp’s product interfaces. Getting there meant building the team as well as the system.',
+      ],
+    },
+    {
+      id: 'the-team',
+      label: '03 / The team',
+      heading: 'Design and engineering, together.',
+      paragraphs: [
+        'I built a multidisciplinary team across engineering, design, accessibility, and design management. I defined the roles and hiring profiles, then brought the people together around a shared responsibility for the system.',
+        'Design and engineering developed the direction together. The Figma library and code implementations stayed in full parity, so product designers and engineers could work with the same components and patterns.',
+        'The designers, engineers, and accessibility specialists on the team did the detailed work that made Helios good. My responsibility was to establish the direction, build and lead the team, and help the work take hold across products.',
+      ],
+    },
+    {
+      id: 'the-adoption',
+      label: '04 / The adoption',
+      heading: 'Make it useful across products.',
+      paragraphs: [
+        'A replacement system has to earn its place in the products that use it. I built an adoption dashboard to track Helios usage alongside the legacy components it was replacing. That gave us a concrete view of where migration was progressing and where teams still needed help.',
+        'We reached more than 100 engineers and designers. The dashboard tracked net adoption of more than 20,000 component instances across roughly eight products. Guilds, office hours, and product-team conversations helped us work through the practical problems of adoption.',
+        'I also stayed involved in the technical direction: discovery and proofs of concept for repository modernization, introducing TypeScript, and moving templates to GTS while the team continued shipping.',
+      ],
+    },
+    {
+      id: 'what-changed',
+      label: '05 / What changed',
+      heading: 'A foundation teams could share.',
+      paragraphs: [
+        'The biggest change was that Design and Engineering could work in sync. Full parity between Figma and code meant the components designers used corresponded to the components engineers implemented.',
+        'We substantially improved accessibility and consistency across product interfaces. I recruited and backed the leader who built HashiCorp’s accessibility function; that expertise became part of how we approached the shared foundation.',
+        'Teams reported faster delivery. I regard that as useful qualitative feedback, rather than a measured velocity improvement. The adoption figures, shared components, and public implementation provide more concrete evidence of the system’s reach.',
+      ],
+    },
+  ],
+  artifacts: {
+    label: 'Explore the work',
+    heading: 'The system is public.',
+    body: 'The documentation and source show what the team built: components, foundations, patterns, and guidance for consistent, accessible product interfaces.',
+    links: [
+      {
+        label: 'Launch announcement, co-written with Misha Dhar',
+        url: 'https://www.hashicorp.com/en/blog/introducing-helios-hashicorp-s-new-design-system',
+      },
+      {
+        label: 'Helios documentation',
+        url: 'https://helios.hashicorp.design/',
+      },
+      {
+        label: 'Source on GitHub',
+        url: 'https://github.com/hashicorp/design-system',
+      },
+    ],
+  },
+  credit:
+    'Helios was built by the HashiCorp Design Systems team, with contributions from product teams across the company. This is my account of building and leading that work; the design and implementation were a team effort.',
 };
 
 export const next = {

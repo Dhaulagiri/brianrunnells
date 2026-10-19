@@ -14,7 +14,7 @@ import AxeBuilder from '@axe-core/playwright';
  * strip starts scrolling below 620px.
  */
 
-const PAGES = ['/', '/404.html'];
+const PAGES = ['/', '/work/helios/', '/404.html'];
 
 const TAGS = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'];
 

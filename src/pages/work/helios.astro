@@ -1,0 +1,362 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import { heliosCaseStudy as story, profile } from '../../data/site';
+---
+
+<Base title={story.title} description={story.description}>
+  <header class="case-header">
+    <a class="case-name" href="/">
+      {profile.name}
+    </a>
+    <a class="case-back" href={story.back.url}>
+      <span aria-hidden="true">←</span> {story.back.label}
+    </a>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <article aria-labelledby="case-title">
+      <div class="case-hero">
+        <div class="case-width">
+          <p class="case-kicker">{story.kicker}</p>
+          <h1 id="case-title">{story.heading}</h1>
+          <p class="case-introduction">{story.introduction}</p>
+          <p class="case-role">{story.role}</p>
+          <a class="case-read" href="#the-decision">
+            Read the story <span aria-hidden="true">↓</span>
+          </a>
+          <span class="case-emblem" aria-hidden="true">
+            <Icon name="helios" />
+          </span>
+        </div>
+      </div>
+
+      <div class="case-paper">
+        <section
+          class="case-width case-outcomes"
+          aria-labelledby="outcomes-title"
+        >
+          <h2 class="case-label" id="outcomes-title">
+            {story.outcomesLabel}
+          </h2>
+          <dl>
+            {story.outcomes.map((outcome) => (
+              <div>
+                <dt>{outcome.label}</dt>
+                <dd>{outcome.value}</dd>
+              </div>
+            ))}
+          </dl>
+          <p class="case-note">{story.outcomesNote}</p>
+        </section>
+
+        <div class="case-width case-story">
+          {story.sections.map((section) => (
+            <section
+              id={section.id}
+              class="case-section"
+              aria-labelledby={`${section.id}-heading`}
+            >
+              <p class="case-label">{section.label}</p>
+              <div class="case-prose">
+                <h2 id={`${section.id}-heading`}>{section.heading}</h2>
+                {section.paragraphs.map((paragraph) => (
+                  <p>{paragraph}</p>
+                ))}
+                {section.products && (
+                  <ul
+                    class="case-products"
+                    aria-label="HashiCorp product portfolio at the time"
+                  >
+                    {section.products.map((product) => (
+                      <li>{product}</li>
+                    ))}
+                  </ul>
+                )}
+                {section.source && (
+                  <a class="case-source" href={section.source.url}>
+                    {section.source.label} <span aria-hidden="true">↗</span>
+                  </a>
+                )}
+              </div>
+            </section>
+          ))}
+
+          <section
+            class="case-section case-artifacts"
+            aria-labelledby="artifacts-title"
+          >
+            <p class="case-label">{story.artifacts.label}</p>
+            <div class="case-prose">
+              <h2 id="artifacts-title">{story.artifacts.heading}</h2>
+              <p>{story.artifacts.body}</p>
+              <ul class="case-links">
+                {story.artifacts.links.map((link) => (
+                  <li>
+                    <a href={link.url}>
+                      {link.label} <span aria-hidden="true">↗</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+              <p class="case-credit">{story.credit}</p>
+            </div>
+          </section>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="case-footer case-width">
+    <a href={story.back.url}>
+      <span aria-hidden="true">←</span> {story.back.label}
+    </a>
+    <span>{profile.name}</span>
+  </footer>
+</Base>
+
+<style>
+  .case-width {
+    width: min(1120px, calc(100% - 2 * var(--gutter)));
+    margin-inline: auto;
+  }
+  .case-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+    padding: 24px var(--gutter);
+    border-bottom: 1px solid var(--edge);
+  }
+  .case-name {
+    font: 28px var(--serif);
+    padding-block: 4px;
+  }
+  .case-back,
+  .case-read,
+  .case-footer {
+    font: 12px/1.6 var(--mono);
+  }
+  .case-back,
+  .case-read,
+  .case-footer a {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 36px;
+  }
+  .case-hero {
+    padding: clamp(56px, 8vw, 112px) 0 64px;
+  }
+  .case-hero .case-width {
+    position: relative;
+  }
+  .case-kicker {
+    font: 12px/1.6 var(--mono);
+    color: var(--accent);
+  }
+  h1 {
+    font: clamp(64px, 10vw, 124px)/1.06 var(--serif);
+    letter-spacing: -0.035em;
+    margin: 20px 0 28px;
+  }
+  .case-introduction {
+    max-width: 37ch;
+    font-size: clamp(20px, 2.5vw, 28px);
+    line-height: 1.55;
+    text-wrap: pretty;
+  }
+  .case-role {
+    max-width: 64ch;
+    color: var(--muted);
+    font: 12px/1.9 var(--mono);
+    margin-top: 28px;
+  }
+  .case-read {
+    margin-top: 28px;
+    color: var(--accent);
+  }
+  .case-emblem {
+    position: absolute;
+    top: 36px;
+    right: 0;
+    color: var(--accent);
+  }
+  .case-emblem :global(svg) {
+    width: clamp(100px, 14vw, 180px);
+    height: auto;
+  }
+  .case-paper {
+    --focus-ring: #003b9e;
+    color-scheme: light;
+    background: #faf9f6;
+    color: #181a20;
+  }
+  .case-label {
+    color: #50545c;
+    font: 11px/1.8 var(--mono);
+    letter-spacing: 0.03em;
+  }
+  .case-outcomes {
+    padding-block: 40px;
+    border-bottom: 1px solid #c8cbd1;
+  }
+  dl {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.35fr;
+    gap: 32px;
+    margin: 24px 0;
+  }
+  dl > div {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  dt {
+    max-width: 28ch;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  dd {
+    order: -1;
+    margin: 0;
+    font: clamp(40px, 5vw, 64px)/1 var(--serif);
+    letter-spacing: -0.02em;
+  }
+  .case-note {
+    max-width: 78ch;
+    color: #50545c;
+    font-size: 12px;
+    line-height: 1.7;
+  }
+  .case-story {
+    padding-block: 12px 32px;
+  }
+  .case-section {
+    display: grid;
+    grid-template-columns: minmax(160px, 1fr) minmax(0, 3fr);
+    gap: 24px 48px;
+    padding-block: 52px;
+    scroll-margin-top: 24px;
+  }
+  .case-section + .case-section {
+    border-top: 1px solid #c8cbd1;
+  }
+  .case-prose {
+    max-width: 66ch;
+  }
+  .case-prose h2 {
+    font: clamp(32px, 4vw, 42px)/1.2 var(--serif);
+    letter-spacing: -0.015em;
+    margin-bottom: 24px;
+    text-wrap: pretty;
+  }
+  .case-prose p {
+    font-size: 16px;
+    line-height: 1.85;
+  }
+  .case-prose p + p {
+    margin-top: 20px;
+  }
+  .case-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 28px;
+    margin-top: 24px;
+  }
+  .case-links a {
+    display: inline-flex;
+    gap: 8px;
+    align-items: center;
+    min-height: 40px;
+    color: #003b9e;
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+    font-size: 14px;
+  }
+  .case-products {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px 24px;
+    margin-block: 28px 16px;
+    padding-block: 24px;
+    border-block: 1px solid #c8cbd1;
+    font: 13px/1.6 var(--mono);
+  }
+  .case-source {
+    display: inline-flex;
+    align-items: center;
+    min-height: 36px;
+    gap: 8px;
+    color: #003b9e;
+    font-size: 12px;
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+  }
+  .case-prose .case-credit {
+    margin-top: 36px;
+    color: #50545c;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .case-footer {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px;
+    padding-block: 32px;
+    color: var(--muted);
+  }
+  @media (max-width: 920px) {
+    .case-emblem {
+      display: none;
+    }
+  }
+  @media (max-width: 620px) {
+    .case-products {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .case-header {
+      padding-block: 16px;
+    }
+    .case-back {
+      font-size: 11px;
+    }
+    .case-hero {
+      padding-bottom: 40px;
+    }
+    dl {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    dl > div {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+      gap: 16px;
+      align-items: center;
+    }
+    dd {
+      grid-column: 1;
+      grid-row: 1;
+    }
+    dt {
+      grid-column: 2;
+      grid-row: 1;
+    }
+    .case-section {
+      grid-template-columns: 1fr;
+      gap: 16px;
+      padding-block: 36px;
+    }
+    .case-footer {
+      font-size: 11px;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .case-read {
+      scroll-behavior: auto;
+    }
+  }
+</style>

@@ -2,7 +2,7 @@ import { readFile, readdir, stat } from 'node:fs/promises';
 import path from 'node:path';
 
 const output = path.resolve(process.argv[2] || 'dist');
-const expected = ['index.html', '404.html'];
+const expected = ['index.html', 'work/helios/index.html', '404.html'];
 const profiles = [
   'https://www.linkedin.com/in/brianrunnells',
   'https://github.com/Dhaulagiri',

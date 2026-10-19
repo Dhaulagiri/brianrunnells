@@ -41,6 +41,14 @@ import { hashicorp as era } from '../../data/site';
           ))}
         </ul>
 
+        <a class="hc-case-study" href={era.caseStudy.url}>
+          <span class="hc-case-study-label">{era.caseStudy.label}</span>
+          <strong>
+            {era.caseStudy.title} <span aria-hidden="true">→</span>
+          </strong>
+          <span>{era.caseStudy.summary}</span>
+        </a>
+
         <ul class="hc-actions">
           {era.actions.map((action) => (
             <li>
@@ -125,6 +133,30 @@ import { hashicorp as era } from '../../data/site';
 </section>
 
 <style>
+  .hc-case-study {
+    display: grid;
+    gap: 8px;
+    padding: 20px 0;
+    border-block: 1px solid #c8cbd1;
+    line-height: 1.5;
+    font-size: 14px;
+  }
+  .hc-case-study-label {
+    color: #4c505c;
+    font-family: var(--mono);
+    font-size: 11px;
+  }
+  .hc-case-study strong {
+    color: #003b9e;
+    font-size: 20px;
+  }
+  .hc-case-study:hover {
+    text-decoration: none;
+  }
+  .hc-case-study:hover strong {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
   .hc-tabs {
     flex-wrap: wrap;
     gap: 8px 20px;
