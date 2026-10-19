@@ -65,6 +65,12 @@ test('the full case study renders every piece of its content without JavaScript'
     await expect(region.locator('.case-cost')).toContainText(section.tradeoff);
   }
 
+  /* The repository figures are fetched at build time and fall back to baked
+     values offline, so assert their shape rather than particular numbers. */
+  await expect(page.locator('.case-activity')).toHaveText(
+    /^[\d,]+ releases and [\d,]+ merged pull requests since 2021.* The team is still shipping\.$/,
+  );
+
   const artifacts = page.locator('.case-artifacts');
   await expect(artifacts).toContainText(story.artifacts.heading);
   await expect(artifacts).toContainText(story.artifacts.body);

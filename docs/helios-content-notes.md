@@ -65,6 +65,18 @@ of Helios.
   six months earlier. The page links to it without naming its co-author, who
   was a byline on the post rather than a contributor to the system.
 
+- **Contribution model:** Helios deliberately did not run an open contribution
+  model. The page does not claim that product teams contributed to the system,
+  and the credit line names the Design Systems team only. Brian's account,
+  October 19, 2026.
+- **Repository figures:** the release and merged-pull-request counts in the
+  closing section are read from the GitHub API at build time, with baked
+  fallbacks in `src/lib/repo-stats.ts` accurate on October 19, 2026. They
+  describe the repository across its whole life — five years of the team's
+  work, including after Brian moved on from leading Helios — and the page
+  attributes them to the repository rather than to him. They are not a count of
+  anyone's individual output.
+
 No confidential screenshots, internal dashboards, individual coaching detail,
 or private colleague names are included. Copy is centralized in
 `src/data/site.ts`.

@@ -417,7 +417,7 @@ export const heliosCaseStudy = {
     ],
   },
   credit:
-    'Built by the HashiCorp Design Systems team, with contributions from product teams across the company.',
+    'Built by the HashiCorp Design Systems team — the designers, engineers, and accessibility specialists who did the work behind everything described here.',
 };
 
 export const next = {

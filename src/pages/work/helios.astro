@@ -2,6 +2,12 @@
 import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
 import { heliosCaseStudy as story, profile } from '../../data/site';
+import { repoStats, formatReleaseMonth } from '../../lib/repo-stats';
+
+/* Read at build time, with baked fallbacks, so the page can say what the
+   repository has actually done rather than only that it exists. */
+const stats = await repoStats();
+const latestRelease = formatReleaseMonth(stats.latestRelease);
 ---
 
 <Base title={story.title} description={story.description}>
@@ -118,6 +124,13 @@ import { heliosCaseStudy as story, profile } from '../../data/site';
             <div class="case-prose">
               <h2 id="artifacts-title">{story.artifacts.heading}</h2>
               <p>{story.artifacts.body}</p>
+              <p class="case-activity">
+                {stats.releases.toLocaleString('en-US')} releases and{' '}
+                {stats.mergedPullRequests.toLocaleString('en-US')} merged pull
+                requests since 2021
+                {latestRelease && `, the most recent in ${latestRelease}`}. The
+                team is still shipping.
+              </p>
               <ul class="case-links">
                 {story.artifacts.links.map((link) => (
                   <li>
@@ -329,6 +342,15 @@ import { heliosCaseStudy as story, profile } from '../../data/site';
   }
   .case-prose p + p {
     margin-top: 20px;
+  }
+  /* The repository's numbers, not Brian's: five years of the whole team's
+     work, set as a quiet line rather than a badge row. */
+  .case-activity {
+    margin-top: 20px;
+    color: var(--token-color-foreground-faint);
+    font-size: 14px;
+    line-height: 1.7;
+    max-width: 62ch;
   }
   /* Rows, not a wrapped line of small text: these three links are the only
      way a reader can check the work for themselves, so they get the weight. */
