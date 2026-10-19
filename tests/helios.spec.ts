@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { heliosCaseStudy as story } from '../src/data/site';
 
 test('the timeline leads into the Helios story and back', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
@@ -23,22 +24,62 @@ test('the timeline leads into the Helios story and back', async ({ page }) => {
   await expect(page.locator('#era-4')).toBeInViewport();
 });
 
-test('the full case study remains readable without JavaScript', async ({
+test('the full case study renders every piece of its content without JavaScript', async ({
   browser,
 }) => {
   const context = await browser.newContext({ javaScriptEnabled: false });
   const page = await context.newPage();
   await page.goto('/work/helios/');
-  await expect(page.getByRole('heading', { level: 2 })).toHaveCount(9);
-  await expect(page.locator('#invite-feedback .case-principle')).toContainText(
-    'Principle 06 · Invite feedback',
+
+  /* Assert against the content source rather than against strings copied into
+     the test: the point is that the page renders everything it is given, and
+     that stays true as the copy keeps changing. */
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText(
+    story.heading,
   );
-  await expect(page.locator('#quality-by-default .case-cost')).toContainText(
-    'The tradeoff.',
+  await expect(page.locator('.case-introduction')).toHaveText(
+    story.introduction,
   );
-  await expect(page.locator('#invite-feedback')).toContainText(
-    'engineering, design, and accessibility',
-  );
+  await expect(page.locator('.case-role')).toHaveText(story.role);
+
+  for (const outcome of story.outcomes) {
+    const figure = page.locator('.case-outcomes div', {
+      hasText: outcome.label,
+    });
+    await expect(figure).toContainText(outcome.value);
+  }
+
+  const principles = page.locator('.case-principles');
+  await expect(principles).toContainText(story.principles.heading);
+  await expect(principles).toContainText(story.principles.body);
+
+  for (const section of story.sections) {
+    const region = page.locator(`#${section.id}`);
+    await expect(region).toContainText(section.principle.name);
+    await expect(region).toContainText(section.principle.text);
+    await expect(region).toContainText(section.heading);
+    await expect(region).toContainText(section.lede);
+    for (const paragraph of section.paragraphs) {
+      await expect(region).toContainText(paragraph);
+    }
+    await expect(region.locator('.case-cost')).toContainText(section.tradeoff);
+  }
+
+  const artifacts = page.locator('.case-artifacts');
+  await expect(artifacts).toContainText(story.artifacts.heading);
+  await expect(artifacts).toContainText(story.artifacts.body);
+  await expect(artifacts).toContainText(story.credit);
+
+  for (const link of story.artifacts.links) {
+    await expect(
+      artifacts.getByRole('link', { name: link.label, exact: true }),
+    ).toHaveAttribute('href', link.url);
+    await expect(artifacts).toContainText(link.note);
+    await expect(
+      page.locator('.case-jump').getByRole('link', { name: link.short }),
+    ).toHaveAttribute('href', link.url);
+  }
+
   await context.close();
 });
 
