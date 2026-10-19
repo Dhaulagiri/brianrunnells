@@ -22,7 +22,7 @@ import { heliosCaseStudy as story, profile } from '../../data/site';
           <h1 id="case-title">{story.heading}</h1>
           <p class="case-introduction">{story.introduction}</p>
           <p class="case-role">{story.role}</p>
-          <a class="case-read" href="#the-decision">
+          <a class="case-read" href="#replace">
             Read the story <span aria-hidden="true">↓</span>
           </a>
           <span class="case-emblem" aria-hidden="true">
@@ -51,13 +51,40 @@ import { heliosCaseStudy as story, profile } from '../../data/site';
         </section>
 
         <div class="case-width case-story">
+          <section
+            class="case-section case-principles"
+            aria-labelledby="principles-title"
+          >
+            <div class="case-aside">
+              <p class="case-label">{story.principles.label}</p>
+            </div>
+            <div class="case-prose">
+              <h2 id="principles-title">{story.principles.heading}</h2>
+              <p>{story.principles.body}</p>
+              <a class="case-source" href={story.principles.link.url}>
+                {story.principles.link.label} <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </section>
+
           {story.sections.map((section) => (
             <section
               id={section.id}
               class="case-section"
               aria-labelledby={`${section.id}-heading`}
             >
-              <p class="case-label">{section.label}</p>
+              <div class="case-aside">
+                <p class="case-label">{section.label}</p>
+                {section.principle && (
+                  <div class="case-principle">
+                    <p class="case-principle-head">
+                      Principle {section.principle.number} ·{' '}
+                      {section.principle.name}
+                    </p>
+                    <p class="case-principle-text">{section.principle.text}</p>
+                  </div>
+                )}
+              </div>
               <div class="case-prose">
                 <h2 id={`${section.id}-heading`}>{section.heading}</h2>
                 {section.paragraphs.map((paragraph) => (
@@ -72,6 +99,11 @@ import { heliosCaseStudy as story, profile } from '../../data/site';
                       <li>{product}</li>
                     ))}
                   </ul>
+                )}
+                {section.cost && (
+                  <p class="case-cost">
+                    <b>What it cost.</b> {section.cost}
+                  </p>
                 )}
                 {section.source && (
                   <a class="case-source" href={section.source.url}>
@@ -235,7 +267,7 @@ import { heliosCaseStudy as story, profile } from '../../data/site';
   }
   .case-section {
     display: grid;
-    grid-template-columns: minmax(160px, 1fr) minmax(0, 3fr);
+    grid-template-columns: minmax(200px, 1fr) minmax(0, 2.8fr);
     gap: 24px 48px;
     padding-block: 52px;
     scroll-margin-top: 24px;
@@ -294,6 +326,50 @@ import { heliosCaseStudy as story, profile } from '../../data/site';
     text-decoration: underline;
     text-underline-offset: 0.25em;
   }
+  .case-aside {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-content: start;
+  }
+  /* The principle sits in the margin like a citation, because that is what it
+     is: the decision beside it was settled by the rule, not the other way
+     round. Quiet enough to skip, close enough to read. */
+  .case-principle {
+    border-left: 2px solid #003b9e;
+    padding-left: 14px;
+  }
+  .case-principle-head {
+    color: #003b9e;
+    font: 11px/1.7 var(--mono);
+    letter-spacing: 0.02em;
+  }
+  .case-principle-text {
+    margin-top: 8px;
+    color: #50545c;
+    font-size: 13px;
+    line-height: 1.7;
+    text-wrap: pretty;
+  }
+  /* Costs get their own register. A decision rendered as another paragraph
+     reads as narration; set apart, it reads as the price of the sentence
+     above it. */
+  .case-prose .case-cost {
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid #c8cbd1;
+    font-size: 15px;
+    line-height: 1.8;
+    max-width: 62ch;
+  }
+  .case-cost b {
+    color: #003b9e;
+    font: 11px/1.7 var(--mono);
+    letter-spacing: 0.03em;
+  }
+  .case-principles .case-prose h2 {
+    max-width: 18ch;
+  }
   .case-prose .case-credit {
     margin-top: 36px;
     color: #50545c;
@@ -349,6 +425,12 @@ import { heliosCaseStudy as story, profile } from '../../data/site';
       grid-template-columns: 1fr;
       gap: 16px;
       padding-block: 36px;
+    }
+    .case-aside {
+      gap: 14px;
+    }
+    .case-principles .case-prose h2 {
+      max-width: none;
     }
     .case-footer {
       font-size: 11px;

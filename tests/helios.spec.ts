@@ -29,7 +29,7 @@ test('the full case study remains readable without JavaScript', async ({
   const context = await browser.newContext({ javaScriptEnabled: false });
   const page = await context.newPage();
   await page.goto('/work/helios/');
-  await expect(page.getByRole('heading', { level: 2 })).toHaveCount(7);
+  await expect(page.getByRole('heading', { level: 2 })).toHaveCount(9);
   await expect(page.locator('.case-products li')).toHaveText([
     'Terraform',
     'Vault',
@@ -40,14 +40,17 @@ test('the full case study remains readable without JavaScript', async ({
     'Packer',
     'Vagrant',
   ]);
-  await expect(page.locator('#the-team')).toContainText(
-    'The designers, engineers, and accessibility specialists',
+  await expect(page.locator('#one-team .case-principle')).toContainText(
+    'Principle 06 · Invite feedback',
+  );
+  await expect(page.locator('#parity .case-cost')).toContainText(
+    'What it cost.',
   );
   await expect(page.locator('#what-changed')).toContainText(
-    'rather than a measured velocity improvement',
+    'rather than a measured number',
   );
   await expect(page.locator('.case-note')).toContainText(
-    'not a current usage count',
+    'Not a current usage count',
   );
   await context.close();
 });

@@ -3,9 +3,9 @@
 A personal site built with Astro, TypeScript, and plain CSS. The homepage is a
 scroll-driven timeline that runs from a GeoCities homepage to the Helios design
 system, with each era borrowing the visual language of its own period. A linked
-case study at `/work/helios/` tells the story of building the team and shared
-design/engineering foundation. Its copy lives in `src/data/site.ts`; claim scope
-and sources are documented in `HELIOS-CONTENT-NOTES.md`.
+case study at `/work/helios/` tells that story as a set of decisions, each filed
+under the Helios principle it came from. Its copy lives in `src/data/site.ts`;
+claim scope and sources are documented in `docs/helios-content-notes.md`.
 
 ## Develop
 
