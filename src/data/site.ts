@@ -253,6 +253,69 @@ export const hashicorp = {
    principles are the most honest account of how the arguments actually got
    settled — and each one carries what it cost, because a decision with no
    cost attached is a slogan. */
+/* The closing section of the case study lists the tokens the page itself is
+   set with. The names follow Helios conventions; the values are this site's,
+   because this is a personal site wearing the system's grammar rather than a
+   copy of its palette. */
+export const heliosSystemStrip = {
+  label: 'The system, applied',
+  heading: 'This page is set with the grammar it describes.',
+  body: 'Every rule above is declared once, named the way the system names things, and used by reference. The specimens below are painted with those same declarations rather than with copies of their values, so this list cannot drift from the page it documents. That is the entire argument for a design system, rendered at the scale of one page.',
+  groups: [
+    {
+      kind: 'color',
+      label: 'Color',
+      tokens: [
+        {
+          name: '--token-color-surface-faint',
+          use: 'the paper this section is printed on',
+        },
+        {
+          name: '--token-color-foreground-primary',
+          use: 'body copy, at 16px and 1.85 line height',
+        },
+        {
+          name: '--token-color-foreground-faint',
+          use: 'margin notes, captions, the costs of decisions',
+        },
+        {
+          name: '--token-color-foreground-action',
+          use: 'links, principle citations, every rule in the margin',
+        },
+        {
+          name: '--token-color-border-primary',
+          use: 'the line between one decision and the next',
+        },
+      ],
+    },
+    {
+      kind: 'type',
+      label: 'Typography',
+      tokens: [
+        { name: '--token-typography-display-500', use: 'decision headings' },
+        { name: '--token-typography-body-300', use: 'the prose column' },
+        { name: '--token-typography-code-100', use: 'labels and token names' },
+      ],
+    },
+    {
+      kind: 'space',
+      label: 'Spacing',
+      tokens: [
+        { name: '--token-space-16', use: 'inside a row' },
+        {
+          name: '--token-space-24',
+          use: 'between a heading and its paragraph',
+        },
+        { name: '--token-space-52', use: 'between one decision and the next' },
+      ],
+    },
+  ],
+  link: {
+    label: 'Foundations in the Helios documentation',
+    url: 'https://helios.hashicorp.design/foundations/tokens',
+  },
+};
+
 export const heliosCaseStudy = {
   title: 'Building Helios',
   description:

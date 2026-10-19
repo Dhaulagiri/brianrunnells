@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
+import SystemStrip from '../../components/SystemStrip.astro';
 import { heliosCaseStudy as story, profile } from '../../data/site';
 ---
 
@@ -114,6 +115,8 @@ import { heliosCaseStudy as story, profile } from '../../data/site';
             </section>
           ))}
 
+          <SystemStrip />
+
           <section
             class="case-section case-artifacts"
             aria-labelledby="artifacts-title"
@@ -219,20 +222,37 @@ import { heliosCaseStudy as story, profile } from '../../data/site';
     width: clamp(100px, 14vw, 180px);
     height: auto;
   }
+  /* Spike: the case study's own chrome, expressed as the kind of token layer
+     it is a case study about. Nothing below this block names a raw value. */
   .case-paper {
-    --focus-ring: #003b9e;
+    --token-color-surface-faint: #faf9f6;
+    --token-color-surface-primary: #ffffff;
+    --token-color-foreground-strong: #0c0c0e;
+    --token-color-foreground-primary: #181a20;
+    --token-color-foreground-faint: #50545c;
+    --token-color-foreground-action: #003b9e;
+    --token-color-border-primary: #c8cbd1;
+    --token-typography-display-500: 400 clamp(32px, 4vw, 42px) / 1.2
+      var(--serif);
+    --token-typography-body-300: 400 16px / 1.85 var(--sans, system-ui);
+    --token-typography-code-100: 400 11px / 1.7 var(--mono);
+    --token-space-16: 16px;
+    --token-space-24: 24px;
+    --token-space-52: 52px;
+
+    --focus-ring: var(--token-color-foreground-action);
     color-scheme: light;
-    background: #faf9f6;
-    color: #181a20;
+    background: var(--token-color-surface-faint);
+    color: var(--token-color-foreground-primary);
   }
   .case-label {
-    color: #50545c;
+    color: var(--token-color-foreground-faint);
     font: 11px/1.8 var(--mono);
     letter-spacing: 0.03em;
   }
   .case-outcomes {
     padding-block: 40px;
-    border-bottom: 1px solid #c8cbd1;
+    border-bottom: 1px solid var(--token-color-border-primary);
   }
   dl {
     display: grid;
@@ -258,7 +278,7 @@ import { heliosCaseStudy as story, profile } from '../../data/site';
   }
   .case-note {
     max-width: 78ch;
-    color: #50545c;
+    color: var(--token-color-foreground-faint);
     font-size: 12px;
     line-height: 1.7;
   }
@@ -268,25 +288,24 @@ import { heliosCaseStudy as story, profile } from '../../data/site';
   .case-section {
     display: grid;
     grid-template-columns: minmax(200px, 1fr) minmax(0, 2.8fr);
-    gap: 24px 48px;
-    padding-block: 52px;
+    gap: var(--token-space-24) 48px;
+    padding-block: var(--token-space-52);
     scroll-margin-top: 24px;
   }
   .case-section + .case-section {
-    border-top: 1px solid #c8cbd1;
+    border-top: 1px solid var(--token-color-border-primary);
   }
   .case-prose {
     max-width: 66ch;
   }
   .case-prose h2 {
-    font: clamp(32px, 4vw, 42px)/1.2 var(--serif);
+    font: var(--token-typography-display-500);
     letter-spacing: -0.015em;
-    margin-bottom: 24px;
+    margin-bottom: var(--token-space-24);
     text-wrap: pretty;
   }
   .case-prose p {
-    font-size: 16px;
-    line-height: 1.85;
+    font: var(--token-typography-body-300);
   }
   .case-prose p + p {
     margin-top: 20px;
@@ -302,7 +321,7 @@ import { heliosCaseStudy as story, profile } from '../../data/site';
     gap: 8px;
     align-items: center;
     min-height: 40px;
-    color: #003b9e;
+    color: var(--token-color-foreground-action);
     text-decoration: underline;
     text-underline-offset: 0.25em;
     font-size: 14px;
@@ -313,7 +332,7 @@ import { heliosCaseStudy as story, profile } from '../../data/site';
     gap: 16px 24px;
     margin-block: 28px 16px;
     padding-block: 24px;
-    border-block: 1px solid #c8cbd1;
+    border-block: 1px solid var(--token-color-border-primary);
     font: 13px/1.6 var(--mono);
   }
   .case-source {
@@ -321,7 +340,7 @@ import { heliosCaseStudy as story, profile } from '../../data/site';
     align-items: center;
     min-height: 36px;
     gap: 8px;
-    color: #003b9e;
+    color: var(--token-color-foreground-action);
     font-size: 12px;
     text-decoration: underline;
     text-underline-offset: 0.25em;
@@ -336,17 +355,17 @@ import { heliosCaseStudy as story, profile } from '../../data/site';
      is: the decision beside it was settled by the rule, not the other way
      round. Quiet enough to skip, close enough to read. */
   .case-principle {
-    border-left: 2px solid #003b9e;
+    border-left: 2px solid var(--token-color-foreground-action);
     padding-left: 14px;
   }
   .case-principle-head {
-    color: #003b9e;
-    font: 11px/1.7 var(--mono);
+    color: var(--token-color-foreground-action);
+    font: var(--token-typography-code-100);
     letter-spacing: 0.02em;
   }
   .case-principle-text {
     margin-top: 8px;
-    color: #50545c;
+    color: var(--token-color-foreground-faint);
     font-size: 13px;
     line-height: 1.7;
     text-wrap: pretty;
@@ -357,13 +376,13 @@ import { heliosCaseStudy as story, profile } from '../../data/site';
   .case-prose .case-cost {
     margin-top: 28px;
     padding-top: 20px;
-    border-top: 1px solid #c8cbd1;
+    border-top: 1px solid var(--token-color-border-primary);
     font-size: 15px;
     line-height: 1.8;
     max-width: 62ch;
   }
   .case-cost b {
-    color: #003b9e;
+    color: var(--token-color-foreground-action);
     font: 11px/1.7 var(--mono);
     letter-spacing: 0.03em;
   }
@@ -372,7 +391,7 @@ import { heliosCaseStudy as story, profile } from '../../data/site';
   }
   .case-prose .case-credit {
     margin-top: 36px;
-    color: #50545c;
+    color: var(--token-color-foreground-faint);
     font-size: 13px;
     line-height: 1.7;
   }
