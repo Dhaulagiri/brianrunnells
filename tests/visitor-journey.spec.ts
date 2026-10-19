@@ -8,6 +8,17 @@ test('visitors can discover current work and a contact destination immediately',
   await expect(page.locator('.intro-summary')).toContainText(
     'HashiCorp, now part of IBM',
   );
+  const caseStudy = page.getByRole('link', {
+    name: 'Read the Helios case study',
+  });
+  await expect(caseStudy).toBeInViewport();
+  await caseStudy.focus();
+  await page.keyboard.press('Enter');
+  await expect(page).toHaveURL(/\/work\/helios\/$/);
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText(
+    'Building Helios.',
+  );
+  await page.goBack();
   const jump = page.getByRole('link', { name: 'Jump to today' });
   await jump.focus();
   await page.keyboard.press('Enter');

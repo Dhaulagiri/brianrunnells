@@ -46,12 +46,14 @@ test('the full case study remains readable without JavaScript', async ({
   await expect(page.locator('#quality-by-default .case-cost')).toContainText(
     'The tradeoff.',
   );
+  await expect(page.locator('#invite-feedback')).toContainText(
+    'engineering, design, and accessibility',
+  );
   await expect(page.locator('#design-in-context')).toContainText(
-    'rather than a measured number',
+    'we didn’t measure velocity directly',
   );
-  await expect(page.locator('.case-note')).toContainText(
-    'Not a current usage count',
-  );
+  await expect(page.locator('.case-note')).toContainText('while I led Helios');
+  await expect(page.locator('.case-note')).toContainText('while I led Helios');
   await context.close();
 });
 

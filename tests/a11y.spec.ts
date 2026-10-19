@@ -191,6 +191,9 @@ test('the page works without JavaScript', async ({ browser }) => {
   await page.goto('/');
 
   // All six eras readable, the moon static, and no marquee motion to pause.
+  await expect(
+    page.getByRole('link', { name: 'Read the Helios case study' }),
+  ).toHaveAttribute('href', '/work/helios/');
   await expect(page.locator('.era-inner[data-reveal]')).toHaveCount(6);
   const hidden = await page
     .locator('.era-inner[data-reveal]')

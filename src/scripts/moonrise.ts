@@ -163,6 +163,24 @@ void initMoonGL().then((draw) => {
 });
 
 document.addEventListener('scroll', schedule, { passive: true });
+// A control can already be inside the viewport when it receives focus, so the
+// browser leaves it in place even if the fixed mobile dock covers it. Move only
+// that overlap, immediately, so keyboard users can see the focused control.
+document.addEventListener('focusin', (event) => {
+  const target = event.target;
+  const dock = document.querySelector<HTMLElement>('.dock');
+  if (!(target instanceof HTMLElement) || !dock || dock.contains(target))
+    return;
+  if (getComputedStyle(dock).display === 'none') return;
+  const control = target.getBoundingClientRect();
+  const overlay = dock.getBoundingClientRect();
+  if (control.bottom > overlay.top && control.top < overlay.bottom) {
+    window.scrollBy({
+      top: control.bottom - overlay.top + 8,
+      behavior: 'instant',
+    });
+  }
+});
 window.addEventListener(
   'resize',
   () => {
