@@ -42,8 +42,10 @@ of Helios.
   reported faster delivery from a measured velocity gain.
 - **Adoption:** existing career evidence records 100+ engineers and designers,
   and an adoption dashboard the team built tracking net adoption of 20,000+
-  component instances across roughly eight products. The page identifies this
-  as a historical snapshot, not current telemetry.
+  component instances across roughly eight products. These are historical
+  figures from Brian's time leading Helios, not current telemetry. The page no
+  longer carries a note saying so, so the qualification lives here only — worth
+  restoring to the page if the numbers are ever read as a live count.
 - **Technical work and accessibility leadership:** existing career evidence
   supports TypeScript/GTS discovery and modernization, and recruiting/backing
   the accessibility leader. Detailed accessibility function credit stays with

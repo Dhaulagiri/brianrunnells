@@ -276,8 +276,6 @@ export const heliosCaseStudy = {
     },
     { value: '~8', label: 'products sharing one foundation' },
   ],
-  outcomesNote:
-    'Adoption snapshot from the dashboard we built while I led Helios.',
   principles: {
     heading: 'We consider the whole when creating the parts.',
     body: 'The team wrote six principles and published them. They frame this work better than anything I would write after the fact, so the sections below follow them in order: what each one meant in practice, and what it cost to hold.',
@@ -299,10 +297,9 @@ export const heliosCaseStudy = {
       paragraphs: [
         'The existing system’s design library and code didn’t agree. Its implementation was hard to scale, and adoption was uneven. That is what the case for replacing it rested on.',
         'Not everyone agreed. Replacing a system that already exists is an expensive argument to win, and I made it more than once. What I kept coming back to was what we could actually observe.',
-        'That habit outlasted the argument. The dashboard we built tracked Helios usage alongside the legacy components it was replacing, so we could see where migration was progressing instead of guessing. It reached more than 100 engineers and designers, and net adoption of more than 20,000 component instances across roughly eight products.',
       ],
       tradeoff:
-        'That tooling took engineering time and shipped no components. And a replacement starts at zero adoption, where extending would have started wherever the old system already was.',
+        'This reboot took time and shipped no components. And a replacement starts at zero adoption, where extending would have started wherever the old system already was.',
     },
     {
       id: 'guidance-over-control',

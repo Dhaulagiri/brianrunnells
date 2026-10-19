@@ -42,8 +42,6 @@ test('the full case study remains readable without JavaScript', async ({
   await expect(page.locator('#invite-feedback')).toContainText(
     'we didn’t measure velocity directly',
   );
-  await expect(page.locator('.case-note')).toContainText('while I led Helios');
-  await expect(page.locator('.case-note')).toContainText('while I led Helios');
   await context.close();
 });
 

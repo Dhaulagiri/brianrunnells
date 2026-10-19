@@ -46,7 +46,6 @@ import { heliosCaseStudy as story, profile } from '../../data/site';
               </div>
             ))}
           </dl>
-          <p class="case-note">{story.outcomesNote}</p>
         </section>
 
         <div class="case-width case-story">
@@ -257,12 +256,6 @@ import { heliosCaseStudy as story, profile } from '../../data/site';
     margin: 0;
     font: clamp(40px, 5vw, 64px)/1 var(--serif);
     letter-spacing: -0.02em;
-  }
-  .case-note {
-    max-width: 78ch;
-    color: var(--token-color-foreground-faint);
-    font-size: 12px;
-    line-height: 1.7;
   }
   .case-story {
     padding-block: 12px 32px;
