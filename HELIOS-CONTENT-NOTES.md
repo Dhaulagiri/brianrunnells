@@ -18,7 +18,7 @@ of Helios.
 - **Delivery speed:** anecdotal feedback only. The page explicitly distinguishes
   reported faster delivery from a measured velocity gain.
 - **Adoption:** existing career evidence records 100+ engineers and designers,
-  and an adoption dashboard Brian built tracking net adoption of 20,000+
+  and an adoption dashboard the team built tracking net adoption of 20,000+
   component instances across roughly eight products. The page identifies this
   as a historical snapshot, not current telemetry.
 - **Technical work and accessibility leadership:** existing career evidence

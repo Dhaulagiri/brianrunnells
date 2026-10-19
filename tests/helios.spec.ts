@@ -41,14 +41,12 @@ test('the full case study remains readable without JavaScript', async ({
     'Vagrant',
   ]);
   await expect(page.locator('#the-team')).toContainText(
-    'The designers, engineers, and accessibility specialists',
+    'engineering, design, and accessibility',
   );
   await expect(page.locator('#what-changed')).toContainText(
-    'rather than a measured velocity improvement',
+    'we didn’t measure velocity directly',
   );
-  await expect(page.locator('.case-note')).toContainText(
-    'not a current usage count',
-  );
+  await expect(page.locator('.case-note')).toContainText('while I led Helios');
   await context.close();
 });
 
