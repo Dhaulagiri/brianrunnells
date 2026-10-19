@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
+import Drift from '../../components/Drift.astro';
 import { heliosCaseStudy as story, profile } from '../../data/site';
 ---
 
@@ -100,6 +101,7 @@ import { heliosCaseStudy as story, profile } from '../../data/site';
                     ))}
                   </ul>
                 )}
+                {section.drift && <Drift />}
                 {section.cost && (
                   <p class="case-cost">
                     <b>What it cost.</b> {section.cost}

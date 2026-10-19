@@ -253,6 +253,39 @@ export const hashicorp = {
    principles are the most honest account of how the arguments actually got
    settled — and each one carries what it cost, because a decision with no
    cost attached is a slogan. */
+/* Copy for the before/after illustration in the Helios case study. The hex
+   values are invented for the reconstruction — they are not HashiCorp's, and
+   the component comment explains why they are all still AA against white. */
+export const heliosDrift = {
+  before: {
+    label: 'Before · the system we replaced',
+    buttonLabel: 'One primary button, as four teams shipped it',
+    buttons: [
+      { variant: 1, text: 'Create cluster' },
+      { variant: 2, text: 'Create cluster' },
+      { variant: 3, text: 'Create Cluster' },
+      { variant: 4, text: 'Create cluster' },
+    ],
+    swatchLabel: 'One brand blue, stored five times',
+    swatches: ['#0f4fb8', '#1a56c4', '#2563cf', '#1b60d6', '#1060ff'],
+  },
+  after: {
+    label: 'After · Helios',
+    buttonLabel: 'One primary button, shipped once',
+    buttons: [
+      'Create cluster',
+      'Create cluster',
+      'Create cluster',
+      'Create cluster',
+    ],
+    swatchLabel: 'One brand blue, stored once',
+    swatch: '#1060ff',
+    token: '--token-color-foreground-action',
+  },
+  caption:
+    'An illustration, not a screenshot: no internal interface is reproduced here. It shows the kind of drift that accumulates when a Figma library and several codebases each hold their own copy of the same decision — which is the argument for replacing a foundation rather than extending it.',
+};
+
 export const heliosCaseStudy = {
   title: 'Building Helios',
   description:
@@ -297,6 +330,7 @@ export const heliosCaseStudy = {
         'A system already existed. Its Figma library and its code implementations disagreed with each other, the code was hard to scale, and adoption varied by team. Extending it meant building on all three of those.',
         'My mandate left room to decide what came next, and I argued for replacement: one foundation that design and engineering would develop together, rather than two artefacts that drifted apart between releases. That became Helios.',
       ],
+      drift: true,
       cost: 'A replacement starts at zero adoption. Extending would have been cheaper and nobody would have had to migrate. We chose to pay the migration cost once, deliberately, instead of paying the inconsistency tax forever.',
     },
     {

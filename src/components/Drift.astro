@@ -1,0 +1,171 @@
+---
+/* The case study's central claim is that the system already in place had
+   drifted. That is a visual claim, so it gets made visually rather than
+   asserted in a paragraph.
+
+   This is a reconstruction, not a screenshot: nothing internal is reproduced
+   here. It shows the *kind* of drift — one button rendered four ways, one blue
+   stored five times — which is the part a reader needs in order to understand
+   why extending the old system was the more expensive option.
+
+   Every "before" blue is deliberately still AA against white. Period
+   inaccuracy is the house style; failing contrast to make a rhetorical point
+   is not. */
+import { heliosDrift as drift } from '../data/site';
+---
+
+<figure class="drift">
+  <div class="drift-panels">
+    <div class="drift-panel">
+      <p class="drift-panel-label">{drift.before.label}</p>
+
+      <p class="drift-row-label">{drift.before.buttonLabel}</p>
+      <ul class="drift-buttons is-drifted" role="list">
+        {drift.before.buttons.map((button) => (
+          <li class={`drift-button v${button.variant}`}>{button.text}</li>
+        ))}
+      </ul>
+
+      <p class="drift-row-label">{drift.before.swatchLabel}</p>
+      <ul class="drift-swatches" role="list">
+        {drift.before.swatches.map((hex) => (
+          <li>
+            <span class="drift-chip" style={`background:${hex}`}></span>
+            <code>{hex}</code>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="drift-panel is-after">
+      <p class="drift-panel-label">{drift.after.label}</p>
+
+      <p class="drift-row-label">{drift.after.buttonLabel}</p>
+      <ul class="drift-buttons" role="list">
+        {drift.after.buttons.map((text) => (
+          <li class="drift-button">{text}</li>
+        ))}
+      </ul>
+
+      <p class="drift-row-label">{drift.after.swatchLabel}</p>
+      <ul class="drift-swatches" role="list">
+        <li>
+          <span
+            class="drift-chip"
+            style={`background:${drift.after.swatch}`}
+          ></span>
+          <code>{drift.after.token}</code>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <figcaption>{drift.caption}</figcaption>
+</figure>
+
+<style>
+  .drift {
+    margin: 36px 0 0;
+  }
+  .drift-panels {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: #c8cbd1;
+    border: 1px solid #c8cbd1;
+  }
+  .drift-panel {
+    background: #f4f2ed;
+    padding: 20px;
+  }
+  .drift-panel.is-after {
+    background: #fff;
+  }
+  .drift-panel-label {
+    font: 11px/1.7 var(--mono);
+    letter-spacing: 0.03em;
+    color: #003b9e;
+    margin-bottom: 20px;
+  }
+  .drift-row-label {
+    font-size: 12px;
+    line-height: 1.6;
+    color: #50545c;
+    margin-bottom: 10px;
+  }
+  .drift-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  /* The "after" button is one declaration. The "before" buttons are the same
+     button as four people remembered it: different blue, radius, padding,
+     weight and capitalisation, none of them wrong on its own. */
+  .drift-button {
+    background: #1060ff;
+    color: #fff;
+    border-radius: 5px;
+    padding: 7px 14px;
+    font: 500 13px/1.4 var(--sans, system-ui);
+  }
+  .is-drifted .v1 {
+    background: #0f4fb8;
+    border-radius: 2px;
+    padding: 8px 18px;
+    font-weight: 600;
+  }
+  .is-drifted .v2 {
+    background: #2563cf;
+    border-radius: 14px;
+    padding: 6px 12px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .is-drifted .v3 {
+    background: #1b60d6;
+    border-radius: 5px;
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+  .is-drifted .v4 {
+    background: #1a56c4;
+    border-radius: 8px;
+    padding: 5px 20px;
+    font-weight: 400;
+  }
+  .drift-swatches {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  .drift-swatches li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .drift-chip {
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+    border: 1px solid #c8cbd1;
+  }
+  .drift-swatches code {
+    font: 11px/1.6 var(--mono);
+    color: #181a20;
+  }
+  figcaption {
+    margin-top: 14px;
+    font-size: 12px;
+    line-height: 1.7;
+    color: #50545c;
+    max-width: 68ch;
+  }
+  @media (max-width: 760px) {
+    .drift-panels {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
