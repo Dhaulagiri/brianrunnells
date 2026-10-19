@@ -3,10 +3,9 @@
 The page is organised by the six Helios principles, in their published order,
 with one section per principle. The principle text is quoted verbatim from
 [the published principles](https://helios.hashicorp.design/about/principles),
-checked October 18, 2026; the 03 quotation is trimmed of its opening clause,
-which the page notes by quoting only the committing sentences. Each section
-also states the tradeoff that principle demanded, which is Brian's account
-rather than anything the published page claims.
+checked October 18, 2026, in full. Each section also states the tradeoff that
+principle demanded, which is Brian's account rather than anything the published
+page claims.
 
 The before/after figure in section 01 is a reconstruction, not a reproduction:
 the buttons and hex values are invented to show the kind of drift described,
