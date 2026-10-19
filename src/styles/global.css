@@ -1660,7 +1660,8 @@ main {
     scroll-padding-bottom: 92px;
   }
   a:focus-visible,
-  button:focus-visible {
+  button:focus-visible,
+  summary:focus-visible {
     scroll-margin-bottom: 92px;
   }
   .era-next .era-inner {

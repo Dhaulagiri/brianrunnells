@@ -14,7 +14,7 @@ import AxeBuilder from '@axe-core/playwright';
  * strip starts scrolling below 620px.
  */
 
-const PAGES = ['/', '/404.html'];
+const PAGES = ['/', '/work/helios/', '/404.html'];
 
 const TAGS = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'];
 
@@ -191,6 +191,9 @@ test('the page works without JavaScript', async ({ browser }) => {
   await page.goto('/');
 
   // All six eras readable, the moon static, and no marquee motion to pause.
+  await expect(
+    page.getByRole('link', { name: 'Read the Helios case study' }),
+  ).toHaveAttribute('href', '/work/helios/');
   await expect(page.locator('.era-inner[data-reveal]')).toHaveCount(6);
   const hidden = await page
     .locator('.era-inner[data-reveal]')

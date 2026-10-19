@@ -14,8 +14,11 @@ export const profile = {
   /** Two lines, not a paragraph: who, then how to read the page. */
   introduction:
     'I build design systems, developer tools, and the teams behind them. Currently frontend engineering and design at HashiCorp, now part of IBM.',
-  /** The signpost. Set small and dim; it explains the timeline, it isn’t the bio. */
-  introductionMeta: 'Below: twenty-five years of the web, in period dress.',
+  featuredWork: {
+    label: 'Read the Helios case study',
+    url: '/work/helios/',
+    navigationLabel: 'Explore my work',
+  },
   description:
     'Brian Runnells leads frontend engineering and design teams at HashiCorp, now part of IBM. A timeline from a GeoCities homepage to the Helios design system.',
 };
@@ -222,6 +225,13 @@ export const hashicorp = {
       primary: false,
     },
   ],
+  caseStudy: {
+    url: '/work/helios/',
+    label: 'The story behind the system',
+    title: 'Building Helios',
+    summary:
+      'Why we replaced the old system, how I built the team, and what changed for product teams.',
+  },
   tabs: ['Components', 'Foundations', 'Patterns'],
   callout: {
     title: 'Released publicly',
@@ -239,6 +249,175 @@ export const hashicorp = {
     { name: '--token-color-foreground-strong', swatch: '#0c0c0e' },
     { name: '--token-color-moon', swatch: '#f0ece2', note: '(unofficial)' },
   ],
+};
+
+/* The case study is organised by the six principles the Helios team wrote and
+   published, in their order, rather than as a chronology or as a list of
+   decisions in Brian's words. Each section carries the tradeoff that principle
+   demanded, because a principle with no cost attached is a slogan. */
+export const heliosCaseStudy = {
+  title: 'Building Helios',
+  description:
+    'The story of HashiCorp’s Helios Design System, told through the six principles the team wrote: replacing the system already in place, building one multidisciplinary team, and earning adoption across the product suite.',
+  back: { label: 'Back to the timeline', url: '/#era-4' },
+  kicker: 'Case study · HashiCorp',
+  heading: 'Building Helios.',
+  introduction:
+    'I joined HashiCorp in 2021 to build the design system and the accessibility practice. Everyone wanted a great one. Nobody had decided how to build it, and the approach I argued for drew real pushback. I recruited and led all three disciplines behind Helios — engineering, design, and accessibility — and stuck with it.',
+  role: 'Joined HashiCorp in 2021 · Helios launched publicly in January 2023',
+  outcomesLabel: 'Helios in use',
+  outcomes: [
+    { value: '100+', label: 'designers and engineers building on Helios' },
+    {
+      value: '20,000+',
+      label: 'component instances tracked, net of the legacy system',
+    },
+    { value: '~8', label: 'products sharing one foundation' },
+  ],
+  principles: {
+    heading: 'We consider the whole when creating the parts.',
+    body: 'The team wrote six principles and published them. They frame this work better than anything I would write after the fact, so the story follows them in order.',
+    link: {
+      label: 'The six principles',
+      url: 'https://helios.hashicorp.design/about/principles',
+    },
+  },
+  sections: [
+    {
+      id: 'rooted-in-reality',
+      label: '01 / Rooted in reality',
+      heading: 'We looked at what was there.',
+      lede: 'We replaced the old system because of what we could observe — then built the dashboard that let us keep observing.',
+      principle: {
+        number: '01',
+        name: 'Rooted in reality',
+        text: 'We ground our work and our decisions in reality through data and observations.',
+      },
+      paragraphs: [
+        'The existing system’s design library and code didn’t agree. Its implementation was hard to scale, and adoption was uneven. That is what the case for replacing it rested on.',
+        'Not everyone agreed. Replacing a system that already exists is an expensive argument to win, and I made it more than once. What I kept coming back to was what we could actually observe.',
+      ],
+      tradeoff:
+        'This reboot took time and shipped no components. And a replacement starts at zero adoption, where extending would have started wherever the old system already was.',
+    },
+    {
+      id: 'guidance-over-control',
+      label: '02 / Guidance over control',
+      heading: 'One foundation, across different products.',
+      lede: 'A broad portfolio doing different jobs, and a balance between consistency and flexibility that never fully settles.',
+      principle: {
+        number: '02',
+        name: 'Guidance over control',
+        text: 'We provide balance between configurability and composability while driving consistency.',
+      },
+      paragraphs: [
+        'HashiCorp had a broad mix of infrastructure and security products, and a growing cloud platform in HCP. The products did different things, but their interfaces had plenty in common.',
+        'A foundation serving that range has to be opinionated enough to create consistency and open enough that a team with an unusual problem isn’t stuck. That balance is ongoing work, not something you settle once.',
+      ],
+      source: {
+        label: 'The product portfolio in 2022',
+        url: 'https://www.hashicorp.com/en/blog/hashicorp-2022-year-in-review',
+      },
+      tradeoff:
+        'Every escape hatch is somewhere consistency can leak out. Every refusal to add one lands on a team with a deadline.',
+    },
+    {
+      id: 'quality-by-default',
+      label: '03 / Quality by default',
+      heading: 'Done meant more than working.',
+      lede: 'Documented, accessible, resilient across real use, and matching between Figma and code. Anything less wasn’t finished.',
+      principle: {
+        number: '03',
+        name: 'Quality by default',
+        text: 'We recognize that we are providing a service and commit to a baseline of quality to provide value and leverage for our consumers. We iterate on features, not quality.',
+      },
+      paragraphs: [
+        'A component wasn’t finished when it worked. It was finished when it was documented, accessible, and resilient enough to hold up across the range of ways teams would actually use it — and when the Figma library and the code agreed on all of that.',
+        'Treated as a goal, a bar like that slips within a release or two. Treated as a baseline, it holds. That is what the principle means by iterating on features, not quality.',
+      ],
+      tradeoff:
+        'Individual releases are slower, and the system says “not yet” more often than a team under deadline pressure wants to hear.',
+    },
+    {
+      id: 'design-in-context',
+      label: '04 / Design in context',
+      heading: 'We built what the products needed.',
+      lede: 'The system came out of real product work, and every migration was sequenced around what teams were already shipping.',
+      principle: {
+        number: '04',
+        name: 'Design in context',
+        text: 'We meet consumers where they are and consider both the current and future context in which they use the system.',
+      },
+      paragraphs: [
+        'The system came out of real product work rather than a list of what a design system ought to have. A component earned its place because a team needed it for something they were building, and the shape it took came from how they needed to use it.',
+        'That applies to the technical work too. I led discovery and proofs of concept for our move to TypeScript and GTS.',
+        'It applies to where the system goes next as well. The move from Helios to IBM Carbon is happening incrementally, so product teams get better alignment without being pushed into rewrites.',
+      ],
+      tradeoff:
+        'Building for what products need now means the system is always a little behind what someone wishes it had.',
+    },
+    {
+      id: 'consider-everyone',
+      label: '05 / Consider everyone',
+      heading: 'Accessibility had an owner.',
+      lede: 'I recruited the leader who turned accessibility into a company capability, and that expertise went into the components.',
+      principle: {
+        number: '05',
+        name: 'Consider everyone',
+        text: 'We take an inclusive approach to our work from the start, considering the context and range of abilities for all customers.',
+      },
+      paragraphs: [
+        'I recruited and backed the leader who built HashiCorp’s accessibility function. It became a company capability rather than a review step at the end of a project, and that expertise went into the components themselves.',
+        'That is the clearest version of the argument for a shared foundation: solve it once, properly, in the thing every product already imports.',
+      ],
+      tradeoff:
+        'Headcount on a function with no feature roadmap of its own, and a standard that sometimes blocks work a team has already committed to. The return shows up later, in stronger VPATs and enterprise deal readiness.',
+    },
+    {
+      id: 'invite-feedback',
+      label: '06 / Invite feedback',
+      heading: 'One team, and a lot of conversations.',
+      lede: 'Engineering, design and accessibility in one group — and a standing invitation to everyone building on it.',
+      principle: {
+        number: '06',
+        name: 'Invite feedback',
+        text: 'We take time to have the right conversations with the appropriate stakeholders, to validate and create trust in the outcome.',
+      },
+      paragraphs: [
+        'Design systems usually live in one function and negotiate with the other. I recruited and led all three disciplines instead — engineering, design, and accessibility — in one group responsible for the whole system. I defined the roles and the hiring profiles, and hired into them.',
+        'That put the arguments that normally happen across a handoff inside one team, which is what kept the Figma library and the code in agreement.',
+        'Outside the team, guilds, office hours, and regular conversations with product teams did more for migration than a mandate would have, because the obstacles were specific to each team.',
+      ],
+      tradeoff:
+        'Communication is hard. Inviting it meant a lot of difficult conversations, and plenty of them ended without everyone happy — sometimes because we couldn’t do what was being asked for, sometimes because we decided not to.',
+    },
+  ],
+  artifacts: {
+    heading: 'See what we shipped.',
+    body: 'We open sourced Helios in January 2023. The documentation, the source, and the launch announcement are all public — the best way to judge the work is to look at it.',
+    links: [
+      {
+        label: 'Helios documentation',
+        short: 'Documentation',
+        note: 'Components, foundations, patterns and guidance',
+        url: 'https://helios.hashicorp.design/',
+      },
+      {
+        label: 'Source on GitHub',
+        short: 'GitHub',
+        note: 'Everything the team shipped, open since 2023',
+        url: 'https://github.com/hashicorp/design-system',
+      },
+      {
+        label: 'The launch announcement',
+        short: 'Launch post',
+        note: 'January 2023',
+        url: 'https://www.hashicorp.com/en/blog/introducing-helios-hashicorp-s-new-design-system',
+      },
+    ],
+  },
+  credit:
+    'Built by the HashiCorp Design Systems team — the designers, engineers, and accessibility specialists who did the work behind everything described here.',
 };
 
 export const next = {
