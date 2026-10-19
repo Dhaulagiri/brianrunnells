@@ -324,15 +324,15 @@ export const heliosCaseStudy = {
     {
       id: 'quality-by-default',
       label: '03 / Quality by default',
-      heading: 'Figma and code had to match.',
+      heading: 'Done meant more than working.',
       principle: {
         number: '03',
         name: 'Quality by default',
         text: 'We recognize that we are providing a service and commit to a baseline of quality to provide value and leverage for our consumers. We iterate on features, not quality.',
       },
       paragraphs: [
-        'The Figma library and the code stayed in full parity. A designer and an engineer opening the same component saw the same thing.',
-        'Treated as a goal, that slips within a release or two. Treated as a baseline, a component isn’t done when it works. It’s done when both sides match.',
+        'A component wasn’t finished when it worked. It was finished when it was documented, accessible, and resilient enough to hold up across the range of ways teams would actually use it — and when the Figma library and the code agreed on all of that.',
+        'Treated as a goal, a bar like that slips within a release or two. Treated as a baseline, it holds. That is what the principle means by iterating on features, not quality.',
       ],
       tradeoff:
         'Individual releases are slower, and the system says “not yet” more often than a team under deadline pressure wants to hear.',
