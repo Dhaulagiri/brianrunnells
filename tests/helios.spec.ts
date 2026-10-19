@@ -13,7 +13,7 @@ test('the timeline leads into the Helios story and back', async ({ page }) => {
     'https://brianrunnells.com/work/helios/',
   );
   await expect(
-    page.getByRole('link', { name: 'Helios documentation' }),
+    page.getByRole('link', { name: 'Helios documentation', exact: true }),
   ).toHaveAttribute('href', 'https://helios.hashicorp.design/');
   await page
     .getByRole('link', { name: 'Back to the timeline' })
@@ -29,7 +29,7 @@ test('the full case study remains readable without JavaScript', async ({
   const context = await browser.newContext({ javaScriptEnabled: false });
   const page = await context.newPage();
   await page.goto('/work/helios/');
-  await expect(page.getByRole('heading', { level: 2 })).toHaveCount(9);
+  await expect(page.getByRole('heading', { level: 2 })).toHaveCount(10);
   await expect(page.locator('.case-products li')).toHaveText([
     'Terraform',
     'Vault',

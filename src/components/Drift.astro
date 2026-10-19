@@ -71,26 +71,26 @@ import { heliosDrift as drift } from '../data/site';
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1px;
-    background: #c8cbd1;
-    border: 1px solid #c8cbd1;
+    background: var(--token-color-border-primary);
+    border: 1px solid var(--token-color-border-primary);
   }
   .drift-panel {
     background: #f4f2ed;
     padding: 20px;
   }
   .drift-panel.is-after {
-    background: #fff;
+    background: var(--token-color-surface-primary);
   }
   .drift-panel-label {
-    font: 11px/1.7 var(--mono);
+    font: var(--token-typography-code-100);
     letter-spacing: 0.03em;
-    color: #003b9e;
+    color: var(--token-color-foreground-action);
     margin-bottom: 20px;
   }
   .drift-row-label {
     font-size: 12px;
     line-height: 1.6;
-    color: #50545c;
+    color: var(--token-color-foreground-faint);
     margin-bottom: 10px;
   }
   .drift-buttons {
@@ -150,17 +150,17 @@ import { heliosDrift as drift } from '../data/site';
     width: 20px;
     height: 20px;
     border-radius: 3px;
-    border: 1px solid #c8cbd1;
+    border: 1px solid var(--token-color-border-primary);
   }
   .drift-swatches code {
-    font: 11px/1.6 var(--mono);
-    color: #181a20;
+    font: var(--token-typography-code-100);
+    color: var(--token-color-foreground-primary);
   }
   figcaption {
     margin-top: 14px;
     font-size: 12px;
     line-height: 1.7;
-    color: #50545c;
+    color: var(--token-color-foreground-faint);
     max-width: 68ch;
   }
   @media (max-width: 760px) {
