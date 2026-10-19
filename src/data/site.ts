@@ -344,15 +344,14 @@ export const heliosSystemStrip = {
   },
 };
 
-/* The case study is organised as decisions, not as a chronology. Each one is
-   anchored to the principle the team wrote and published, because the
-   principles are the most honest account of how the arguments actually got
-   settled — and each one carries what it cost, because a decision with no
-   cost attached is a slogan. */
+/* The case study is organised by the six principles the Helios team wrote and
+   published, in their order, rather than as a chronology or as a list of
+   decisions in Brian's words. Each section carries the tradeoff that principle
+   demanded, because a principle with no cost attached is a slogan. */
 export const heliosCaseStudy = {
   title: 'Building Helios',
   description:
-    'Six decisions behind HashiCorp’s Helios Design System — replacing the system already in place, building one multidisciplinary team, and earning adoption across the product suite.',
+    'The story of HashiCorp’s Helios Design System, told through the six principles the team wrote: replacing the system already in place, building one multidisciplinary team, and earning adoption across the product suite.',
   back: { label: 'Back to the timeline', url: '/#era-4' },
   kicker: 'Case study · HashiCorp',
   heading: 'Building Helios.',
@@ -373,7 +372,7 @@ export const heliosCaseStudy = {
   principles: {
     label: 'How we decided',
     heading: 'We consider the whole when creating the parts.',
-    body: 'The team wrote six principles and published them. They are the most honest summary of how the arguments below got settled, so each decision here is filed under the principle it came from.',
+    body: 'The team wrote six principles and published them. Rather than retell this my way, here it is their way: one section per principle, in their order, each covering the part of the work that principle governed — including what it cost to hold.',
     link: {
       label: 'The six principles',
       url: 'https://helios.hashicorp.design/about/principles',
@@ -381,90 +380,34 @@ export const heliosCaseStudy = {
   },
   sections: [
     {
-      id: 'replace',
-      label: '01 / The decision',
-      heading: 'Replace the foundation. Don’t extend it.',
+      id: 'rooted-in-reality',
+      label: '01 / Rooted in reality',
+      heading: 'We started by looking at what was actually there.',
       principle: {
         number: '01',
         name: 'Rooted in reality',
         text: 'We ground our work and our decisions in reality through data and observations.',
       },
       paragraphs: [
-        'A system already existed. Its Figma library and its code implementations disagreed with each other, the code was hard to scale, and adoption varied by team. Extending it meant building on all three of those.',
-        'My mandate left room to decide what came next, and I argued for replacement: one foundation that design and engineering would develop together, rather than two artefacts that drifted apart between releases. That became Helios.',
+        'A system already existed. Its Figma library and its code implementations disagreed with each other, the code was hard to scale, and adoption varied by team. That was the observation the replacement argument rested on, rather than a preference for building something new.',
+        'The same habit applied to the replacement. I built an adoption dashboard that tracked Helios usage alongside the legacy components it was displacing, so migration was something we could watch rather than something we asserted. It showed which teams were moving, which were stuck, and what they were stuck on.',
       ],
       drift: true,
-      cost: 'A replacement starts at zero adoption. Extending would have been cheaper and nobody would have had to migrate. We chose to pay the migration cost once, deliberately, instead of paying the inconsistency tax forever.',
+      tradeoff:
+        'Months of engineering went into tooling that ships no components, and a replacement starts at zero adoption where extending would have started at whatever the old system already had.',
     },
     {
-      id: 'one-team',
-      label: '02 / The team',
-      heading: 'One team, not two functions.',
+      id: 'guidance-over-control',
+      label: '02 / Guidance over control',
+      heading: 'One foundation, across products doing different jobs.',
       principle: {
-        number: '06',
-        name: 'Invite feedback',
-        text: 'We take time to have the right conversations with the appropriate stakeholders, to validate and create trust in the outcome.',
+        number: '02',
+        name: 'Guidance over control',
+        text: 'We provide balance between configurability and composability while driving consistency.',
       },
       paragraphs: [
-        'Design systems usually live inside one function and negotiate with the other. I built a single multidisciplinary team instead — engineering, design, accessibility, design management — and wrote the roles and hiring profiles around one shared responsibility for the system.',
-        'The conversations that normally happen between two teams happened inside one. Direction was developed together rather than handed across a boundary, which is the only version of this that produces a Figma library and a codebase that agree.',
-      ],
-      cost: 'Hiring is slower when every role has to hold two disciplines in view, and a combined team has to be funded as one thing rather than borrowed from two budgets. It also makes the team accountable for outcomes it can only influence: adoption happens in other people’s roadmaps.',
-    },
-    {
-      id: 'parity',
-      label: '03 / The constraint',
-      heading: 'Parity is a constraint, not an aspiration.',
-      principle: {
-        number: '03',
-        name: 'Quality by default',
-        text: 'We commit to a baseline of quality to provide value and leverage for our consumers. We iterate on features, not quality.',
-      },
-      paragraphs: [
-        'The Figma library and the code implementations stayed in full parity. A designer and an engineer opening the same component saw the same component.',
-        'That sentence is easy to write and expensive to hold. Treated as an aspiration, parity decays within two releases. Treated as a constraint, a component isn’t finished when it works — it’s finished when both sides match.',
-      ],
-      cost: 'Every individual release is slower, and the system says no more often than a team under delivery pressure would like. The return is that nobody downstream has to keep a mental diff between the mock and the component.',
-    },
-    {
-      id: 'accessibility',
-      label: '04 / The hire',
-      heading: 'Accessibility needs an owner, not a checklist.',
-      principle: {
-        number: '05',
-        name: 'Consider everyone',
-        text: 'We take an inclusive approach to our work from the start, considering the context and range of abilities for all customers.',
-      },
-      paragraphs: [
-        'I recruited the leader who built HashiCorp’s accessibility function and backed her to make it a company capability rather than a review step bolted onto the end of a project.',
-        'That expertise went into the components themselves, which is the whole leverage argument for a design system: solve it once, correctly, in the thing eight products already import.',
-      ],
-      cost: 'Headcount spent on a function with no feature roadmap of its own, and a standard that occasionally blocks work other people have already committed to. It paid back as stronger VPATs and enterprise deal readiness — but that argument has to be made before the payback, not after.',
-    },
-    {
-      id: 'adoption',
-      label: '05 / The adoption',
-      heading: 'Instrument adoption before you ask for it.',
-      principle: {
-        number: '04',
-        name: 'Design in context',
-        text: 'We meet consumers where they are and consider both the current and future context in which they use the system.',
-      },
-      paragraphs: [
-        'A replacement has to earn its place in the products that use it. Before asking anyone to migrate, I built an adoption dashboard that tracked Helios usage alongside the legacy components it was replacing.',
-        'That turned adoption from an argument into an observation. We could see which teams were moving, which were stuck, and what they were stuck on — and then show up with guilds, office hours and direct help rather than a mandate.',
-        'I stayed in the technical direction alongside it: discovery and proofs of concept for repository modernisation, introducing TypeScript, and moving templates to GTS while the team kept shipping.',
-      ],
-      cost: 'Months of engineering spent on tooling that ships no components. The alternative is negotiating adoption on vibes, one product team at a time, with no way to tell a stalled migration from a slow one.',
-    },
-    {
-      id: 'what-changed',
-      label: '06 / What changed',
-      heading: 'A foundation teams could share.',
-      paragraphs: [
-        'Design and engineering worked in sync, because parity made it structurally difficult not to. Accessibility and consistency improved substantially across product interfaces — as a property of the components, not as a late audit.',
-        'Teams reported shipping faster. I treat that as useful feedback rather than a measured number; the adoption figures and the public source are the firmer evidence.',
-        'The portfolio it was built for spanned HashiCorp’s product suite and the growing HashiCorp Cloud Platform: different infrastructure and security workflows, cloud services and self-managed tools, held to one set of interaction and accessibility patterns.',
+        'HashiCorp’s portfolio at the time spanned Terraform, Vault, Consul, Nomad, Boundary, Waypoint, Packer and Vagrant, alongside the growing HashiCorp Cloud Platform: different infrastructure and security workflows, some cloud services and some self-managed tools.',
+        'A foundation serving that range has to be opinionated enough to produce consistency and open enough that a team with an unusual problem is not blocked by it. That balance is the standing tension in the work, and it is a balance rather than a solved question.',
       ],
       products: [
         'Terraform',
@@ -480,6 +423,73 @@ export const heliosCaseStudy = {
         label: 'The product portfolio in 2022',
         url: 'https://www.hashicorp.com/en/blog/hashicorp-2022-year-in-review',
       },
+      tradeoff:
+        'Every escape hatch is a place consistency can leak out, and every refusal to add one lands on a team with a deadline. Neither answer is free, and the system has to keep choosing.',
+    },
+    {
+      id: 'quality-by-default',
+      label: '03 / Quality by default',
+      heading: 'Parity between Figma and code was the floor.',
+      principle: {
+        number: '03',
+        name: 'Quality by default',
+        text: 'We recognize that we are providing a service and commit to a baseline of quality to provide value and leverage for our consumers. We iterate on features, not quality.',
+      },
+      paragraphs: [
+        'The Figma library and the code implementations stayed in full parity. A designer and an engineer opening the same component saw the same component, which is the difference between a system people trust and a system people check.',
+        'Held as an aspiration, parity decays within a release or two. Held as a baseline, a component is not finished when it works — it is finished when both sides match. The principle is explicit about which of those the team chose.',
+      ],
+      tradeoff:
+        'Individual releases are slower, and the system says “not yet” more often than a team under delivery pressure would like.',
+    },
+    {
+      id: 'design-in-context',
+      label: '04 / Design in context',
+      heading: 'Adoption was earned product by product.',
+      principle: {
+        number: '04',
+        name: 'Design in context',
+        text: 'We meet consumers where they are and consider both the current and future context in which they use the system.',
+      },
+      paragraphs: [
+        'A replacement has to earn its place in products that already work. Guilds, office hours and direct conversations with product teams did more for migration than any mandate would have, because the obstacles were specific and local.',
+        'We reached more than 100 engineers and designers, and the dashboard tracked net adoption of more than 20,000 component instances across roughly eight products. Alongside it I stayed in the technical direction: discovery and proofs of concept for repository modernisation, introducing TypeScript, and moving templates to GTS while the team kept shipping.',
+        'Teams reported shipping faster. I treat that as useful feedback rather than a measured number; the adoption figures and the public source are the firmer evidence.',
+      ],
+      tradeoff:
+        'Meeting teams where they are means the migration runs on their timelines, not yours, and the old system stays alive longer than anyone would like.',
+    },
+    {
+      id: 'consider-everyone',
+      label: '05 / Consider everyone',
+      heading: 'Accessibility had an owner, not a checklist.',
+      principle: {
+        number: '05',
+        name: 'Consider everyone',
+        text: 'We take an inclusive approach to our work from the start, considering the context and range of abilities for all customers.',
+      },
+      paragraphs: [
+        'I recruited the leader who built HashiCorp’s accessibility function and backed her to make it a company capability rather than a review step at the end of a project. That expertise went into the components themselves.',
+        'Which is the leverage argument for a shared foundation in its clearest form: solve it once, properly, in the thing every product already imports, instead of asking eight teams to each get it right separately.',
+      ],
+      tradeoff:
+        'Headcount on a function with no feature roadmap of its own, and a standard that sometimes blocks work already committed to. The return — stronger VPATs, enterprise deal readiness — arrives well after the argument has to be won.',
+    },
+    {
+      id: 'invite-feedback',
+      label: '06 / Invite feedback',
+      heading: 'One team, so the conversations happened inside it.',
+      principle: {
+        number: '06',
+        name: 'Invite feedback',
+        text: 'We take time to have the right conversations with the appropriate stakeholders, to validate and create trust in the outcome.',
+      },
+      paragraphs: [
+        'Design systems usually live inside one function and negotiate with the other. I built a single multidisciplinary team instead — engineering, design, accessibility, design management — and wrote the roles and hiring profiles around one shared responsibility for the system.',
+        'The conversations that normally happen across a handoff happened inside one group. That is the only version of this arrangement that reliably produces a Figma library and a codebase that agree, and it is why the principles above read as a single point of view rather than a treaty.',
+      ],
+      tradeoff:
+        'Hiring is slower when every role has to hold two disciplines in view, and the team is accountable for outcomes it can only influence: adoption happens in other people’s roadmaps.',
     },
   ],
   artifacts: {

@@ -24,7 +24,7 @@ import { heliosCaseStudy as story, profile } from '../../data/site';
           <h1 id="case-title">{story.heading}</h1>
           <p class="case-introduction">{story.introduction}</p>
           <p class="case-role">{story.role}</p>
-          <a class="case-read" href="#replace">
+          <a class="case-read" href="#rooted-in-reality">
             Read the story <span aria-hidden="true">↓</span>
           </a>
           <span class="case-emblem" aria-hidden="true">
@@ -103,9 +103,9 @@ import { heliosCaseStudy as story, profile } from '../../data/site';
                   </ul>
                 )}
                 {section.drift && <Drift />}
-                {section.cost && (
+                {section.tradeoff && (
                   <p class="case-cost">
-                    <b>What it cost.</b> {section.cost}
+                    <b>The tradeoff.</b> {section.tradeoff}
                   </p>
                 )}
                 {section.source && (

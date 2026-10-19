@@ -40,13 +40,13 @@ test('the full case study remains readable without JavaScript', async ({
     'Packer',
     'Vagrant',
   ]);
-  await expect(page.locator('#one-team .case-principle')).toContainText(
+  await expect(page.locator('#invite-feedback .case-principle')).toContainText(
     'Principle 06 · Invite feedback',
   );
-  await expect(page.locator('#parity .case-cost')).toContainText(
-    'What it cost.',
+  await expect(page.locator('#quality-by-default .case-cost')).toContainText(
+    'The tradeoff.',
   );
-  await expect(page.locator('#what-changed')).toContainText(
+  await expect(page.locator('#design-in-context')).toContainText(
     'rather than a measured number',
   );
   await expect(page.locator('.case-note')).toContainText(

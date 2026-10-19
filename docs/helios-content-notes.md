@@ -1,5 +1,22 @@
 # Helios case study: claim scope
 
+The page is organised by the six Helios principles, in their published order,
+with one section per principle. The principle text is quoted verbatim from
+[the published principles](https://helios.hashicorp.design/about/principles),
+checked October 18, 2026; the 03 quotation is trimmed of its opening clause,
+which the page notes by quoting only the committing sentences. Each section
+also states the tradeoff that principle demanded, which is Brian's account
+rather than anything the published page claims.
+
+The before/after figure in section 01 is a reconstruction, not a reproduction:
+the buttons and hex values are invented to show the kind of drift described,
+the caption says so on the page, and no internal interface appears. Its
+`--token-color-palette-blue-300` label is illustrative and is deliberately not
+one of the token names the closing section shows at a real value.
+
+The closing section's token names follow Helios conventions, but the values are
+this site's own. It does not claim to reproduce the Helios token set.
+
 The case study is Brian's account of his work. It distinguishes his ownership
 of direction, team building, and adoption from the team's design and
 implementation. It makes no claim that he individually designed or coded all
