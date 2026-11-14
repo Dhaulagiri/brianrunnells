@@ -28,7 +28,7 @@ test('mobile dock indicates overflow and keeps the current era in view', async (
   await expect(page.locator('.dock-scroll-cue')).toBeVisible();
   await page.locator('[data-era]').last().scrollIntoViewIfNeeded();
   const active = page.locator('.dock-list [aria-current]');
-  await expect(active).toHaveAttribute('data-era-link', 'era-5');
+  await expect(active).toHaveAttribute('data-era-link', 'era-6');
   expect(
     await active.evaluate((link) => {
       const item = link.getBoundingClientRect();
