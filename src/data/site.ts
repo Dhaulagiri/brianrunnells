@@ -75,7 +75,9 @@ export const sideProjects = {
       name: 'Apex Rewatch',
       summary:
         'An unofficial archive for The Rewatchables: movie picks, Apex Mountain calls, episode histories, and plenty of ways to keep digging.',
-      links: [{ label: 'Explore the archive', url: 'https://apexrewatch.com/' }],
+      links: [
+        { label: 'Explore the archive', url: 'https://apexrewatch.com/' },
+      ],
     },
     {
       name: 'UI-SDK — EmberBoard',

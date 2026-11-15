@@ -15,7 +15,9 @@ import { sideProjects } from '../../data/site';
     <ol class="sp-list">
       {sideProjects.items.map((project, index) => (
         <li class="sp-project">
-          <span class="sp-number" aria-hidden="true">0{index + 1}</span>
+          <span class="sp-number" aria-hidden="true">
+            0{index + 1}
+          </span>
           <div class="sp-copy">
             <h3>{project.name}</h3>
             <p>{project.summary}</p>
