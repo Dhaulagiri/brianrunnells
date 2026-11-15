@@ -57,8 +57,42 @@ export const eras = [
   },
   { id: 'era-3', name: 'Heroku', years: '2015–2021', label: 'Heroku' },
   { id: 'era-4', name: 'HashiCorp', years: '2021–now', label: 'HashiCorp' },
-  { id: 'era-5', name: 'Next', years: '→', label: 'Next' },
+  {
+    id: 'era-5',
+    name: 'Side projects',
+    years: 'ongoing',
+    label: 'Side projects',
+  },
+  { id: 'era-6', name: 'Next', years: '→', label: 'Next' },
 ];
+
+export const sideProjects = {
+  heading: 'A few things I’m making after hours.',
+  introduction:
+    'Small experiments, long-running obsessions, and the occasional project that gets a little out of hand.',
+  items: [
+    {
+      name: 'Apex Rewatch',
+      summary:
+        'An unofficial archive for The Rewatchables: movie picks, Apex Mountain calls, episode histories, and plenty of ways to keep digging.',
+      links: [{ label: 'Explore the archive', url: 'https://apexrewatch.com/' }],
+    },
+    {
+      name: 'UI-SDK — EmberBoard',
+      summary: 'A UI-SDK experiment, built as EmberBoard.',
+      links: [
+        {
+          label: 'Open EmberBoard',
+          url: 'https://ui-sdk-ember-board.vercel.app/',
+        },
+        {
+          label: 'View the source',
+          url: 'https://github.com/Dhaulagiri/ember-board',
+        },
+      ],
+    },
+  ],
+};
 
 export const geocities = {
   kicker: '1990s · GeoCities',

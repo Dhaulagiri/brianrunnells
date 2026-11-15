@@ -1,0 +1,122 @@
+---
+import { sideProjects } from '../../data/site';
+---
+
+<section
+  id="era-5"
+  class="era era-side-projects"
+  data-era="5"
+  aria-labelledby="era-5-heading"
+>
+  <div class="era-inner sp-inner" data-reveal>
+    <h2 id="era-5-heading">{sideProjects.heading}</h2>
+    <p class="sp-introduction">{sideProjects.introduction}</p>
+
+    <ol class="sp-list">
+      {sideProjects.items.map((project, index) => (
+        <li class="sp-project">
+          <span class="sp-number" aria-hidden="true">0{index + 1}</span>
+          <div class="sp-copy">
+            <h3>{project.name}</h3>
+            <p>{project.summary}</p>
+          </div>
+          <ul class="sp-links" aria-label={`${project.name} links`}>
+            {project.links.map((link) => (
+              <li>
+                <a href={link.url} target="_blank" rel="noopener noreferrer">
+                  {link.label} <span aria-hidden="true">↗</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .era-side-projects {
+    min-height: 0;
+    padding-block: clamp(64px, 10vw, 128px);
+    background: #101116;
+    color: var(--paper);
+  }
+  .sp-inner {
+    display: block;
+    width: min(100%, 1000px);
+    margin-inline: auto;
+  }
+  .sp-inner > h2 {
+    max-width: 16ch;
+    font-family: var(--serif);
+    font-size: clamp(38px, 6vw, 72px);
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+  }
+  .sp-introduction {
+    max-width: 52ch;
+    margin-top: 20px;
+    color: #d0cdc5;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  .sp-list {
+    margin-top: clamp(40px, 7vw, 72px);
+    border-top: 1px solid #51525a;
+  }
+  .sp-project {
+    display: grid;
+    grid-template-columns: 48px minmax(0, 1fr) minmax(170px, 220px);
+    gap: 20px;
+    align-items: start;
+    padding: 24px 0;
+    border-bottom: 1px solid #51525a;
+  }
+  .sp-number {
+    padding-top: 5px;
+    color: #c9c5bb;
+    font-family: var(--mono);
+    font-size: 12px;
+  }
+  .sp-copy h3 {
+    font-family: var(--serif);
+    font-size: clamp(25px, 3vw, 34px);
+    line-height: 1.1;
+  }
+  .sp-copy p {
+    max-width: 58ch;
+    margin-top: 8px;
+    color: #d0cdc5;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .sp-links {
+    display: grid;
+    justify-items: start;
+  }
+  .sp-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+    padding-block: 8px;
+    color: #f3e6bf;
+    font-family: var(--mono);
+    font-size: 12px;
+    line-height: 1.5;
+    text-underline-offset: 0.2em;
+  }
+  @media (max-width: 700px) {
+    .sp-project {
+      grid-template-columns: 32px minmax(0, 1fr);
+      gap: 12px;
+    }
+    .sp-links {
+      grid-column: 2;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0 16px;
+    }
+  }
+</style>

@@ -8,7 +8,7 @@ guestbook?.addEventListener('click', () => {
   guestbook.setAttribute('aria-pressed', 'true');
 });
 document.querySelector('[data-webring]')?.addEventListener('click', () => {
-  const eras = ['era-1', 'era-2', 'era-3', 'era-4', 'era-5'];
+  const eras = ['era-1', 'era-2', 'era-3', 'era-4', 'era-5', 'era-6'];
   location.hash = eras[Math.floor(Math.random() * eras.length)];
 });
 const lessons: Record<string, string> = {

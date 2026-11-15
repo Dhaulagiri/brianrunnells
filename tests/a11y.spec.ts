@@ -41,13 +41,21 @@ for (const path of PAGES) {
 }
 
 /**
- * The sticky rail and dock float over six sections with wildly different
+ * The sticky rail and dock float over seven sections with wildly different
  * backgrounds — GeoCities navy, ClimbingNarc cream, HashiCorp near-white. A
  * scan at the top of the document only ever measures them against the first
  * one, which is how a 4.48:1 dock label over the white HashiCorp panel sat
  * here undetected. Park at each era and re-measure.
  */
-for (const era of ['era-0', 'era-1', 'era-2', 'era-3', 'era-4', 'era-5']) {
+for (const era of [
+  'era-0',
+  'era-1',
+  'era-2',
+  'era-3',
+  'era-4',
+  'era-5',
+  'era-6',
+]) {
   test(`overlay chrome stays legible over #${era}`, async ({ page }) => {
     await page.goto('/');
     await settle(page);
@@ -190,11 +198,11 @@ test('the page works without JavaScript', async ({ browser }) => {
   const page = await context.newPage();
   await page.goto('/');
 
-  // All six eras readable, the moon static, and no marquee motion to pause.
+  // All seven eras readable, the moon static, and no marquee motion to pause.
   await expect(
     page.getByRole('link', { name: 'Read the Helios case study' }),
   ).toHaveAttribute('href', '/work/helios/');
-  await expect(page.locator('.era-inner[data-reveal]')).toHaveCount(6);
+  await expect(page.locator('[data-reveal]')).toHaveCount(7);
   const hidden = await page
     .locator('.era-inner[data-reveal]')
     .evaluateAll(
