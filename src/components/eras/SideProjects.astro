@@ -6,10 +6,9 @@ import { sideProjects } from '../../data/site';
   id="era-6"
   class="era era-side-projects"
   data-era="6"
-  aria-labelledby="era-6-kicker era-6-heading"
+  aria-labelledby="era-6-heading"
 >
   <div class="era-inner sp-inner" data-reveal>
-    <p class="sp-kicker" id="era-6-kicker">{sideProjects.kicker}</p>
     <h2 id="era-6-heading">{sideProjects.heading}</h2>
     <p class="sp-introduction">{sideProjects.introduction}</p>
 
@@ -47,13 +46,6 @@ import { sideProjects } from '../../data/site';
     display: block;
     width: min(100%, 1000px);
     margin-inline: auto;
-  }
-  .sp-kicker {
-    margin-bottom: 18px;
-    color: #c9c5bb;
-    font-family: var(--mono);
-    font-size: 12px;
-    letter-spacing: 0.04em;
   }
   .sp-inner > h2 {
     max-width: 16ch;

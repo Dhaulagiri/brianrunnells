@@ -67,7 +67,6 @@ export const eras = [
 ];
 
 export const sideProjects = {
-  kicker: 'Ongoing · Side projects',
   heading: 'A few things I’m making after hours.',
   introduction:
     'Small experiments, long-running obsessions, and the occasional project that gets a little out of hand.',
